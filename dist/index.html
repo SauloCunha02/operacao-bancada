@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#144e46">
+  <meta name="description" content="50 roteiros de diagnóstico de desktops para aulas de Arquitetura e Manutenção de Computadores. Escolha os casos e prepare seu material.">
+  <title>AMC · Oficina de diagnóstico</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="cases.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#catalog">Pular para os casos</a>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="./" aria-label="AMC, início"><span class="brand-mark" aria-hidden="true">A<span>+</span></span><span>AMC <span class="brand-sub">/ Oficina de diagnóstico</span></span></a>
+    <div class="header-actions"><span class="saved"><i></i> Seleção salva neste navegador</span><button class="quiet" id="help-button">Guia de uso <span aria-hidden="true">↗</span></button></div>
+  </div></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span></span> ARQUITETURA E MANUTENÇÃO DE COMPUTADORES</p>
+        <h1 id="hero-title">Antes de trocar,<br>aprenda a <em>investigar.</em></h1>
+        <p class="hero-desc">50 situações reais de desktops. Um caminho de diagnóstico que começa no simples e avança, passo a passo, até a causa.</p>
+        <div class="hero-meta"><span><b>50</b> casos completos</span><span><b>5</b> etapas de aprendizagem</span><span>Feito para <b>iniciantes</b></span></div>
+      </div>
+      <div class="method-board" aria-label="Método de diagnóstico: observar o sintoma, testar uma hipótese, corrigir a causa e validar o resultado">
+        <div class="board-top"><span class="board-label">MÉTODO DE BANCADA</span><span class="board-dot"></span></div>
+        <div class="method-row"><span class="method-num">01</span><span><strong>Observe o sintoma</strong><small>O que acontece? Em que momento?</small></span><span class="method-symbol" aria-hidden="true">◎</span></div>
+        <div class="method-row"><span class="method-num">02</span><span><strong>Teste uma hipótese</strong><small>Uma variável de cada vez.</small></span><span class="method-symbol" aria-hidden="true">⌁</span></div>
+        <div class="method-row"><span class="method-num">03</span><span><strong>Corrija a causa</strong><small>Use a evidência para decidir.</small></span><span class="method-symbol" aria-hidden="true">＋</span></div>
+        <div class="method-row"><span class="method-num">04</span><span><strong>Valide o resultado</strong><small>Repita o teste e registre.</small></span><span class="method-symbol" aria-hidden="true">✓</span></div>
+        <div class="board-bottom">DO MAIS SIMPLES <span aria-hidden="true">⟶</span> AO MAIS COMPLEXO</div>
+      </div>
+    </section>
+    <section class="path" aria-labelledby="path-title"><div class="section-kicker"><h2 id="path-title">Uma trilha, cinco etapas</h2><button class="text-button" id="reset-level">Ver todas as etapas <span aria-hidden="true">↗</span></button></div><div id="level-filters" class="level-grid"></div></section>
+    <section class="workspace" id="catalog" aria-labelledby="catalog-title">
+      <div class="collection">
+        <div class="collection-heading"><div><p class="eyebrow">BIBLIOTECA DE CASOS</p><h2 id="catalog-title">Monte a sua próxima aula<span>.</span></h2></div><span class="result-count" id="result-count">50 casos</span></div>
+        <div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="search">Buscar por sintoma, peça, causa ou solução</label><input id="search" type="search" placeholder="Busque um sintoma, uma peça ou uma solução…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div>
+        <div class="filter-row"><label class="sr-only" for="category">Filtrar categoria</label><select id="category"><option value="">Todas as categorias</option></select><button id="only-selected" class="toggle-filter" aria-pressed="false">Só minha seleção <span id="filter-selected-count">0</span></button><button class="text-button select-visible" id="select-visible">Selecionar exibidos</button></div>
+        <div class="active-filter" id="active-filter" hidden></div>
+        <div class="cards" id="cards"></div>
+        <div class="empty-results" id="empty-results" hidden><div aria-hidden="true">⌕</div><h3>Nenhum caso por aqui.</h3><p>Tente outra palavra ou amplie os filtros.</p><button id="clear-filters" class="secondary">Limpar filtros</button></div>
+        <div class="collection-footer"><span>Um sintoma pode ter várias causas.</span><span>Teste antes de concluir.</span></div>
+      </div>
+      <aside class="selection-panel" aria-labelledby="selection-title">
+        <div class="panel-title"><span class="panel-icon" aria-hidden="true">▤</span><h2 id="selection-title">Meu material</h2><span class="selection-total" id="selection-total">0</span></div>
+        <p class="panel-desc">Escolha os casos que fazem sentido para a sua turma.</p>
+        <div class="selection-empty" id="selection-empty"><svg viewBox="0 0 96 90" aria-hidden="true"><rect x="22" y="13" width="49" height="62" rx="7"/><path d="M34 30h25M34 40h19M34 50h15"/><circle cx="70" cy="67" r="15"/><path d="M70 60v14M63 67h14"/></svg><strong>A aula começa com uma escolha.</strong><p>Marque “Adicionar” nos casos.<br>Sua seleção aparece aqui.</p></div>
+        <ol id="selection-list" class="selection-list"></ol>
+        <div class="selection-summary" id="selection-summary" hidden></div>
+        <div class="export-actions"><button class="primary" id="download-md" disabled><span aria-hidden="true">↓</span> Baixar roteiros <small>.md</small></button><button class="secondary" id="print" disabled><span aria-hidden="true">▤</span> Imprimir / salvar PDF</button><div class="small-actions"><button id="copy" disabled>Copiar números</button><button id="download-json" disabled>Salvar seleção .json</button></div></div>
+        <p class="export-hint">Depois, envie os números escolhidos nesta conversa para montarmos o material.</p>
+        <button class="clear-selection" id="clear-selection" disabled>Limpar seleção</button>
+      </aside>
+    </section>
+    <section class="lab-note"><span class="lab-note-icon" aria-hidden="true">i</span><div><strong>A bancada também ensina cuidado.</strong><p>Antes de abrir o gabinete: desligue, retire da tomada e siga o manual. Trabalhos internos com o professor; fonte e monitor permanecem fechados. Preserve os dados antes de reparar o sistema ou o armazenamento.</p></div><button class="text-button" id="safety-button">Ler o guia <span aria-hidden="true">↗</span></button></section>
+    <footer><span><b>AMC</b> / Oficina de diagnóstico</span><span>Roteiros didáticos para desktops · Referência de sistema: Windows</span><button class="text-button" id="sources-button">Fontes e glossário ↗</button></footer>
+  </main>
+  <dialog id="case-dialog" class="case-dialog" aria-labelledby="case-title"><div id="case-content"></div></dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><p class="eyebrow">GUIA DA OFICINA</p><button class="icon-button close-help" aria-label="Fechar guia">×</button></div><h2 id="help-title">Investigar é seguir as pistas.</h2>
+    <p class="guide-intro">Esta biblioteca é uma proposta para você escolher os casos antes de montar o material da turma. Os roteiros são hipóteses ordenadas, não diagnósticos automáticos.</p>
+    <h3>Como escolher</h3><ol class="guide-list"><li>Filtre por etapa ou categoria e busque o sintoma.</li><li>Abra “Investigar caso” para ler causa, verificação e solução.</li><li>Marque “Adicionar” nos casos que deseja trabalhar.</li><li>Baixe os roteiros, imprima a seleção ou copie os números e envie nesta conversa.</li></ol>
+    <h3>Como trabalhar com iniciantes</h3><p>Apresente primeiro o sintoma. Peça ao aluno uma hipótese e uma verificação. Só então discuta a correção. Anote o que mudou e repita a tarefa para validar. A etapa indica a posição do caso na trilha; as últimas verificações de um caso básico ainda podem exigir ajuda técnica.</p>
+    <h3>Cuidados na prática</h3><ul class="guide-list"><li>Desligue o PC, retire da tomada e siga o procedimento do fabricante antes de mexer em componentes. A placa pode receber energia em espera enquanto conectada.</li><li>Use proteção contra descarga eletrostática conforme o manual, segure placas pelas bordas e não toque em contatos.</li><li>Não abra fonte ou monitor. Não faça pontes em conectores, medições na rede elétrica nem mude a chave 115/230 V por tentativa.</li><li>Cheiro de queimado, líquido, faísca ou cabo danificado: interrompa o teste e encaminhe ao responsável.</li><li>Faça backup e confira sua leitura antes de procedimentos que alteram dados. Guarde a chave de recuperação de unidades criptografadas.</li><li>Troque uma variável por vez. Testes internos, troca de peças e firmware exigem o professor. Use componentes conhecidos, compatíveis e os cabos corretos da fonte.</li></ul>
+    <h3>Glossário de bancada</h3><dl class="glossary"><dt>POST</dt><dd>Autoteste do hardware antes de iniciar o sistema.</dd><dt>BIOS / UEFI</dt><dd>Firmware que configura o hardware e inicia o processo de boot.</dd><dt>Boot</dt><dd>Processo de carregar o sistema operacional.</dd><dt>Driver</dt><dd>Software que permite ao sistema trabalhar com um componente.</dd><dt>GPU</dt><dd>Processador gráfico, integrado à CPU ou numa placa dedicada.</dd><dt>RAM</dt><dd>Memória de trabalho temporária; não é o armazenamento dos arquivos.</dd><dt>SMART</dt><dd>Indicadores de saúde do armazenamento; não substituem backup nem detectam toda falha.</dd><dt>DHCP / DNS</dt><dd>DHCP fornece configuração de rede; DNS traduz nomes de serviços em endereços.</dd><dt>XMP / EXPO</dt><dd>Perfis de memória que alteram parâmetros; dependem da estabilidade e compatibilidade do conjunto.</dd><dt>Header</dt><dd>Conector interno da placa-mãe, identificado no manual.</dd></dl>
+    <h3>Referências para consulta</h3><p>Conteúdo didático original, com referências oficiais para os princípios de diagnóstico. Códigos, slots, limites e procedimentos variam: o manual do modelo sempre orienta a prática.</p><ul id="reference-list" class="reference-list"></ul>
+    <p class="storage-note">A seleção fica apenas neste navegador e neste endereço. O arquivo JSON permite guardar os números e os roteiros; mudar de navegador não transfere a seleção automaticamente.</p><button class="primary close-help">Voltar aos casos</button>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div><div id="print-content"></div>
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#144e46">
+  <meta name="description" content="50 roteiros de diagnóstico de desktops para aulas de Arquitetura e Manutenção de Computadores. Escolha os casos e prepare seu material.">
+  <title>AMC · Oficina de diagnóstico</title>
+  <style>450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap');
+:root{--bg:#f5f6f3;--paper:#fff;--ink:#202c29;--muted:#6b7771;--line:#dfe5df;--green:#175a4e;--mint:#e7efdf;--lime:#c9e799;--radius:14px;font-family:'DM Sans',Segoe UI,sans-serif;color:var(--ink);background:var(--bg);font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.46}button{color:inherit}a{color:var(--green)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #6f9e45;outline-offset:4px}button,input,select{border-radius:8px}button{border:0}h1,h2,h3,p{margin:0}button svg{width:18px}svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}.skip{position:fixed;top:-80px;left:20px;z-index:100;background:white;padding:15px;border-radius:8px}.skip:focus{top:12px}.topbar{background:#ffffffd9;border-bottom:1px solid var(--line)}.topbar-inner{max-width:1440px;padding:20px 48px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-weight:750;font-size:17px;letter-spacing:-.5px}.brand-mark{display:flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--green);color:white;border-radius:9px;font-family:Manrope,sans-serif;font-size:22px}.brand-mark span{color:var(--lime);font-size:19px;margin-left:-1px}.brand-sub{font-weight:500;color:var(--muted);font-size:14px;letter-spacing:-.1px;margin-left:8px}.header-actions{display:flex;align-items:center;gap:22px}.saved{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px}.saved i{width:6px;height:6px;border-radius:50%;background:#608b49}.quiet{background:transparent;font-size:13px;padding:9px 0}.quiet span{margin-left:10px}.shell{max-width:1440px;margin:auto;padding:0 48px}.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:68px;align-items:center;padding:55px 0 46px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;color:var(--green);display:flex;align-items:center;gap:8px}.eyebrow>span{height:5px;width:5px;background:var(--green);border-radius:50%}h1{font:750 clamp(35px,4.2vw,58px)/1.11 Manrope,Segoe UI,sans-serif;letter-spacing:-2.8px;margin:19px 0 21px}h1 em{color:var(--green);font-style:normal}.hero-desc{max-width:495px;font-size:15px;color:var(--muted);line-height:1.75}.hero-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:27px;font-size:11px;color:var(--muted)}.hero-meta>span+span{border-left:1px solid #d4dad4;padding-left:20px}.hero-meta b{color:var(--ink);font-weight:700}.method-board{background:#e7eee3;border:1px solid #d7e1d2;border-radius:16px;padding:19px 24px 0;transform:rotate(-1deg);position:relative;box-shadow:0 8px 0 -3px #e1e7db}.board-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px}.board-label{font-size:9px;letter-spacing:1.8px;font-weight:700;color:#517b5d}.board-dot{width:7px;height:7px;background:#6d9754;border-radius:50%;box-shadow:0 0 0 4px #d8e5d0}.method-row{display:flex;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid #d1dccb}.method-num{font:600 11px Manrope,sans-serif;color:#779079;align-self:flex-start;padding-top:4px}.method-row strong{display:block;font:700 15px Manrope,sans-serif;letter-spacing:-.2px}.method-row small{display:block;margin-top:4px;font-size:11px;color:#68806a}.method-symbol{margin-left:auto;color:#477555;font-size:24px;font-weight:400}.board-bottom{font-size:8px;letter-spacing:1.6px;color:#59745e;display:flex;justify-content:space-between;padding:15px 0}.path{padding:26px 0 31px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.section-kicker{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-kicker h2{font-size:13px;font-weight:650}.text-button{color:var(--green);font-size:11px;padding:5px 0;background:transparent;font-weight:600}.text-button span{margin-left:5px}.level-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.level-button{background:#fff;text-align:left;border:1px solid var(--line);border-radius:10px;padding:14px 15px;position:relative;transition:background .15s,border .15s,transform .15s}.level-button:hover{border-color:#78998a;transform:translateY(-2px)}.level-button[aria-pressed=true]{background:#e8f0e4;border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.level-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.level-index{font:650 10px Manrope,sans-serif;color:var(--green);background:#eef3eb;border-radius:5px;padding:4px 6px}.level-amount{font-size:9px;color:var(--muted)}.level-button strong{display:block;font-size:11px;font-weight:700;margin-bottom:5px}.level-button p{font-size:10px;color:var(--muted);line-height:1.45}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 288px;gap:28px;padding-top:37px;align-items:start;scroll-margin-top:24px}.collection-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px;gap:20px}.collection-heading .eyebrow{font-size:9px;margin-bottom:10px}.collection-heading h2{font:750 clamp(21px,2.1vw,29px)/1.2 Manrope,sans-serif;letter-spacing:-1px}.collection-heading h2 span{color:#87a96b}.result-count{color:var(--muted);font-size:11px;white-space:nowrap;padding-bottom:3px}.search-wrap{display:flex;gap:10px;background:white;border:1px solid var(--line);border-radius:9px;align-items:center;padding:0 14px;height:46px}.search-wrap:focus-within{border-color:var(--green);box-shadow:0 0 0 2px #dce9d7}.search-wrap svg{width:18px;height:18px;color:#7c897e;flex-shrink:0}.search-wrap input{border:0;background:transparent;outline:0!important;min-width:0;width:100%;height:100%;font-size:12px;color:var(--ink)}.search-wrap input::placeholder{color:#849086}.search-wrap kbd{font:10px monospace;border:1px solid var(--line);padding:2px 5px;border-radius:4px;color:#89938b}.filter-row{display:flex;align-items:center;gap:10px;margin:12px 0 22px;flex-wrap:wrap}.filter-row select{height:33px;background:transparent;border:1px solid #d6dfd5;font-size:10px;color:#506356;padding:0 27px 0 10px;max-width:100%}.toggle-filter{background:transparent;border:1px solid #d6dfd5;display:flex;gap:8px;align-items:center;padding:7px 10px;font-size:10px;color:#506356}.toggle-filter span{background:#e4ebe1;border-radius:4px;padding:1px 4px;font-size:9px}.toggle-filter[aria-pressed=true]{background:#e4eedc;border-color:var(--green)}.select-visible{margin-left:auto;white-space:nowrap}.active-filter{background:#e6eee2;border-radius:7px;padding:10px 12px;font-size:11px;color:var(--green);margin-bottom:15px;display:flex;justify-content:space-between;align-items:center;gap:10px}.active-filter button{background:transparent;color:var(--green);font-size:11px;font-weight:600}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.case-card{background:white;border:1px solid var(--line);border-radius:12px;padding:19px 19px 0;display:flex;flex-direction:column;transition:border-color .15s,box-shadow .15s}.case-card:hover{border-color:#a2b6a6;box-shadow:0 5px 16px #1f4e2910}.case-card.is-selected{border-color:#75986b;background:#fcfef9}.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.card-category{display:flex;align-items:center;gap:7px;font-size:9px;font-weight:600;color:#5f7468}.card-category svg{width:16px;height:16px;color:var(--green)}.case-number{font:600 10px Manrope,sans-serif;color:#98a39a}.case-card h3{font:700 15px/1.4 Manrope,sans-serif;letter-spacing:-.35px;margin-bottom:9px}.case-card .symptom{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:16px;flex:1}.card-badges{display:flex;align-items:center;gap:8px;margin-bottom:16px}.level-badge{font-size:8px;font-weight:650;padding:4px 7px;border-radius:5px;color:#567c45;background:#edf3e5}.level-badge.l2{background:#edf2e7;color:#647e44}.level-badge.l3{background:#f5efd9;color:#847227}.level-badge.l4{background:#faeadb;color:#946131}.level-badge.l5{background:#eee9f4;color:#76598e}.step-count{font-size:8px;color:#8b968e}.card-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0 14px;border-top:1px solid #edf0eb}.inspect{padding:4px 0;background:transparent;font-size:10px;color:var(--green);font-weight:650;display:flex;align-items:center;gap:7px}.inspect span{font-size:13px}.select-case{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:10px;color:#6c7b6e}.select-case input{appearance:none;width:14px;height:14px;border:1px solid #c8d3c7;border-radius:4px;background:white;margin:0;display:grid;place-content:center;cursor:pointer;flex-shrink:0}.select-case input:checked{background:var(--green);border-color:var(--green)}.select-case input:checked:after{content:'✓';color:white;font:10px sans-serif}.selection-panel{background:white;border:1px solid var(--line);border-radius:var(--radius);padding:22px 21px;position:sticky;top:20px}.panel-title{display:flex;align-items:center;gap:9px}.panel-icon{color:var(--green);font-size:20px}.panel-title h2{font:750 15px Manrope,sans-serif;letter-spacing:-.3px}.selection-total{margin-left:auto;background:var(--green);color:white;min-width:23px;height:23px;border-radius:7px;font-size:11px;display:grid;place-content:center}.panel-desc{font-size:11px;line-height:1.65;color:var(--muted);margin-top:11px}.selection-empty{text-align:center;padding:24px 0 25px}.selection-empty svg{height:87px;color:#b3c6a6;margin-bottom:13px;stroke-width:1.5}.selection-empty svg circle{fill:#eff5e7;stroke:#8fa97c}.selection-empty strong{font:650 11px Manrope,sans-serif;display:block;margin-bottom:7px}.selection-empty p{color:#8d988e;font-size:10px;line-height:1.8}.selection-list{list-style:none;padding:0;margin:20px -3px 13px;max-height:325px;overflow:auto;scrollbar-width:thin}.selection-list li{display:flex;gap:8px;align-items:start;padding:10px 3px;border-bottom:1px solid #edf0eb}.selection-list .selected-num{font:600 9px Manrope,sans-serif;color:var(--green);padding-top:3px}.selected-case{background:transparent;padding:0;text-align:left;font-size:10px;line-height:1.5;flex:1}.selected-case:hover{text-decoration:underline}.remove-case{background:transparent;color:#8a958c;padding:0 4px;font-size:16px;line-height:1.2}.selection-summary{font-size:9px;color:#73816f;border-top:1px solid var(--line);padding:12px 0;line-height:1.8}.export-actions{display:flex;flex-direction:column;gap:8px}.primary,.secondary{display:flex;align-items:center;justify-content:center;gap:9px;padding:12px 15px;min-height:41px;font-size:11px;font-weight:650}.primary{background:var(--green);color:white}.primary:hover:enabled{background:#12473e}.primary small{font-size:9px;color:#aaccaf;margin-left:auto;font-weight:400}.secondary{background:white;border:1px solid #d5dfd1;color:var(--green)}.secondary:hover:enabled{background:#f0f5eb}.small-actions{display:flex;justify-content:space-between;gap:8px;margin-top:3px}.small-actions button{color:#657b67;background:transparent;font-size:9px;text-align:left;padding:3px 0}.export-hint{font-size:9px;line-height:1.7;color:#90998f;margin-top:14px}.clear-selection{display:block;margin:14px auto 0;padding:5px;background:transparent;font-size:9px;color:#849080}.collection-footer{display:flex;justify-content:space-between;gap:10px;padding:20px 0;color:#82907f;font-size:10px}.empty-results{text-align:center;padding:55px 20px;border:1px dashed #c7d3c5;border-radius:12px}.empty-results>div{color:#92a789;font-size:45px}.empty-results h3{font:700 20px Manrope,sans-serif;margin:8px}.empty-results p{font-size:12px;color:var(--muted);margin-bottom:17px}.empty-results .secondary{margin:auto}.lab-note{display:flex;gap:15px;align-items:center;margin:27px 0 30px;padding:21px 23px;border:1px solid #dbe4d5;background:#eef2e9;border-radius:10px}.lab-note-icon{border:1px solid #a6b89c;color:#6a835c;border-radius:50%;width:22px;height:22px;display:grid;place-content:center;font:600 13px serif;flex-shrink:0}.lab-note div{flex:1}.lab-note strong{font-size:11px;font-weight:650}.lab-note p{font-size:10px;color:#76836e;line-height:1.75;margin-top:4px;max-width:960px}.lab-note .text-button{white-space:nowrap}footer{border-top:1px solid var(--line);display:flex;gap:20px;align-items:center;justify-content:space-between;padding:21px 0 31px;color:#849080;font-size:9px}footer b{color:#50684e;margin-right:5px}dialog{border:1px solid #dbe3d7;border-radius:18px;padding:28px;box-shadow:0 25px 80px #102e3530;color:var(--ink);background:#fcfdf9;width:calc(100% - 40px);max-height:90vh;overflow:auto}dialog::backdrop{background:#102722a1;backdrop-filter:blur(3px)}.case-dialog{max-width:1020px}.help-dialog{max-width:700px;padding:30px 34px}.dialog-top{display:flex;justify-content:space-between;align-items:center;gap:18px}.icon-button{background:#eaf0e5;width:32px;height:32px;font-size:23px;line-height:1;border-radius:50%;color:#56765b;flex-shrink:0}.dialog-title-line{display:flex;align-items:start;gap:15px;margin:13px 0}.dialog-title-line h2{font:750 27px/1.25 Manrope,sans-serif;letter-spacing:-.8px;flex:1}.modal-select{white-space:nowrap;padding:8px 10px;background:#edf3e6;border:1px solid #c9d9be;font-size:11px;color:var(--green)}.modal-select[aria-pressed=true]{color:white;background:var(--green);border-color:var(--green)}.case-symptom{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:17px}.case-symptom b{color:var(--ink)}.case-meta{display:flex;align-items:center;gap:10px;margin-bottom:21px}.case-meta .level-badge{font-size:10px}.case-meta span:last-child{font-size:10px;color:var(--muted)}.sequence-label{display:flex;align-items:center;gap:12px;color:#62765e;font-size:9px;letter-spacing:1.3px;margin-bottom:12px}.sequence-label:after{content:'';flex:1;height:1px;background:linear-gradient(to right,#c4d5b9,#859971)}.table-head{display:grid;grid-template-columns:42px 1fr 1.25fr 1.25fr;gap:14px;padding:11px 15px;color:#698361;font-size:9px;letter-spacing:1px;background:#e8efe2;border-radius:8px 8px 0 0}.step-row{display:grid;grid-template-columns:42px 1fr 1.25fr 1.25fr;gap:14px;padding:19px 15px;background:white;border:1px solid #e1e7dc;border-top:0;align-items:start}.step-row:last-child{border-radius:0 0 8px 8px}.step-num{width:26px;height:26px;border:1px solid #d8e5ca;background:#f0f5e9;display:grid;place-content:center;font-size:10px;color:#547448;border-radius:8px}.step-cause{font:700 12px/1.6 Manrope,sans-serif}.step-cell{font-size:11px;line-height:1.75;color:#647264}.step-cell.solution{color:#295742}.cell-label{display:none}.confirmation{background:#e9f1e1;border:1px solid #d5e3c8;border-radius:9px;display:flex;align-items:start;gap:12px;padding:16px;margin-top:20px}.confirmation>span{color:#4f8042;font-size:18px}.confirmation h3{font-size:11px;margin-bottom:5px}.confirmation p{font-size:12px;line-height:1.7;color:#5b7656}.case-note{padding:14px 16px;background:#f6f0e2;border:1px solid #e9dfc8;border-radius:9px;margin-top:12px;color:#897143;font-size:11px;line-height:1.8}.case-note b{color:#746037}.modal-footer{margin-top:21px;display:flex;align-items:center;justify-content:space-between;gap:15px}.modal-footer span{font-size:10px;color:#7d8978}.modal-footer button{background:transparent;border:1px solid #d3dfcc;font-size:11px;color:var(--green);padding:8px 12px}.help-dialog h2{font:750 27px/1.3 Manrope,sans-serif;letter-spacing:-.8px;margin:17px 0}.help-dialog h3{font:700 15px Manrope,sans-serif;margin:28px 0 10px}.help-dialog p,.guide-list{font-size:12px;line-height:1.85;color:#627260}.guide-list{padding-left:20px}.guide-list li{padding-left:3px;margin:7px 0}.guide-intro{padding-bottom:10px}.glossary{display:grid;grid-template-columns:98px 1fr;gap:9px 16px;font-size:11px;line-height:1.7}.glossary dt{font-weight:700;color:var(--green)}.glossary dd{margin:0;color:#6b7968}.reference-list{padding-left:17px;font-size:11px;line-height:2}.storage-note{padding:13px;background:#ecf2e5;border-radius:8px;margin:20px 0}.help-dialog>.primary{width:100%}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);max-width:calc(100vw - 35px);z-index:100;background:#203e30;color:white;border:1px solid #597761;padding:13px 22px;border-radius:10px;font-size:12px;box-shadow:0 5px 25px #0002}#print-content{display:none}
+@media(min-width:1500px){.shell,.topbar-inner{max-width:1500px}.hero{gap:110px}.workspace{grid-template-columns:minmax(0,1fr) 310px;gap:34px}.case-card h3{font-size:16px}.case-card .symptom{font-size:12px}}
+@media(max-width:1100px){.shell{padding:0 28px}.topbar-inner{padding:18px 28px}.hero{gap:35px}.workspace{gap:19px;grid-template-columns:minmax(0,1fr) 255px}.selection-panel{padding:20px 16px}.case-card{padding:16px 15px 0}.hero-meta{gap:12px}.hero-meta>span+span{padding-left:12px}.level-button{padding:12px 10px}.level-button strong{font-size:10px}.saved{display:none}.step-row,.table-head{gap:11px;grid-template-columns:30px 1fr 1.2fr 1.2fr}}
+@media(max-width:850px){.hero{grid-template-columns:1.3fr 1fr;gap:25px;padding:38px 0}.hero h1{font-size:40px}.hero-desc{font-size:13px}.hero .eyebrow{font-size:8px;letter-spacing:1.2px}.method-board{padding:15px 16px 0}.method-row{gap:10px;padding:12px 0}.method-row strong{font-size:12px}.method-row small{font-size:9px}.method-symbol{font-size:20px}.hero-meta{font-size:9px}.workspace{grid-template-columns:minmax(0,1fr) 245px}.cards{grid-template-columns:1fr}.level-button p{display:none}.level-button strong{line-height:1.5;min-height:30px}.collection-heading h2{font-size:22px}.collection-heading{align-items:start}.result-count{margin-top:24px}.filter-row{gap:8px}.select-visible{margin-left:0}.table-head{display:none}.step-row{display:grid;grid-template-columns:30px 1fr;gap:6px 10px;margin:10px 0;border:1px solid #e1e7dc;border-radius:8px;padding:17px}.step-num{grid-row:1/4}.step-cell{grid-column:2}.cell-label{display:block;font-size:9px;font-weight:700;color:#819574;letter-spacing:1px;margin:7px 0 4px}.step-row:last-child{border-radius:8px}.lab-note .text-button{display:none}footer{flex-wrap:wrap}footer>span:nth-child(2){display:none}}
+@media(max-width:620px){.shell{padding:0 18px}.topbar-inner{padding:14px 18px}.brand-sub{display:none}.brand{font-size:16px}.quiet{font-size:11px}.hero{grid-template-columns:1fr;gap:27px;padding:32px 0 30px}.hero h1{font-size:42px;letter-spacing:-2px;margin:15px 0 17px}.hero-desc{font-size:13px}.hero .eyebrow{font-size:8px}.hero-meta{margin-top:20px}.method-board{transform:none;padding:15px 18px 0}.method-row{padding:11px 0}.method-row strong{font-size:13px}.method-row small{font-size:10px}.board-bottom{font-size:8px}.path{padding:21px 0}.section-kicker h2{font-size:11px}.section-kicker .text-button{font-size:9px}.level-grid{display:flex;overflow-x:auto;padding-bottom:5px;scroll-snap-type:x mandatory;gap:8px}.level-button{min-width:142px;scroll-snap-align:start;padding:12px}.level-button strong{font-size:11px;min-height:16px}.level-button p{display:block;font-size:9px}.workspace{grid-template-columns:1fr;padding-top:27px}.collection-heading{margin-bottom:19px}.collection-heading h2{font-size:24px}.collection-heading .eyebrow{font-size:8px}.result-count{font-size:10px}.search-wrap{height:44px}.search-wrap input{font-size:11px}.search-wrap kbd{display:none}.filter-row{margin-bottom:17px}.filter-row select{font-size:9px}.toggle-filter{font-size:9px}.select-visible{font-size:9px;margin-left:auto}.case-card{padding:20px 18px 0}.case-card h3{font-size:16px}.case-card .symptom{font-size:12px}.card-category{font-size:10px}.card-badges .level-badge{font-size:9px}.step-count{font-size:9px}.inspect,.select-case{font-size:11px}.card-footer{padding:13px 0 16px}.selection-panel{position:static;margin-top:8px;padding:24px}.selection-empty{padding:15px 0}.selection-empty svg{height:65px}.selection-list{max-height:290px}.selected-case{font-size:12px}.export-hint{font-size:10px}.small-actions button{font-size:10px}.lab-note{padding:18px;align-items:start;margin-top:24px}.lab-note p{font-size:11px}.lab-note strong{font-size:12px}.collection-footer{font-size:9px}.case-dialog,.help-dialog{padding:20px 17px;width:calc(100% - 20px);max-height:94vh;border-radius:12px}.dialog-title-line{flex-wrap:wrap}.dialog-title-line h2{font-size:22px;flex-basis:100%}.case-symptom{font-size:12px}.step-cause{font-size:12px}.step-cell{font-size:12px}.confirmation p{font-size:12px}.modal-footer span{display:none}.modal-footer button{font-size:10px}.help-dialog h2{font-size:23px}.glossary{grid-template-columns:85px 1fr;gap:8px 11px}footer{font-size:9px;padding-bottom:24px}.saved{display:none}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media print{@page{margin:14mm}body{background:#fff;color:#111;font:10pt/1.45 Arial,sans-serif}body>*{display:none!important}#print-content{display:block!important}#print-content h1{font:700 23pt/1.2 Arial,sans-serif;letter-spacing:-.5px;margin:0 0 12px}#print-content h2{font:700 16pt/1.3 Arial,sans-serif;margin:25px 0 9px;break-after:avoid}#print-content h3{font:700 11pt Arial,sans-serif;margin:12px 0 4px}#print-content p{margin:6px 0}#print-content table{border-collapse:collapse;width:100%;font-size:9pt;margin:12px 0}#print-content th,#print-content td{border:1px solid #aaa;padding:7px;text-align:left;vertical-align:top}#print-content th{background:#eee}#print-content tr{break-inside:avoid}#print-content thead{display:table-header-group}#print-content a{color:#333;text-decoration:none}#print-content .print-meta{color:#555;font-size:9pt}#print-content .print-confirm{border-left:3px solid #444;padding-left:10px;margin:12px 0}#print-content article{break-before:page}#print-content article:first-of-type{break-before:auto}#print-content .print-note{font-size:9pt;color:#444}#print-content .print-intro{margin-bottom:20px}}
+</style>
+  </head>
+<body>
+  <a class="skip" href="#catalog">Pular para os casos</a>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="./" aria-label="AMC, início"><span class="brand-mark" aria-hidden="true">A<span>+</span></span><span>AMC <span class="brand-sub">/ Oficina de diagnóstico</span></span></a>
+    <div class="header-actions"><span class="saved"><i></i> Seleção salva neste navegador</span><button class="quiet" id="help-button">Guia de uso <span aria-hidden="true">↗</span></button></div>
+  </div></header>
+  <main class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy"><p class="eyebrow"><span></span> ARQUITETURA E MANUTENÇÃO DE COMPUTADORES</p>
+        <h1 id="hero-title">Antes de trocar,<br>aprenda a <em>investigar.</em></h1>
+        <p class="hero-desc">50 situações reais de desktops. Um caminho de diagnóstico que começa no simples e avança, passo a passo, até a causa.</p>
+        <div class="hero-meta"><span><b>50</b> casos completos</span><span><b>5</b> etapas de aprendizagem</span><span>Feito para <b>iniciantes</b></span></div>
+      </div>
+      <div class="method-board" aria-label="Método de diagnóstico: observar o sintoma, testar uma hipótese, corrigir a causa e validar o resultado">
+        <div class="board-top"><span class="board-label">MÉTODO DE BANCADA</span><span class="board-dot"></span></div>
+        <div class="method-row"><span class="method-num">01</span><span><strong>Observe o sintoma</strong><small>O que acontece? Em que momento?</small></span><span class="method-symbol" aria-hidden="true">◎</span></div>
+        <div class="method-row"><span class="method-num">02</span><span><strong>Teste uma hipótese</strong><small>Uma variável de cada vez.</small></span><span class="method-symbol" aria-hidden="true">⌁</span></div>
+        <div class="method-row"><span class="method-num">03</span><span><strong>Corrija a causa</strong><small>Use a evidência para decidir.</small></span><span class="method-symbol" aria-hidden="true">＋</span></div>
+        <div class="method-row"><span class="method-num">04</span><span><strong>Valide o resultado</strong><small>Repita o teste e registre.</small></span><span class="method-symbol" aria-hidden="true">✓</span></div>
+        <div class="board-bottom">DO MAIS SIMPLES <span aria-hidden="true">⟶</span> AO MAIS COMPLEXO</div>
+      </div>
+    </section>
+    <section class="path" aria-labelledby="path-title"><div class="section-kicker"><h2 id="path-title">Uma trilha, cinco etapas</h2><button class="text-button" id="reset-level">Ver todas as etapas <span aria-hidden="true">↗</span></button></div><div id="level-filters" class="level-grid"></div></section>
+    <section class="workspace" id="catalog" aria-labelledby="catalog-title">
+      <div class="collection">
+        <div class="collection-heading"><div><p class="eyebrow">BIBLIOTECA DE CASOS</p><h2 id="catalog-title">Monte a sua próxima aula<span>.</span></h2></div><span class="result-count" id="result-count">50 casos</span></div>
+        <div class="search-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><label class="sr-only" for="search">Buscar por sintoma, peça, causa ou solução</label><input id="search" type="search" placeholder="Busque um sintoma, uma peça ou uma solução…" autocomplete="off"><kbd aria-hidden="true">/</kbd></div>
+        <div class="filter-row"><label class="sr-only" for="category">Filtrar categoria</label><select id="category"><option value="">Todas as categorias</option></select><button id="only-selected" class="toggle-filter" aria-pressed="false">Só minha seleção <span id="filter-selected-count">0</span></button><button class="text-button select-visible" id="select-visible">Selecionar exibidos</button></div>
+        <div class="active-filter" id="active-filter" hidden></div>
+        <div class="cards" id="cards"></div>
+        <div class="empty-results" id="empty-results" hidden><div aria-hidden="true">⌕</div><h3>Nenhum caso por aqui.</h3><p>Tente outra palavra ou amplie os filtros.</p><button id="clear-filters" class="secondary">Limpar filtros</button></div>
+        <div class="collection-footer"><span>Um sintoma pode ter várias causas.</span><span>Teste antes de concluir.</span></div>
+      </div>
+      <aside class="selection-panel" aria-labelledby="selection-title">
+        <div class="panel-title"><span class="panel-icon" aria-hidden="true">▤</span><h2 id="selection-title">Meu material</h2><span class="selection-total" id="selection-total">0</span></div>
+        <p class="panel-desc">Escolha os casos que fazem sentido para a sua turma.</p>
+        <div class="selection-empty" id="selection-empty"><svg viewBox="0 0 96 90" aria-hidden="true"><rect x="22" y="13" width="49" height="62" rx="7"/><path d="M34 30h25M34 40h19M34 50h15"/><circle cx="70" cy="67" r="15"/><path d="M70 60v14M63 67h14"/></svg><strong>A aula começa com uma escolha.</strong><p>Marque “Adicionar” nos casos.<br>Sua seleção aparece aqui.</p></div>
+        <ol id="selection-list" class="selection-list"></ol>
+        <div class="selection-summary" id="selection-summary" hidden></div>
+        <div class="export-actions"><button class="primary" id="download-md" disabled><span aria-hidden="true">↓</span> Baixar roteiros <small>.md</small></button><button class="secondary" id="print" disabled><span aria-hidden="true">▤</span> Imprimir / salvar PDF</button><div class="small-actions"><button id="copy" disabled>Copiar números</button><button id="download-json" disabled>Salvar seleção .json</button></div></div>
+        <p class="export-hint">Depois, envie os números escolhidos nesta conversa para montarmos o material.</p>
+        <button class="clear-selection" id="clear-selection" disabled>Limpar seleção</button>
+      </aside>
+    </section>
+    <section class="lab-note"><span class="lab-note-icon" aria-hidden="true">i</span><div><strong>A bancada também ensina cuidado.</strong><p>Antes de abrir o gabinete: desligue, retire da tomada e siga o manual. Trabalhos internos com o professor; fonte e monitor permanecem fechados. Preserve os dados antes de reparar o sistema ou o armazenamento.</p></div><button class="text-button" id="safety-button">Ler o guia <span aria-hidden="true">↗</span></button></section>
+    <footer><span><b>AMC</b> / Oficina de diagnóstico</span><span>Roteiros didáticos para desktops · Referência de sistema: Windows</span><button class="text-button" id="sources-button">Fontes e glossário ↗</button></footer>
+  </main>
+  <dialog id="case-dialog" class="case-dialog" aria-labelledby="case-title"><div id="case-content"></div></dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-top"><p class="eyebrow">GUIA DA OFICINA</p><button class="icon-button close-help" aria-label="Fechar guia">×</button></div><h2 id="help-title">Investigar é seguir as pistas.</h2>
+    <p class="guide-intro">Esta biblioteca é uma proposta para você escolher os casos antes de montar o material da turma. Os roteiros são hipóteses ordenadas, não diagnósticos automáticos.</p>
+    <h3>Como escolher</h3><ol class="guide-list"><li>Filtre por etapa ou categoria e busque o sintoma.</li><li>Abra “Investigar caso” para ler causa, verificação e solução.</li><li>Marque “Adicionar” nos casos que deseja trabalhar.</li><li>Baixe os roteiros, imprima a seleção ou copie os números e envie nesta conversa.</li></ol>
+    <h3>Como trabalhar com iniciantes</h3><p>Apresente primeiro o sintoma. Peça ao aluno uma hipótese e uma verificação. Só então discuta a correção. Anote o que mudou e repita a tarefa para validar. A etapa indica a posição do caso na trilha; as últimas verificações de um caso básico ainda podem exigir ajuda técnica.</p>
+    <h3>Cuidados na prática</h3><ul class="guide-list"><li>Desligue o PC, retire da tomada e siga o procedimento do fabricante antes de mexer em componentes. A placa pode receber energia em espera enquanto conectada.</li><li>Use proteção contra descarga eletrostática conforme o manual, segure placas pelas bordas e não toque em contatos.</li><li>Não abra fonte ou monitor. Não faça pontes em conectores, medições na rede elétrica nem mude a chave 115/230 V por tentativa.</li><li>Cheiro de queimado, líquido, faísca ou cabo danificado: interrompa o teste e encaminhe ao responsável.</li><li>Faça backup e confira sua leitura antes de procedimentos que alteram dados. Guarde a chave de recuperação de unidades criptografadas.</li><li>Troque uma variável por vez. Testes internos, troca de peças e firmware exigem o professor. Use componentes conhecidos, compatíveis e os cabos corretos da fonte.</li></ul>
+    <h3>Glossário de bancada</h3><dl class="glossary"><dt>POST</dt><dd>Autoteste do hardware antes de iniciar o sistema.</dd><dt>BIOS / UEFI</dt><dd>Firmware que configura o hardware e inicia o processo de boot.</dd><dt>Boot</dt><dd>Processo de carregar o sistema operacional.</dd><dt>Driver</dt><dd>Software que permite ao sistema trabalhar com um componente.</dd><dt>GPU</dt><dd>Processador gráfico, integrado à CPU ou numa placa dedicada.</dd><dt>RAM</dt><dd>Memória de trabalho temporária; não é o armazenamento dos arquivos.</dd><dt>SMART</dt><dd>Indicadores de saúde do armazenamento; não substituem backup nem detectam toda falha.</dd><dt>DHCP / DNS</dt><dd>DHCP fornece configuração de rede; DNS traduz nomes de serviços em endereços.</dd><dt>XMP / EXPO</dt><dd>Perfis de memória que alteram parâmetros; dependem da estabilidade e compatibilidade do conjunto.</dd><dt>Header</dt><dd>Conector interno da placa-mãe, identificado no manual.</dd></dl>
+    <h3>Referências para consulta</h3><p>Conteúdo didático original, com referências oficiais para os princípios de diagnóstico. Códigos, slots, limites e procedimentos variam: o manual do modelo sempre orienta a prática.</p><ul id="reference-list" class="reference-list"></ul>
+    <p class="storage-note">A seleção fica apenas neste navegador e neste endereço. O arquivo JSON permite guardar os números e os roteiros; mudar de navegador não transfere a seleção automaticamente.</p><button class="primary close-help">Voltar aos casos</button>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div><div id="print-content"></div>
+<script>/* Conteúdo didático original. Ordem: verificações simples → isolamento técnico. */
+const cases = [];
+const add = (title,category,symptom,steps,confirm,note='') => cases.push({id:cases.length+1,title,category,level:Math.floor(cases.length/10)+1,symptom,steps,confirm,note});
+
+add('Computador não liga ao apertar Power','Energia','Nenhuma luz acende e nenhuma ventoinha gira ao pressionar o botão.',[
+['Tomada sem energia','Teste a tomada com um aparelho que você sabe que funciona; não introduza objetos nela.','Use outra tomada comprovadamente energizada. Se houver defeito na instalação, chame o responsável.'],
+['Cabo de força desconectado da tomada','Observe se o plugue está encaixado na tomada ou no filtro de linha.','Conecte o cabo corretamente; se usar filtro de linha, confira se ele está ligado.'],
+['Cabo desconectado da fonte','Observe a conexão na parte traseira do gabinete.','Com a alimentação desligada, encaixe o cabo firmemente na fonte.'],
+['Interruptor traseiro da fonte desligado','Se houver chave I/O, veja se está em O. I/O não é o seletor 115/230 V.','Coloque a chave I/O em I. Nunca mude o seletor de tensão por tentativa.'],
+['Cabo de força danificado','Inspecione o cabo desligado. Se não houver dano visível, compare com outro compatível e comprovadamente bom.','Substitua o cabo danificado ou que falhou no teste.'],
+['Fonte ausente ou conexões internas soltas','Com o professor e o PC fora da tomada, confirme a presença da fonte e os conectores da placa-mãe, conforme o manual.','Se faltar fonte, instale uma compatível. Se houver conexão solta, reconecte o conector correto.'],
+['Falha da fonte, botão ou placa-mãe','Depois das etapas anteriores, o professor testa uma fonte compatível conhecida e verifica o cabo do botão no manual.','Substitua apenas a peça cuja falha foi isolada. Encaminhe a placa-mãe para diagnóstico se persistir.']
+],'O computador volta a responder ao Power e começa a inicialização.','Abrir a fonte não faz parte do diagnóstico. Ventoinha da fonte parada, sozinha, não comprova defeito: alguns modelos têm modo sem rotação.');
+
+add('Monitor não acende','Vídeo','O monitor não mostra imagem nem seu próprio menu.',[
+['Monitor desligado','Aperte o botão do monitor e procure o LED de energia.','Ligue o monitor.'],
+['Cabo de energia mal conectado','Inspecione os dois extremos do cabo e a tomada.','Reconecte o cabo e use tomada energizada.'],
+['Fonte externa ou cabo defeituoso','Se o monitor usa adaptador, compare apenas com modelo de tensão, polaridade e corrente compatíveis.','Substitua o cabo ou adaptador cuja falha foi confirmada.'],
+['Falha no monitor','Teste o monitor em outro computador e tente abrir o menu sem o cabo de vídeo.','Se continuar sem menu nem alimentação, encaminhe para reparo ou substitua.']
+],'O menu próprio do monitor aparece e o LED indica alimentação.','Não abra o monitor: há circuitos com tensão perigosa.');
+
+add('PC liga, mas o monitor mostra “sem sinal”','Vídeo','Há luzes ou ventoinhas no gabinete, mas o monitor não recebe vídeo.',[
+['Entrada de vídeo incorreta','Abra o menu do monitor e compare a entrada selecionada com o cabo usado.','Selecione HDMI, DisplayPort ou outra entrada realmente conectada.'],
+['Cabo de vídeo solto ou defeituoso','Confira as duas pontas; teste outro cabo compatível.','Reconecte ou substitua o cabo que falhou.'],
+['Cabo na saída de vídeo errada','Se há placa de vídeo dedicada, confira se o cabo está ligado nela. A saída da placa-mãe depende de vídeo integrado e configuração.','Conecte à saída adequada ao conjunto instalado.'],
+['Falha do monitor ou ausência de POST','Teste outro monitor. Se nenhum recebe imagem, observe LEDs e bipes de diagnóstico e consulte o caso 41.','Isole primeiro monitor/cabo; com o professor, investigue memória e vídeo se o PC não concluir o autoteste.']
+],'A imagem de inicialização aparece e o sistema pode ser exibido.','Ventoinhas girando não garantem que o computador concluiu o POST.');
+
+add('Imagem pisca ou some durante o uso','Vídeo','A tela perde a imagem por instantes, embora o computador continue funcionando.',[
+['Conexão frouxa','Confira se o cabo está firme nas duas pontas, sem puxá-lo lateralmente.','Reconecte e deixe folga no cabo.'],
+['Cabo ou adaptador com defeito','Teste conexão direta e outro cabo compatível com a resolução usada.','Troque o cabo/adaptador que reproduz a falha.'],
+['Resolução ou frequência inadequada','Compare os ajustes de tela com as especificações do monitor.','Use uma resolução e frequência suportadas.'],
+['Driver ou hardware de vídeo instável','Observe se começou após atualização; compare com outro monitor e consulte os casos 37 e 44.','Reinstale ou reverta o driver oficial se houver relação. Se persistir, peça diagnóstico da GPU.']
+],'A imagem permanece estável no mesmo período e tarefa que antes provocavam a falha.');
+
+add('Imagem esticada, grande ou pouco nítida','Vídeo','O sistema aparece, mas letras e proporções estão incorretas.',[
+['Resolução diferente da nativa','Consulte a resolução recomendada nas configurações de tela e no manual.','Ajuste para a resolução nativa suportada pelo monitor.'],
+['Escala de interface inadequada','Confira o ajuste de escala do sistema.','Escolha uma escala confortável; compare sem mudar várias opções ao mesmo tempo.'],
+['Configuração do monitor incorreta','Confira proporção da imagem e ajustes do próprio monitor.','Restaure a proporção correta; para VGA, use o ajuste automático do monitor se disponível.'],
+['Driver de vídeo ausente ou incorreto','Veja se o sistema usa um driver básico e se faltam opções de resolução.','Instale o driver oficial compatível com a GPU e o sistema.']
+],'Texto fica legível, círculos ficam circulares e a resolução correta está disponível.');
+
+add('Teclado não responde','Periféricos','As teclas não produzem resposta no sistema.',[
+['Conexão ou alimentação ausente','Confira USB; se for sem fio, verifique pilhas, chave e receptor.','Reconecte, ligue ou substitua as pilhas.'],
+['Porta ou intermediário com problema','Teste uma porta USB traseira, diretamente no PC, sem hub.','Use a porta funcional e retire o hub defeituoso.'],
+['Falha do próprio teclado','Teste o teclado em outro PC e outro teclado neste PC.','Substitua o teclado se a falha acompanhá-lo.'],
+['Problema no sistema ou controlador USB','Compare a resposta na BIOS/UEFI e no sistema, com apoio do professor.','Se funciona antes do sistema, revise drivers e configurações. Se várias portas falham, encaminhe o controlador para diagnóstico.']
+],'O teclado digita corretamente e responde após uma nova inicialização.','Conectores PS/2 devem ser reconectados com o computador desligado.');
+
+add('Mouse não move o ponteiro','Periféricos','O ponteiro fica parado ou o mouse não é reconhecido.',[
+['Mouse sem energia ou desconectado','Confira cabo, receptor USB, pilha e botão liga/desliga.','Conecte e ligue o mouse; troque a pilha se necessário.'],
+['Sensor obstruído ou superfície inadequada','Observe a base e teste em superfície opaca uniforme.','Limpe externamente o sensor com cuidado e use um mousepad adequado.'],
+['Porta USB ou hub com falha','Teste diretamente numa USB traseira.','Use uma porta funcional ou substitua o hub confirmado como defeituoso.'],
+['Defeito no mouse ou falha de software','Compare com outro mouse e teste este em outro computador.','Troque o mouse se a falha o acompanhar; se só ocorre neste sistema, revise o driver e as opções de acessibilidade.']
+],'O ponteiro se move de forma contínua e os cliques funcionam.');
+
+add('Computador não emite som','Áudio','Um áudio está sendo reproduzido, mas não é ouvido.',[
+['Volume zerado ou silenciado','Confira o volume do sistema, do aplicativo e da caixa de som.','Remova o silêncio e aumente gradualmente o volume.'],
+['Caixa ou fone desconectado','Confira energia da caixa e conexão na saída de áudio correta.','Ligue a caixa e conecte ao conector de saída indicado no manual.'],
+['Dispositivo de saída errado','Observe se o sistema envia áudio ao monitor HDMI, Bluetooth ou outra saída.','Selecione a saída onde está seu fone ou caixa.'],
+['Falha do acessório ou driver','Teste outro fone e observe o dispositivo no gerenciador do sistema.','Troque o acessório que falhou; instale o driver oficial se o dispositivo não estiver corretamente reconhecido.']
+],'Um som de teste é ouvido no dispositivo escolhido.');
+
+add('Fone ou microfone do painel frontal não funciona','Áudio','As conexões frontais falham, mas as traseiras podem funcionar.',[
+['Plugue ou conector inadequado','Confira se está na entrada correta e se o fone combinado precisa de adaptador compatível.','Use a conexão adequada; entrada de microfone não é saída de fone.'],
+['Entrada/saída frontal não selecionada','Confira as opções de áudio e a detecção do conector.','Selecione o dispositivo frontal correto e ajuste a detecção conforme o software oficial.'],
+['Defeito no fone ou no conector frontal','Teste o mesmo fone atrás e outro fone na frente.','Substitua o acessório defeituoso ou encaminhe o conector frontal se só ele falhar.'],
+['Cabo interno HD AUDIO solto','Com o professor, PC fora da tomada, localize o cabo e o header pelo manual.','Reconecte no header de áudio correto. Não use por tentativa os headers USB.']
+],'As conexões frontais reproduzem ou capturam áudio conforme sua função.');
+
+add('Sem acesso à rede pelo cabo','Rede','O computador não acessa a rede usando Ethernet.',[
+['Cabo de rede desconectado','Confira as duas pontas e os indicadores de link, quando existirem.','Encaixe o cabo na porta do PC e do switch/roteador.'],
+['Cabo ou porta de rede com defeito','Teste cabo conhecido e outra porta do switch.','Troque o cabo ou use a porta funcional.'],
+['Adaptador desativado','Confira se a interface Ethernet está habilitada no sistema.','Habilite o adaptador; se não for reconhecido, instale o driver oficial.'],
+['Falha na rede ou na configuração IP','Compare com outro computador na mesma rede e consulte o caso 22.','Use configuração automática se a rede fornece DHCP; encaminhe falhas gerais ao responsável pela rede.']
+],'O computador obtém uma configuração de rede válida e acessa os recursos autorizados.');
+
+add('Wi-Fi não aparece ou não conecta','Rede','O desktop não mostra redes sem fio ou não consegue entrar na rede.',[
+['Desktop sem adaptador Wi-Fi','Confira se há adaptador instalado; muitos desktops têm apenas Ethernet.','Use Ethernet ou instale um adaptador Wi-Fi compatível.'],
+['Wi-Fi desligado ou antena ausente','Confira modo avião, Wi-Fi e antenas externas do adaptador.','Ative o Wi-Fi e conecte as antenas previstas pelo fabricante.'],
+['Senha errada ou sinal fraco','Confirme a rede, digite novamente a senha autorizada e teste mais perto do roteador.','Corrija a credencial e reposicione o computador ou ponto de acesso.'],
+['Driver ou incompatibilidade de banda','Veja se o adaptador aparece no sistema e suporta a banda da rede.','Instale o driver oficial; escolha uma rede/banda compatível ou encaminhe o roteador ao responsável.']
+],'A rede conecta e permanece estável em um teste de navegação.');
+
+add('Pendrive não aparece no explorador','Armazenamento','O pendrive está conectado, mas não aparece entre as unidades.',[
+['Conexão inadequada','Retire com segurança se detectado e teste numa USB traseira sem hub.','Reconecte numa porta funcional.'],
+['Falha do pendrive','Teste em outro PC e compare com outro pendrive na mesma porta.','Substitua a unidade se a falha a acompanhar; se houver arquivos importantes, priorize recuperação.'],
+['Unidade sem letra','Com o professor, localize a unidade pelo tamanho no gerenciamento de discos.','Se há partição saudável sem letra, atribua uma letra livre. Não inicialize nem formate uma unidade com dados.'],
+['Sistema de arquivos danificado ou incompatível','Observe se aparece RAW, não alocado ou com sistema de arquivos não suportado.','Não aceite formatação automática. Faça backup/recuperação; só depois prepare a unidade para o sistema correto.']
+],'A unidade aparece e arquivos de teste podem ser lidos; a remoção segura funciona.','Se o conteúdo for importante, interrompa tentativas de escrita na unidade defeituosa.');
+
+add('Impressora não imprime a partir do desktop','Periféricos','O trabalho é enviado, mas a impressão não sai.',[
+['Impressora sem condições de imprimir','Confira energia, papel, tampa e avisos no painel.','Ligue e resolva o aviso físico indicado, conforme o manual.'],
+['Impressora errada ou conexão ausente','Confira a impressora escolhida e o cabo USB ou rede.','Selecione a impressora correta e restaure a conexão.'],
+['Fila pausada ou trabalho travado','Veja a fila de impressão e o estado offline/pausado.','Retome a fila; cancele somente os trabalhos de teste travados e reenvie uma página.'],
+['Driver ou serviço com falha','Teste uma página interna da impressora e uma página pelo sistema.','Se a página interna sai, revise driver oficial, porta e serviço de impressão com o professor.']
+],'Uma página de teste enviada pelo computador é impressa.');
+
+add('Webcam não mostra imagem','Periféricos','O aplicativo abre, mas a imagem da câmera não aparece.',[
+['Tampa de privacidade ou conexão','Confira a tampa física e o cabo USB.','Abra a tampa e conecte a câmera diretamente ao PC.'],
+['Câmera errada selecionada','Observe o dispositivo escolhido no aplicativo.','Selecione a webcam correta.'],
+['Permissão bloqueada ou câmera ocupada','Confira as permissões de câmera e feche outro aplicativo que esteja usando-a.','Autorize o aplicativo necessário e deixe a câmera livre para o teste.'],
+['Driver ou câmera defeituosa','Teste outro aplicativo, porta USB e outro PC.','Atualize o driver oficial se necessário; substitua a câmera se a falha a acompanhar.']
+],'A câmera mostra uma imagem no aplicativo autorizado.');
+
+add('Microfone não capta voz','Áudio','A pessoa fala, mas o indicador de entrada não se move.',[
+['Microfone silenciado ou desconectado','Confira botão de mute, plugue e alimentação quando aplicável.','Remova o mute e conecte à entrada correta.'],
+['Entrada ou nível de captura incorreto','Confira o dispositivo selecionado e o nível de entrada.','Escolha o microfone correto e ajuste o nível sem saturar.'],
+['Permissão ou configuração do aplicativo','Teste a gravação do sistema e confira a permissão do aplicativo.','Autorize o uso e selecione a entrada no aplicativo.'],
+['Plugue incompatível, driver ou defeito','Compare um microfone conhecido; headsets combinados podem precisar de adaptador adequado.','Use adaptador compatível, revise o driver oficial ou substitua o acessório cuja falha foi confirmada.']
+],'Uma gravação curta reproduz a voz com clareza.');
+
+add('Segundo monitor não é reconhecido','Vídeo','Só um monitor funciona num desktop com dois monitores conectados.',[
+['Monitor ou entrada desligada','Confira energia e entrada do segundo monitor.','Ligue e selecione a entrada conectada.'],
+['Modo de exibição inadequado','Abra as opções de múltiplos monitores do sistema.','Escolha estender ou duplicar e use a opção de detectar.'],
+['Cabo, adaptador ou porta inadequados','Teste o segundo monitor sozinho e confira o sentido de conversão do adaptador.','Use cabo/adaptador apropriado. Um divisor simples não cria duas telas independentes.'],
+['Limite de GPU ou saída da placa-mãe indisponível','Consulte o número de telas suportadas e a disponibilidade do vídeo integrado.','Conecte a saídas suportadas; revise driver e configuração conforme o manual.']
+],'As duas telas aparecem nas configurações e operam no modo escolhido.');
+
+add('Data e hora ficam incorretas','Sistema','O relógio mostra horário errado ou perde o ajuste depois de desligar.',[
+['Fuso horário incorreto','Confira fuso e hora automática no sistema.','Selecione o fuso correto e sincronize a hora.'],
+['Sincronização indisponível','Confira a conexão e o serviço de hora; compare com relógio confiável.','Restaure a sincronização autorizada ou ajuste temporariamente a hora.'],
+['Hora perdida também na BIOS/UEFI','Com o professor, confira a hora da BIOS depois de o PC ficar sem energia.','Se a hora do firmware permanece correta, investigue o sistema; se é perdida, avance para a bateria.'],
+['Bateria da placa-mãe esgotada','Confirme o tipo no manual e registre as configurações antes da intervenção.','Com supervisão e PC desconectado, substitua por bateria correta, respeitando polaridade; reconfigure data e opções necessárias.']
+],'O relógio permanece correto após desligar e religar, inclusive depois do teste sem energia.');
+
+add('Computador demora muito para iniciar','Sistema','A inicialização chega ao sistema, mas leva tempo excessivo.',[
+['Periférico atrasando a partida','Compare a inicialização sem pendrives e acessórios não essenciais.','Remova o acessório problemático e revise sua configuração.'],
+['Muitos aplicativos iniciando juntos','Observe aplicativos de inicialização e seu impacto.','Desative apenas os desnecessários; mantenha proteção e serviços essenciais.'],
+['Pouco espaço ou atualização em andamento','Confira espaço livre e estado das atualizações.','Libere espaço com ferramentas do sistema e deixe a atualização terminar.'],
+['Armazenamento lento ou falhando','Faça backup e compare saúde da unidade e uso de disco após iniciar.','Se a unidade falha, substitua após preservar os dados; se é apenas limitação de HDD, avalie SSD compatível.']
+],'O tempo de partida melhora em duas inicializações comparáveis, sem remover serviços essenciais.');
+
+add('Computador fica lento durante o uso','Sistema','Programas abrem devagar e o sistema responde com atraso.',[
+['Excesso de tarefas abertas','Observe CPU, memória e disco no monitor de tarefas.','Feche tarefas não utilizadas e compare o desempenho.'],
+['Armazenamento quase cheio','Confira espaço disponível no disco do sistema.','Remova arquivos temporários com ferramenta do sistema e mova arquivos próprios após backup.'],
+['Aplicativo consumindo recursos ou malware','Identifique o processo de maior consumo e faça uma verificação com proteção confiável.','Atualize ou corrija o aplicativo; siga o caso 26 se houver infecção.'],
+['Limite de hardware, calor ou unidade com falha','Compare o consumo com os requisitos dos programas, temperaturas e saúde do disco.','Corrija a causa confirmada; amplie RAM/SSD se houver limitação, ou siga os casos de calor e armazenamento.']
+],'A tarefa usada como referência volta a responder bem; registre qual recurso causava a lentidão.');
+
+add('Um programa trava ou fecha sozinho','Sistema','Um aplicativo específico para de responder, enquanto outros podem continuar funcionando.',[
+['Arquivo ou operação específica com erro','Teste um arquivo novo e registre a ação que provoca o travamento.','Recupere o arquivo de backup ou evite a operação até corrigir o problema identificado.'],
+['Recursos insuficientes','Confira espaço, memória e os requisitos do aplicativo.','Feche tarefas desnecessárias e libere espaço; ajuste a carga ao hardware.'],
+['Versão, extensão ou instalação com problema','Teste sem extensões opcionais e veja se começou após uma mudança.','Atualize pelo fornecedor ou repare/reinstale o aplicativo após salvar dados e configurações.'],
+['Problema geral de sistema ou hardware','Observe se vários programas também travam e consulte registros de erros.','Se a falha é geral, siga os casos 36, 43 e 46 com o professor.']
+],'A mesma ação que antes travava funciona em testes repetidos, sem perda dos arquivos.');
+
+add('Windows chega a uma tela de recuperação','Inicialização','O computador liga, mas não carrega normalmente o Windows.',[
+['Dispositivo externo interferindo','Retire mídias removíveis e registre a mensagem completa.','Reinicie sem mídias não essenciais; se resolver, revise a ordem de boot.'],
+['Falha na inicialização do sistema','Confira se a unidade do sistema é detectada e use as opções oficiais de recuperação.','Com o professor, tente Reparo de Inicialização. Se o disco não é detectado, siga o caso 29.'],
+['Atualização ou driver recente','Veja se o problema começou logo após uma mudança. Tenha a chave de recuperação se houver criptografia.','Use as opções apropriadas de desinstalar atualização ou Restauração do Sistema, após avaliar o backup.'],
+['Sistema corrompido ou disco defeituoso','Preserve dados e verifique a saúde da unidade antes de reinstalar.','Se o disco estiver saudável, repare/reinstale o sistema após backup. Se falha, substitua a unidade antes da instalação.']
+],'O sistema inicia, os arquivos preservados estão acessíveis e a falha não reaparece.','Opções de recuperação podem alterar dados e aplicativos. Obtenha backup e chave de recuperação antes de procedimentos invasivos.');
+
+add('Rede conecta, mas não abre a internet','Rede','A interface tem link ou Wi-Fi conectado, mas os sites não abrem.',[
+['Falha geral da rede','Teste outro dispositivo na mesma rede e mais de um site.','Se todos falham, encaminhe o roteador/provedor ao responsável; se só um site falha, não altere todo o PC.'],
+['Endereço IP ou gateway inválido','Com o professor, veja IP, máscara e gateway; 169.254.x.x costuma indicar que o DHCP não forneceu endereço.','Use DHCP se previsto pela rede e renove a conexão; corrija IP fixo somente com os dados do administrador.'],
+['Falha na resolução de nomes (DNS)','Compare conectividade com o gateway e resolução de nomes, usando testes orientados.','Restaure o DNS previsto pela rede; não coloque servidores aleatórios numa rede escolar.'],
+['Proxy, VPN ou bloqueio de segurança','Confira se começou após ativar VPN/proxy e verifique as regras da rede.','Corrija a configuração autorizada ou encaminhe ao administrador. Não desative a proteção como solução permanente.']
+],'Sites e serviços autorizados abrem; o aluno diferencia link, IP e DNS.');
+
+add('Conexão de rede cai frequentemente','Rede','O acesso funciona por um tempo e depois é interrompido.',[
+['Mau contato ou sinal fraco','Em Ethernet, confira encaixes; no Wi-Fi, compare perto do roteador.','Troque cabo comprovadamente ruim ou melhore o posicionamento das antenas.'],
+['Falha no equipamento de rede','Compare outros dispositivos e outra porta do switch.','Use a porta funcional e informe quedas gerais ao responsável pela rede.'],
+['Economia de energia ou driver do adaptador','Observe se a queda ocorre após inatividade e confira o driver oficial.','Atualize o driver e ajuste a economia de energia conforme a orientação do fabricante.'],
+['Defeito no adaptador','Teste um adaptador compatível conhecido sob as mesmas condições.','Substitua o adaptador apenas se o teste isolar a falha nele.']
+],'A conexão permanece estável no intervalo e atividade que antes causavam a queda.');
+
+add('Bluetooth não encontra ou não conecta o acessório','Periféricos','Um fone, teclado ou mouse Bluetooth não aparece ou falha ao parear.',[
+['Desktop sem Bluetooth ou rádio desligado','Confira se o PC tem adaptador e se Bluetooth está ativado.','Ative o recurso ou instale adaptador compatível.'],
+['Acessório fora do modo de pareamento','Confira carga e siga o procedimento do fabricante.','Carregue e coloque o acessório em modo de pareamento perto do PC.'],
+['Pareamento antigo ou ligação a outro dispositivo','Veja se o acessório está conectado a outro aparelho.','Desconecte do outro aparelho e refaça apenas o pareamento desse acessório.'],
+['Driver, antena ou adaptador com falha','Teste outro acessório e confira driver e antenas compartilhadas, se previstas.','Instale o driver oficial, conecte antenas ou substitua o adaptador cuja falha foi confirmada.']
+],'O acessório pareia e executa sua função após uma reconexão.');
+
+add('Disco do sistema está quase cheio','Armazenamento','O sistema avisa falta de espaço e pode falhar ao instalar programas.',[
+['Lixeira e arquivos temporários acumulados','Confira o uso de armazenamento e revise a lixeira antes de apagar.','Use a limpeza do sistema e exclua apenas itens dispensáveis.'],
+['Arquivos pessoais grandes','Identifique vídeos, downloads e outros arquivos próprios.','Faça backup e mova o que não precisa ficar no disco principal.'],
+['Programas desnecessários','Confira programas instalados e tamanho ocupado.','Desinstale pelos recursos do sistema o que não será usado, preservando dados necessários.'],
+['Capacidade insuficiente para a rotina','Compare o espaço exigido pela turma com o disponível após a limpeza.','Planeje unidade maior compatível e migração com backup. Não apague pastas do sistema manualmente.']
+],'Há espaço para o uso e as atualizações previstas, e os arquivos necessários continuam acessíveis.');
+
+add('Propagandas estranhas e programas desconhecidos','Sistema','Aparecem redirecionamentos, extensões desconhecidas ou alertas suspeitos.',[
+['Notificações autorizadas por engano','Identifique se o alerta vem do navegador e de qual site.','Revogue a permissão do site desconhecido; não clique no alerta.'],
+['Extensão ou programa indesejado','Revise extensões e instalações recentes com o professor.','Remova itens indesejados pelos mecanismos oficiais.'],
+['Possível infecção','Atualize a proteção confiável e execute uma verificação completa; isole da rede se houver comportamento ativo suspeito.','Siga as ações de quarentena da proteção e a política do laboratório.'],
+['Comprometimento persistente','Se retorna, preserve documentos com cuidado e avalie a integridade do sistema.','Encaminhe ao responsável; uma reinstalação limpa pode ser necessária após backup verificado. Troque senhas num dispositivo confiável se houve exposição.']
+],'A proteção conclui a verificação e os sintomas não retornam após reiniciar e testar o navegador.','Não instale “limpadores” anunciados pelos próprios alertas. Em máquinas da escola, informe o responsável pelo laboratório.');
+
+add('Windows Update falha repetidamente','Sistema','Uma atualização não instala e mostra uma mensagem ou código de erro.',[
+['Reinicialização pendente','Confira o aviso de reiniciar e registre o código de erro.','Salve o trabalho e reinicie pelo sistema.'],
+['Internet, hora ou espaço inadequados','Confira rede, relógio e espaço livre.','Corrija conexão/hora e libere espaço com ferramentas do sistema.'],
+['Erro detectável pelo solucionador oficial','Execute a ferramenta de solução de problemas de atualização disponível no sistema.','Aplique a correção indicada e tente novamente.'],
+['Arquivos do sistema ou pacote com falha','Pesquise o código na documentação oficial com o professor e preserve os dados.','Faça o reparo recomendado pelo fornecedor. Se houver falha de disco, trate a unidade antes de insistir.']
+],'A atualização prevista conclui e o sistema reinicia normalmente.','Não desligue à força enquanto a instalação estiver progredindo.');
+
+add('Mensagem “No bootable device” ou “Boot device not found”','Inicialização','O firmware informa que não encontrou um sistema para iniciar.',[
+['Mídia removível escolhida por engano','Confira se há pendrive ou disco externo conectado.','Remova a mídia de teste e tente iniciar novamente.'],
+['Ordem de boot incorreta','Na BIOS/UEFI, veja se a unidade e o Windows Boot Manager aparecem.','Selecione a entrada de inicialização correta, conforme a instalação existente.'],
+['Unidade do sistema não detectada','Confira a lista de armazenamento do firmware.','Se a unidade não aparece, siga o caso 29 para testar conexão e unidade.'],
+['Carregador de boot danificado ou modo incompatível','Veja se o disco é detectado e se o modo UEFI/Legacy mudou; registre antes de alterar.','Restaure a configuração conhecida ou use Reparo de Inicialização com o professor, preservando dados.']
+],'A entrada correta carrega o sistema após reiniciar.','Não formate por causa dessa mensagem; ela não prova que os arquivos foram perdidos.');
+
+add('HD ou SSD não aparece na BIOS/UEFI','Armazenamento','O firmware não lista uma unidade que deveria estar instalada.',[
+['Unidade ausente ou slot incorreto','Com o professor, compare a instalação com o manual e o tipo da unidade.','Instale no conector compatível; M.2 SATA e NVMe não são intercambiáveis em todo slot.'],
+['Conexão frouxa','PC fora da tomada: confira dados e energia em SATA; em M.2, confira encaixe e fixação correta.','Reconecte com cuidado conforme o manual.'],
+['Cabo, porta ou compartilhamento de pistas','Teste cabo/porta SATA conhecidos; confira se o uso de M.2 desabilita alguma porta SATA.','Substitua o cabo que falhou ou use porta/slot disponível e compatível.'],
+['Defeito na unidade ou no controlador','Teste a unidade em equipamento compatível e outra unidade neste PC, sem formatar.','Se a falha acompanha a unidade, preserve/recupere dados e substitua; se acompanha a porta, encaminhe a placa-mãe.']
+],'A unidade é identificada corretamente no firmware e seus dados podem ser verificados.');
+
+add('HD ou SSD novo aparece na BIOS, mas não no sistema','Armazenamento','Uma unidade adicional é detectada pelo firmware, mas não aparece no explorador.',[
+['Expectativa de aparecer antes de ser preparada','Confira se a unidade aparece no gerenciamento de discos e identifique pelo modelo/tamanho.','Se já tem dados, não inicialize. Se é nova e vazia, prossiga com o professor.'],
+['Disco offline ou partição sem letra','Confira estado do disco e das partições existentes.','Coloque online se apropriado ou atribua letra livre à partição saudável.'],
+['Unidade realmente nova, sem partição','Confirme que não contém dados e que é a unidade correta.','Com supervisão, inicialize no esquema adequado e crie/formate um volume; essas ações apagam ou alteram estruturas de dados.'],
+['Driver, sistema de arquivos ou compatibilidade','Se nem o gerenciador a detecta, confira controlador e driver; se tem partição, confira compatibilidade.','Instale driver oficial ou use sistema compatível para recuperar dados antes de qualquer conversão/formatação.']
+],'O volume esperado fica acessível e um arquivo de teste pode ser salvo e lido.','Preparar uma unidade nova exige confirmar o disco certo. Nunca aplique o procedimento automaticamente numa unidade usada.');
+
+add('Portas USB frontais não funcionam','Periféricos','Um dispositivo funciona atrás, mas não nas portas da frente do gabinete.',[
+['Problema no dispositivo ou cabo','Teste o acessório em USB traseira e outro acessório na frente.','Substitua o cabo/acessório se a falha o acompanhar.'],
+['Dispositivo exige mais energia','Compare um dispositivo simples e o acessório de maior consumo.','Use porta adequada ou hub alimentado compatível; não sobrecarregue a porta.'],
+['Cabo interno do painel solto','Com o professor e PC desligado da tomada, confira o header USB pelo manual.','Reconecte o cabo ao header correto, respeitando orientação e pinos.'],
+['Conector frontal danificado','Inspecione portas e cabo com a alimentação desconectada.','Não use porta quebrada ou com pinos deformados; substitua o conjunto frontal se o defeito for confirmado.']
+],'Um dispositivo conhecido funciona nas portas frontais reparadas.');
+
+add('USB desconecta e reconecta sozinho','Periféricos','O sistema toca repetidamente o som de desconexão de um dispositivo USB.',[
+['Cabo frouxo ou danificado','Observe se o problema acompanha um cabo específico e teste outro cabo adequado.','Substitua o cabo que falhou e elimine tensão sobre o conector.'],
+['Hub ou extensão inadequados','Conecte o dispositivo diretamente a uma porta traseira.','Retire o intermediário defeituoso ou use hub alimentado apropriado.'],
+['Energia ou driver do dispositivo','Compare com outra porta e revise driver e economia de energia, se a falha ocorre após inatividade.','Use alimentação prevista pelo fabricante e atualize/ajuste o driver oficial.'],
+['Defeito do acessório ou controlador','Teste o acessório noutro PC e vários acessórios neste PC.','Troque o acessório se a falha o acompanhar; se várias portas falham, peça diagnóstico da placa-mãe.']
+],'O dispositivo permanece conectado durante a tarefa que antes provocava a queda.');
+
+add('Gabinete faz muito barulho','Refrigeração','Há ruído forte de ventoinha, vibração ou raspagem.',[
+['Vibração externa','Confira se o gabinete está estável e se algum objeto vibra encostado nele.','Estabilize o gabinete e retire objetos em contato.'],
+['Cabo encostando numa ventoinha','Desligue, retire da tomada e, com o professor, inspecione sem pôr a mão em ventoinha em movimento.','Prenda os cabos longe das hélices.'],
+['Poeira ou fluxo de ar restrito','Confira filtros, entradas de ar e temperatura.','Limpe com método adequado ao manual e desobstrua a ventilação.'],
+['Ventoinha desgastada ou unidade mecânica falhando','Identifique de onde vem o som; cliques de HDD com erros exigem preservação de dados.','Substitua a ventoinha confirmada como defeituosa. Se é HDD, siga o caso 46. Se é a fonte, encaminhe sem abri-la.']
+],'O ruído anormal desaparece e temperaturas continuam adequadas.');
+
+add('Computador fica muito quente','Refrigeração','Há temperaturas elevadas ou queda de desempenho durante o uso.',[
+['Ambiente ou saídas de ar obstruídas','Observe posição, entradas/saídas e condições do ambiente.','Afaste de obstruções e melhore a circulação de ar.'],
+['Carga de trabalho excessiva','Compare temperatura em repouso e em uso com ferramenta confiável e limites do fabricante.','Reduza tarefas desnecessárias e investigue a tarefa responsável.'],
+['Poeira ou ventoinha com problema','Com PC desconectado e professor, inspecione filtros, dissipadores e conexões.','Limpe corretamente e substitua/reconecte ventoinha cujo defeito foi confirmado.'],
+['Cooler mal instalado ou interface térmica inadequada','Verifique fixação e montagem conforme o manual, sem desmontar em máquina quente.','O professor reinstala o cooler e aplica interface térmica conforme o fabricante.']
+],'As temperaturas ficam dentro dos limites do componente na tarefa de referência.','Não use um limite único para toda CPU/GPU. Não abra a fonte nem use líquidos ou aspirador doméstico nas placas.');
+
+add('Computador desliga sozinho durante o uso','Energia','O PC apaga sem encerramento normal do sistema.',[
+['Alimentação externa intermitente','Observe tomada, cabo e filtro; compare com ponto de energia confiável.','Corrija a conexão ou use alimentação estável. Defeito elétrico deve ser tratado pelo responsável.'],
+['Aquecimento excessivo','Observe temperaturas antes da falha, sem forçar desligamentos repetidos.','Siga o caso 34 para corrigir refrigeração.'],
+['Configuração ou comando de desligamento','Confira eventos, opções de energia e relação com um programa específico.','Corrija a configuração ou aplicativo identificado.'],
+['Fonte ou hardware com falha','Com o professor, compare com fonte compatível conhecida; investigue componentes se persistir.','Substitua só a peça isolada no teste. Um evento de desligamento inesperado sozinho não identifica a fonte.']
+],'O PC permanece ligado na tarefa que antes causava a falha, com temperatura e alimentação adequadas.');
+
+add('Computador inteiro congela','Sistema','Mouse, teclado e programas deixam de responder; pode ser necessário reiniciar.',[
+['Sobrecarga temporária','Aguarde um pouco e veja se o sistema ainda responde a atalhos; registre a tarefa.','Feche a tarefa problemática se conseguir e reduza a carga.'],
+['Aplicativo ou driver recente','Confira se começou após instalação/atualização e consulte os registros.','Atualize ou reverta a mudança identificada, após salvar dados.'],
+['Aquecimento ou armazenamento com falha','Verifique temperaturas e saúde da unidade; preserve arquivos antes de testes extensos.','Corrija refrigeração ou siga o caso 46 se houver sinais de falha no disco.'],
+['Memória ou outro hardware instável','Com o professor, teste memória e parâmetros padrão; consulte o caso 43.','Isole o módulo/componente defeituoso e substitua apenas após confirmar.']
+],'O sistema continua respondendo em repetição da atividade e em uso normal.','Reinicialização forçada pode perder trabalho não salvo; use apenas se o sistema realmente não responder.');
+
+add('Tela preta depois que o Windows começa a carregar','Vídeo','A imagem de firmware aparece, mas some ao entrar no sistema.',[
+['Saída ou modo de exibição incorreto','Confira o monitor escolhido, entrada e conexão; teste uma única tela.','Use a saída correta e um modo de exibição suportado.'],
+['Driver de vídeo com falha','Com o professor, acesse o modo de segurança pelas opções oficiais de recuperação.','Se há imagem nesse modo, reverta/reinstale o driver oficial relacionado à falha.'],
+['Aplicativo ou sessão do sistema com erro','Veja se aparece ponteiro ou se outro usuário consegue iniciar sessão.','Desative a inicialização do aplicativo identificado ou repare a sessão com backup das informações.'],
+['Corrupção do sistema ou GPU instável','Compare outra saída/GPU compatível e opções de recuperação do sistema.','Repare o sistema após backup se hardware estiver saudável; encaminhe a GPU se a falha a acompanhar.']
+],'A imagem permanece visível durante a entrada no Windows e o uso de aplicativos.');
+
+add('Memória instalada não aparece por completo','Memória','O total informado difere dos módulos instalados ou a memória utilizável é menor.',[
+['Confusão entre memória instalada e utilizável','Compare BIOS/UEFI, sistema e memória reservada ao hardware.','Explique a reserva para vídeo integrado e diferenças de unidades; não troque RAM por uma reserva normal.'],
+['Limite do sistema ou da placa','Confira arquitetura do sistema, capacidade suportada e manual da placa-mãe.','Use sistema de 64 bits e módulos dentro dos limites, quando necessário e compatível.'],
+['Módulo mal encaixado ou slot errado','Com PC desconectado e professor, confira travas e slots recomendados.','Reinstale os módulos nos slots previstos pelo fabricante.'],
+['Módulo, slot ou canal com defeito','Teste um módulo por vez e compare slots permitidos, registrando resultados.','Substitua o módulo se a falha o acompanhar; se um canal/slot falha, encaminhe placa-mãe/CPU para diagnóstico.']
+],'Firmware reconhece a capacidade esperada e o sistema informa uma reserva explicável.');
+
+add('Computador deixa de iniciar após instalar RAM','Memória','A falha surge logo depois da troca ou ampliação da memória.',[
+['Treinamento inicial de memória','Consulte o manual sobre o primeiro boot; alguns sistemas levam mais tempo após mudanças.','Aguarde o período indicado, sem reiniciar continuamente.'],
+['Módulo mal encaixado ou posição incorreta','Com professor e alimentação desconectada, confira travas e slots indicados.','Reencaixe corretamente; não force um módulo de padrão diferente.'],
+['Módulo incompatível ou mistura instável','Confira geração DDR, capacidade, tipo e especificações; teste a configuração anterior.','Use módulos compatíveis e preferencialmente um conjunto validado para a placa.'],
+['Perfil de memória ou módulo defeituoso','Com o professor, teste um módulo por vez em parâmetros padrão; reset de CMOS somente conforme o manual.','Desative perfil instável ou substitua o módulo que falha também em condições padrão.']
+],'O PC conclui o POST, reconhece a RAM e passa por teste orientado de memória.');
+
+add('Mensagem “CPU Fan Error” ou erro de ventoinha','Refrigeração','O firmware informa que não detectou corretamente a ventoinha do processador.',[
+['Aviso após uma manutenção','Não ignore; desligue e confira o que foi alterado.','Interrompa o uso até confirmar a refrigeração do processador.'],
+['Cooler conectado ao header errado','Com PC fora da tomada, o professor identifica CPU_FAN e demais headers pelo manual.','Conecte o cooler ao header previsto; bombas de water cooler seguem o manual específico.'],
+['Cabo solto, hélice bloqueada ou ventoinha defeituosa','Inspecione conexões e obstáculos sem energizar partes expostas.','Reconecte, retire a obstrução ou substitua a ventoinha que falhou.'],
+['Limite de leitura incompatível com a montagem','Se refrigeração está comprovadamente funcional, compare rotação mínima e leitura com o manual.','O professor ajusta o monitoramento ao conjunto correto. Não desative o alerta para esconder um cooler parado.']
+],'A leitura de refrigeração é coerente, o alerta é resolvido e a temperatura permanece adequada.');
+
+add('PC não conclui o POST: bipes ou LED de diagnóstico','Inicialização','O computador tem energia, mas não chega à imagem inicial ou sinaliza um erro.',[
+['Código ainda não identificado','Anote padrão, duração, cor e modelo exato da placa/PC.','Consulte a tabela específica do fabricante; não use tabelas universais de bipes.'],
+['Periférico ou mudança recente interferindo','Compare sem acessórios externos não essenciais e registre a última mudança.','Remova o acessório problemático ou restaure a configuração anterior.'],
+['Memória ou vídeo indicados pelo código','Com professor e PC desconectado, confira encaixes e teste componente compatível conhecido.','Corrija a conexão ou substitua somente o módulo/placa que falhou no teste.'],
+['CPU, placa-mãe ou firmware indicados pelo diagnóstico','Revise compatibilidade e siga os testes do manual; configuração mínima exige supervisão.','Encaminhe para diagnóstico técnico. Atualização de BIOS não deve ser feita por tentativa num PC instável.']
+],'O POST é concluído e o código de erro deixa de aparecer.','POST é o autoteste de hardware executado antes de carregar o sistema operacional.');
+
+add('Liga por poucos segundos e desliga','Energia','As ventoinhas começam a girar, mas o PC apaga antes de iniciar.',[
+['Periférico externo causando proteção','Desconecte acessórios externos não essenciais com o PC desligado.','Retire o periférico/cabo que faz a falha retornar.'],
+['Conector de energia interno incompleto','Professor, PC fora da tomada: confira ATX da placa e alimentação da CPU pelo manual.','Conecte os cabos corretos da fonte; não confunda EPS/CPU com PCIe/GPU.'],
+['Cooler ausente, solto ou erro de montagem','Confira a presença, fixação e conexão da refrigeração.','Reinstale corretamente antes de voltar a ligar. Nunca teste CPU sem cooler.'],
+['Curto, fonte ou placa-mãe defeituosos','Professor inspeciona parafusos soltos, espaçadores e testa fonte compatível com seus próprios cabos.','Corrija a montagem se confirmado; substitua fonte/placa só após isolamento técnico.']
+],'O PC permanece ligado e conclui o POST sem aquecimento anormal.','Se houver cheiro de queimado, faísca ou líquido, desconecte e encaminhe: não repita testes de energização.');
+
+add('Erros no teste de memória RAM','Memória','Uma ferramenta de diagnóstico acusa erros, ou falhas gerais apontam para a memória.',[
+['Perfil de frequência instável','Registre os ajustes e confira se XMP/EXPO ou overclock está ativo.','Com o professor, teste nos parâmetros padrão suportados.'],
+['Mau encaixe','PC fora da tomada: confira travas e slots recomendados.','Reencaixe segurando pelas bordas, com proteção contra descarga eletrostática.'],
+['Módulo com falha','Teste um módulo por vez no slot recomendado e repita com módulo conhecido.','Substitua o módulo se o erro o acompanhar em configurações padrão.'],
+['Slot, controlador ou combinação de módulos','Compare módulos bons em slots permitidos e consulte compatibilidade.','Use conjunto compatível; se o erro acompanha slot/canal, encaminhe placa-mãe/CPU para diagnóstico.']
+],'A configuração final passa pelo teste completo escolhido e não reproduz as falhas observadas.','Um teste sem erros reduz suspeitas, mas não garante ausência de toda falha intermitente. Não esfregue borracha nem aplique produtos caseiros nos contatos.');
+
+add('Quadrados, linhas ou cores estranhas na imagem','Vídeo','Aparecem artefatos gráficos, distorções ou blocos de cor.',[
+['Cabo ou monitor','Compare outro cabo e outro monitor; observe se o defeito aparece no menu do monitor.','Substitua o cabo/monitor cuja falha foi isolada.'],
+['Aplicativo ou driver','Veja se ocorre só num programa e se começou após atualização.','Atualize/corrija o aplicativo ou reinstale/reverta o driver oficial.'],
+['Temperatura ou overclock','Confira temperatura e parâmetros da GPU e memória, sem forçar testes se estiver superaquecendo.','Restaure parâmetros padrão e corrija a refrigeração.'],
+['Falha de GPU ou memória compartilhada','Compare imagem antes do sistema e teste GPU/RAM compatível conhecida com o professor.','Se acompanha a GPU, encaminhe/substitua a placa; com vídeo integrado, investigue também RAM e placa-mãe.']
+],'A imagem permanece limpa no firmware e na tarefa que antes apresentava artefatos.');
+
+add('Jogos ou programas 3D travam, mas o desktop funciona','Vídeo','A falha aparece com carga gráfica mais alta.',[
+['Requisito ou configuração acima do hardware','Compare requisitos, resolução e ajustes do programa.','Use configurações compatíveis e teste uma carga menor.'],
+['Programa ou driver com falha','Confira se outros programas 3D também falham e registre o erro.','Atualize/repare o programa e use driver oficial compatível.'],
+['Aquecimento ou ajustes instáveis','Observe temperaturas e desative overclock/perfis instáveis com o professor.','Corrija a refrigeração e teste nos parâmetros padrão.'],
+['GPU ou alimentação inadequada','Com PC desconectado, professor confere conectores e requisitos da GPU/fonte; compara componentes conhecidos.','Use alimentação prevista e substitua o componente cuja falha foi confirmada. Não continue forçando desligamentos.']
+],'A tarefa gráfica de referência funciona com ajustes suportados, sem travamento nem desligamento.');
+
+add('HD faz cliques ou unidade apresenta erros de leitura','Armazenamento','Arquivos falham ao abrir, a unidade desaparece ou um HDD produz cliques repetidos.',[
+['Indício de risco aos dados','Confira mensagens e ruído; não confunda acesso normal de HDD com cliques repetitivos de falha.','Pare usos não essenciais. Se os dados são insubstituíveis ou há ruído anormal, desligue e busque recuperação especializada.'],
+['Conexão com mau contato','Se não há dano mecânico aparente e o professor autoriza teste, confira cabos com PC desconectado.','Corrija cabo/porta confirmado como defeituoso, sem escrever na unidade.'],
+['Alerta de saúde da unidade','Consulte indicadores SMART e diagnóstico oficial, priorizando backup e evitando teste extenso em disco degradado.','Copie dados acessíveis para outra unidade saudável; alertas de falha justificam substituição.'],
+['Falha persistente da unidade','Se erros acompanham a unidade em conexão confiável, trate como falha de armazenamento.','Substitua e restaure backup. Para dados não recuperados, encaminhe a especialista.']
+],'Os dados preservados são verificados e a unidade saudável opera sem os erros anteriores.','Não abra HDD, não use congelador e não execute reparos que escrevem na unidade antes de avaliar a preservação dos dados. SSD não tem peças móveis; ruído mecânico não vem dele.');
+
+add('Tela de erro de parada: BSOD','Sistema','O Windows mostra um erro grave e reinicia; a cor da tela pode variar pela versão.',[
+['Código e contexto desconhecidos','Registre código de parada, horário, tarefa e mudança recente; um código sozinho não identifica uma peça.','Guarde as informações para comparar ocorrências antes de alterar o PC.'],
+['Driver, atualização ou acessório recente','Compare sem o acessório recém-instalado e consulte histórico de erros.','Reverta ou atualize o item relacionado à falha com fonte oficial.'],
+['Arquivos do sistema, temperatura ou disco','Faça backup, verifique registros, refrigeração e saúde da unidade.','Aplique reparo oficial se apropriado; corrija calor ou armazenamento confirmado como falho.'],
+['RAM ou outro hardware instável','Com o professor, teste em parâmetros padrão, memória e componentes apontados pelos registros.','Substitua apenas o item cuja falha foi isolada; se necessário, encaminhe análise dos registros de falha.']
+],'A atividade que provocava a falha e o uso normal ficam estáveis; registre se houve nova ocorrência.');
+
+add('PC reinicia ou perde estabilidade após ativar XMP/EXPO','Memória','O defeito começa depois de alterar frequência ou temporizações da memória.',[
+['Relação com o ajuste não confirmada','Registre o perfil ativado e compare com a configuração anterior.','Com o professor, desative o perfil e teste nos parâmetros padrão.'],
+['Limite de compatibilidade do conjunto','Confira manual, lista de memória validada e capacidade/frequência suportadas pela CPU.','Use um perfil/configuração suportada e estável; o perfil anunciado não é garantia para todo conjunto.'],
+['Mistura de módulos ou slots inadequados','Confira se os módulos são de um conjunto validado e ocupam os slots recomendados.','Teste o conjunto apropriado nos slots corretos.'],
+['Falha persistente em parâmetros padrão','Execute teste orientado de memória se o erro continua sem perfil.','Siga o caso 43; encaminhe firmware/controlador se módulos bons também falham.']
+],'O PC fica estável e passa no teste de memória com a configuração final documentada.','Reset de CMOS só conforme o manual, registrando ajustes e tendo a chave de recuperação do disco se necessária.');
+
+add('Computador não inicia depois de uma troca de peças','Inicialização','A falha aparece logo após trocar CPU, GPU, fonte ou outro componente.',[
+['Conexão esquecida durante a montagem','PC fora da tomada: professor compara cabos, vídeo e montagem com os manuais.','Corrija o encaixe/conector ausente sem forçar nem adaptar cabos indevidos.'],
+['Peça nova incompatível','Confira modelo exato, socket, memória, potência e conectores necessários.','Instale componente compatível. Em fontes modulares, use apenas cabos aprovados para o modelo específico.'],
+['CPU depende de versão de BIOS específica','Consulte a lista oficial de CPUs e a versão mínima de firmware.','Professor planeja atualização apenas pelo método oficial, com energia estável e hardware/método compatível.'],
+['Peça nova defeituosa ou dano de montagem','Compare com a configuração anterior, se segura; examine socket e fixações sem tocar em pinos.','Se a falha acompanha a peça nova, substitua; se há dano físico, encaminhe para reparo especializado.']
+],'O novo conjunto conclui o POST, reconhece as peças e fica estável no uso previsto.','Atualizar BIOS por tentativa pode inutilizar a placa. Não misture cabos modulares de fontes diferentes.');
+
+add('Suspeita de defeito na placa-mãe','Inicialização','Falhas persistem mesmo após verificar alimentação, conexões e componentes básicos.',[
+['Conclusão prematura','Revise o histórico e confirme tomada, fonte, monitor, cabos e código de POST.','Resolva causas externas e documente tudo antes de condenar a placa.'],
+['Configuração ou montagem inadequada','Professor confere conectores, espaçadores, compatibilidade e parâmetros registrados.','Corrija montagem; restaure ajustes conforme o manual se houver evidência de configuração incorreta.'],
+['Outra peça provoca o sintoma','Com professor, faça teste mínimo previsto no manual usando fonte, RAM e vídeo compatíveis conhecidos.','Troque uma variável por vez e substitua a peça que comprovadamente causa o erro.'],
+['Falha da placa-mãe ou CPU ainda não isolada','Se a falha persiste com peças boas e montagem correta, são necessários testes técnicos adicionais.','Encaminhe para bancada especializada; substitua a placa somente com evidência suficiente. Reparos eletrônicos ficam fora desta prática.']
+],'Há um diagnóstico documentado com testes comparativos ou encaminhamento justificado, seguido de validação do reparo.','Inspeção visual sem danos não prova que a placa está boa. Fonte conhecida e compatível é diferente de fonte apenas “nova”.');
+
+const levels = [
+{id:1,name:'Primeiros passos',short:'Básico',desc:'Energia, cabos e conexões externas.'},
+{id:2,name:'Uso e configurações',short:'Básico +',desc:'Periféricos, ajustes e desempenho.'},
+{id:3,name:'Sistema e armazenamento',short:'Intermediário',desc:'Boot, rede, arquivos e recuperação.'},
+{id:4,name:'Dentro do gabinete',short:'Intermediário +',desc:'Refrigeração, memória e conexões internas.'},
+{id:5,name:'Isolamento de falhas',short:'Avançado guiado',desc:'POST, testes comparativos e diagnóstico técnico.'}
+];
+const references = [
+{title:'Dell · Energia, POST, boot e vídeo',url:'https://www.dell.com/support/kbdoc/en-us/000125609/resolve-no-power-no-post-no-boot-or-no-video-issues-with-your-dell-computer'},
+{title:'Microsoft · Opções de recuperação do Windows',url:'https://support.microsoft.com/en-us/windows/experience/backup-recovery/recovery-options-in-windows'},
+{title:'Microsoft · Erros de parada no Windows',url:'https://support.microsoft.com/en-US/windows/resolving-blue-screen-errors-in-windows-60b01860-58f2-be66-7516-5c45a66ae3c6'},
+{title:'HP · Refrigeração de desktops',url:'https://support.hp.com/ie-en/document/ish_3900448-2964858-16'}
+];
+</script>
+<script>'use strict';
+const $ = selector => document.querySelector(selector);
+const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const normalize = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const number = id => String(id).padStart(2,'0');
+const storageKey = 'amc-oficina-selecao-v1';
+let selected = new Set();
+let level = 0;
+let onlySelected = false;
+let currentCase = null;
+let toastTimer;
+const paths = {
+  'Energia':'<path d="m13 2-8 12h6l-1 8 9-12h-6l1-8Z"/>',
+  'Vídeo':'<rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
+  'Periféricos':'<rect x="6" y="7" width="12" height="15" rx="6"/><path d="M12 7V2m0 9v3"/>',
+  'Áudio':'<path d="M4 9h4l5-4v14l-5-4H4V9Zm12-1a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/>',
+  'Rede':'<rect x="9" y="3" width="6" height="5" rx="1"/><rect x="2" y="16" width="6" height="5" rx="1"/><rect x="16" y="16" width="6" height="5" rx="1"/><path d="M12 8v4H5v4m7-4h7v4"/>',
+  'Armazenamento':'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 14h18M6 17h1m3 0h1"/>',
+  'Sistema':'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 8h18m-14 5 3 2-3 2m6 0h4"/>',
+  'Inicialização':'<path d="M12 2v9m6-6a9 9 0 1 1-12 0"/>',
+  'Refrigeração':'<circle cx="12" cy="12" r="2"/><path d="M10 10C2 8 5 1 10 4c2 1 3 3 2 6m2 0c2-8 9-5 6 0-1 2-3 3-6 2m0 2c8 2 5 9 0 6-2-1-3-3-2-6m-2 0c-2 8-9 5-6 0 1-2 3-3 6-2"/>',
+  'Memória':'<rect x="2" y="6" width="20" height="11" rx="1"/><path d="M6 17v3m4-3v3m4-3v3m4-3v3M6 10v3m4-3v3m4-3v3m4-3v3"/>'
+};
+const icon = category => `<svg viewBox="0 0 24 24" aria-hidden="true">${paths[category] || paths.Sistema}</svg>`;
+const getSelected = () => cases.filter(c => selected.has(c.id));
+const filteredCases = () => {
+  const terms = normalize($('#search').value.trim()).split(/\s+/).filter(Boolean);
+  const category = $('#category').value;
+  return cases.filter(c => (!level || c.level === level) && (!category || c.category === category) && (!onlySelected || selected.has(c.id)) && terms.every(term => normalize([c.title,c.category,c.symptom,c.note,c.confirm,...c.steps.flat()].join(' ')).includes(term)));
+};
+function toast(message) {
+  $('#toast').textContent = message;
+  $('#toast').hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 4200);
+}
+function save() {
+  try { localStorage.setItem(storageKey, JSON.stringify([...selected])); }
+  catch { $('.saved').textContent = 'Use “Salvar seleção .json” para guardar'; toast('O navegador não permitiu salvar. Baixe a seleção para guardá-la.'); }
+}
+function updateSelection() {
+  const chosen = getSelected();
+  $('#selection-total').textContent = chosen.length;
+  $('#filter-selected-count').textContent = chosen.length;
+  $('#selection-empty').hidden = chosen.length > 0;
+  $('#selection-list').innerHTML = chosen.map(c => `<li><span class="selected-num">${number(c.id)}</span><button class="selected-case" data-open="${c.id}" aria-label="Abrir caso ${number(c.id)}: ${escapeHTML(c.title)}">${escapeHTML(c.title)}</button><button class="remove-case" data-remove="${c.id}" aria-label="Remover caso ${number(c.id)}">×</button></li>`).join('');
+  $('#selection-summary').hidden = !chosen.length;
+  const stageCount = new Set(chosen.map(c => c.level)).size;
+  $('#selection-summary').textContent = `${chosen.length} ${chosen.length === 1 ? 'caso selecionado' : 'casos selecionados'} · ${stageCount} ${stageCount === 1 ? 'etapa' : 'etapas'}\n${chosen.reduce((sum,c) => sum+c.steps.length,0)} verificações para discutir com a turma.`;
+  for (const id of ['download-md','download-json','copy','print','clear-selection']) $('#'+id).disabled = !chosen.length;
+  document.querySelectorAll('[data-select]').forEach(input => { input.checked = selected.has(Number(input.dataset.select)); });
+  document.querySelectorAll('.case-card').forEach(card => card.classList.toggle('is-selected',selected.has(Number(card.dataset.id))));
+  if (currentCase && $('#case-dialog').open) updateModalSelection();
+}
+function toggleSelect(id) {
+  if (selected.has(id)) selected.delete(id); else selected.add(id);
+  save();
+  updateSelection();
+  if (onlySelected) renderCards();
+}
+function updateModalSelection() {
+  const button = $('#modal-select');
+  const active = selected.has(currentCase.id);
+  button.setAttribute('aria-pressed',String(active));
+  button.textContent = active ? '✓ No meu material' : '+ Adicionar ao material';
+}
+function renderCards() {
+  const visible = filteredCases();
+  $('#result-count').textContent = `${visible.length} ${visible.length === 1 ? 'caso' : 'casos'}`;
+  $('#cards').innerHTML = visible.map(c => `<article class="case-card ${selected.has(c.id)?'is-selected':''}" data-id="${c.id}">
+    <div class="card-top"><span class="card-category">${icon(c.category)}${escapeHTML(c.category)}</span><span class="case-number">CASO ${number(c.id)}</span></div>
+    <h3>${escapeHTML(c.title)}</h3><p class="symptom">${escapeHTML(c.symptom)}</p>
+    <div class="card-badges"><span class="level-badge l${c.level}">${c.level}. ${levels[c.level-1].short}</span><span class="step-count">${c.steps.length} verificações</span></div>
+    <div class="card-footer"><button class="inspect" data-open="${c.id}" aria-label="Investigar caso ${number(c.id)}: ${escapeHTML(c.title)}">Investigar caso <span aria-hidden="true">↗</span></button><label class="select-case"><input type="checkbox" data-select="${c.id}" ${selected.has(c.id)?'checked':''} aria-label="Adicionar caso ${number(c.id)} ao material"><span>Adicionar</span></label></div>
+  </article>`).join('');
+  $('#empty-results').hidden = visible.length > 0;
+  $('#select-visible').disabled = !visible.length;
+  $('#only-selected').setAttribute('aria-pressed',String(onlySelected));
+  const active = [];
+  if (level) active.push(`Etapa ${level}: ${levels[level-1].name}`);
+  if ($('#category').value) active.push($('#category').value);
+  if (onlySelected) active.push('Minha seleção');
+  if ($('#search').value.trim()) active.push(`Busca: “${$('#search').value.trim()}”`);
+  $('#active-filter').hidden = !active.length;
+  $('#active-filter').innerHTML = active.length ? `<span>${escapeHTML(active.join(' · '))}</span><button id="reset-all">Limpar</button>` : '';
+  document.querySelectorAll('[data-level]').forEach(b => b.setAttribute('aria-pressed',String(Number(b.dataset.level)===level)));
+}
+function openCase(id) {
+  const c = cases.find(item => item.id === id);
+  if (!c) return;
+  currentCase = c;
+  $('#case-content').innerHTML = `<div class="dialog-top"><p class="eyebrow">CASO ${number(c.id)} / ${escapeHTML(c.category.toUpperCase())}</p><button class="icon-button" id="close-case" aria-label="Fechar caso">×</button></div>
+    <div class="dialog-title-line"><h2 id="case-title">${escapeHTML(c.title)}</h2><button id="modal-select" class="modal-select" aria-pressed="false"></button></div>
+    <p class="case-symptom"><b>Sintoma observado:</b> ${escapeHTML(c.symptom)}</p><div class="case-meta"><span class="level-badge l${c.level}">Etapa ${c.level} · ${levels[c.level-1].short}</span><span>${c.steps.length} verificações · uma hipótese por vez</span></div>
+    <div class="sequence-label">DO SIMPLES AO COMPLEXO</div>
+    <div class="diagnostic-steps"><div class="table-head" aria-hidden="true"><span>PASSO</span><span>CAUSA POSSÍVEL</span><span>COMO VERIFICAR</span><span>SOLUÇÃO</span></div>
+    ${c.steps.map((s,i)=>`<section class="step-row" aria-label="Passo ${i+1}"><span class="step-num">${number(i+1)}</span><h3 class="step-cause"><span class="cell-label">CAUSA POSSÍVEL</span>${escapeHTML(s[0])}</h3><p class="step-cell"><span class="cell-label">COMO VERIFICAR</span>${escapeHTML(s[1])}</p><p class="step-cell solution"><span class="cell-label">SOLUÇÃO</span>${escapeHTML(s[2])}</p></section>`).join('')}</div>
+    <div class="confirmation"><span aria-hidden="true">✓</span><div><h3>Como confirmar que resolveu</h3><p>${escapeHTML(c.confirm)}</p></div></div>
+    ${c.note?`<p class="case-note"><b>Atenção na prática.</b> ${escapeHTML(c.note)}</p>`:''}
+    <div class="modal-footer"><button id="previous-case" ${c.id===1?'disabled':''}>← Caso anterior</button><span>As causas são hipóteses. Confirme pelo teste.</span><button id="next-case" ${c.id===50?'disabled':''}>Próximo caso →</button></div>`;
+  updateModalSelection();
+  $('#close-case').onclick = () => $('#case-dialog').close();
+  $('#modal-select').onclick = () => toggleSelect(c.id);
+  $('#previous-case').onclick = () => openCase(c.id-1);
+  $('#next-case').onclick = () => openCase(c.id+1);
+  $('#case-dialog').scrollTop = 0;
+  if (!$('#case-dialog').open) { $('#case-dialog').showModal(); document.body.style.overflow='hidden'; }
+  $('#close-case').focus();
+}
+function openHelp() { $('#help-dialog').showModal(); document.body.style.overflow='hidden'; }
+function resetFilters() { level=0; onlySelected=false; $('#search').value=''; $('#category').value=''; renderCards(); }
+const commonCare = 'Antes de abrir o gabinete, desligue e retire da tomada; siga o manual e use proteção contra descarga eletrostática. Procedimentos internos com o professor. Não abra fonte/monitor. Preserve dados e a chave de recuperação antes de intervenções no sistema ou armazenamento.';
+function markdown() {
+  return `# AMC — Roteiros selecionados de diagnóstico\n\n${getSelected().length} casos selecionados. As causas são hipóteses; verifique antes de corrigir. Troque uma variável por vez.\n\n## Cuidados de bancada\n\n${commonCare}\n\n` + getSelected().map(c => `## Caso ${number(c.id)} — ${c.title}\n\n**Etapa ${c.level}:** ${levels[c.level-1].name}  \n**Categoria:** ${c.category}  \n**Sintoma:** ${c.symptom}\n\n${c.steps.map((s,i)=>`### Passo ${i+1}\n\n- **Causa possível:** ${s[0]}\n- **Como verificar:** ${s[1]}\n- **Solução:** ${s[2]}\n`).join('\n')}\n**Como confirmar que resolveu:** ${c.confirm}\n${c.note?`\n**Atenção na prática:** ${c.note}\n`:''}`).join('\n---\n\n') + `\n## Referências\n\n${references.map(r=>`- [${r.title}](${r.url})`).join('\n')}\n\nConsulte sempre o manual do modelo. Roteiros didáticos originais; referência de sistema: Windows.\n`;
+}
+function download(content,filename,type) {
+  const url=URL.createObjectURL(new Blob([content],{type}));
+  const link=document.createElement('a'); link.href=url; link.download=filename; document.body.append(link); link.click(); link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+function printSelection() {
+  const chosen=getSelected();
+  if (!chosen.length) return;
+  $('#print-content').innerHTML=`<header class="print-intro"><h1>AMC · Diagnóstico de desktops</h1><p>${chosen.length} casos selecionados · Do mais simples ao mais complexo</p><p>${escapeHTML(commonCare)}</p><p>As causas são hipóteses. Observe, teste uma variável, corrija e valide.</p></header>`+chosen.map(c=>`<article><h2>Caso ${number(c.id)} — ${escapeHTML(c.title)}</h2><p class="print-meta">Etapa ${c.level}: ${levels[c.level-1].name} · ${escapeHTML(c.category)}</p><p><b>Sintoma:</b> ${escapeHTML(c.symptom)}</p><table><thead><tr><th>#</th><th>Causa possível</th><th>Como verificar</th><th>Solução</th></tr></thead><tbody>${c.steps.map((s,i)=>`<tr><td>${i+1}</td><td>${escapeHTML(s[0])}</td><td>${escapeHTML(s[1])}</td><td>${escapeHTML(s[2])}</td></tr>`).join('')}</tbody></table><p class="print-confirm"><b>Como confirmar que resolveu:</b> ${escapeHTML(c.confirm)}</p>${c.note?`<p class="print-note"><b>Atenção:</b> ${escapeHTML(c.note)}</p>`:''}</article>`).join('')+`<h3>Referências</h3>${references.map(r=>`<p class="print-meta">${escapeHTML(r.title)} · ${escapeHTML(r.url)}</p>`).join('')}`;
+  window.print();
+}
+async function copyNumbers() {
+  const text=`Minha seleção AMC: ${getSelected().map(c=>'#'+number(c.id)).join(', ')}. Vamos montar o material com esses casos.`;
+  let copied=false;
+  try { await navigator.clipboard.writeText(text); copied=true; } catch {
+    const area=document.createElement('textarea'); area.value=text; area.style.position='fixed'; area.style.top='-1000px'; document.body.append(area); area.select();
+    try { copied=document.execCommand('copy'); } catch { /* O navegador pode bloquear a área de transferência. */ }
+    area.remove();
+  }
+  if(copied) toast('Números copiados. Cole a seleção nesta conversa.');
+  else { download(text,'amc-numeros-selecionados.txt','text/plain;charset=utf-8'); toast('A cópia foi bloqueada pelo navegador. Os números foram baixados em um arquivo.'); }
+}
+try {
+  const stored=JSON.parse(localStorage.getItem(storageKey) || '[]');
+  if(Array.isArray(stored)) selected=new Set(stored.filter(id=>Number.isInteger(id)&&cases.some(c=>c.id===id)));
+} catch { /* Seleção inválida não impede o uso da biblioteca. */ }
+$('#level-filters').innerHTML=levels.map(l=>`<button class="level-button" data-level="${l.id}" aria-pressed="false" aria-label="Filtrar etapa ${l.id}: ${l.name}"><span class="level-top"><span class="level-index">0${l.id}</span><span class="level-amount">10 casos</span></span><strong>${l.name}</strong><p>${l.desc}</p></button>`).join('');
+const categories=[...new Set(cases.map(c=>c.category))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+categories.forEach(category=>{ const option=document.createElement('option'); option.value=category; option.textContent=category; $('#category').append(option); });
+$('#reference-list').innerHTML=references.map(r=>`<li><a href="${r.url}" target="_blank" rel="noopener noreferrer">${escapeHTML(r.title)} ↗</a></li>`).join('');
+$('#level-filters').addEventListener('click',event=>{ const b=event.target.closest('[data-level]'); if(!b)return; const id=Number(b.dataset.level); level=level===id?0:id; renderCards(); });
+$('#reset-level').onclick=()=>{ level=0; renderCards(); };
+$('#search').addEventListener('input',renderCards);
+$('#category').addEventListener('change',renderCards);
+$('#only-selected').onclick=()=>{ onlySelected=!onlySelected; renderCards(); };
+$('#clear-filters').onclick=resetFilters;
+$('#active-filter').addEventListener('click',event=>{ if(event.target.closest('#reset-all'))resetFilters(); });
+document.addEventListener('click',event=>{ const open=event.target.closest('[data-open]'); if(open)openCase(Number(open.dataset.open)); const remove=event.target.closest('[data-remove]'); if(remove)toggleSelect(Number(remove.dataset.remove)); });
+$('#cards').addEventListener('change',event=>{ if(event.target.matches('[data-select]'))toggleSelect(Number(event.target.dataset.select)); });
+$('#select-visible').onclick=()=>{ const visible=filteredCases(); visible.forEach(c=>selected.add(c.id)); save(); updateSelection(); renderCards(); toast(`${visible.length} casos exibidos estão na sua seleção.`); };
+$('#clear-selection').onclick=()=>{ selected.clear(); save(); updateSelection(); renderCards(); toast('Seleção limpa. Você pode escolher os casos novamente.'); };
+$('#download-md').onclick=()=>{ if(!selected.size)return; download(markdown(),'amc-roteiros-selecionados.md','text/markdown;charset=utf-8'); toast('Roteiros selecionados baixados.'); };
+$('#download-json').onclick=()=>{ if(!selected.size)return; download(JSON.stringify({format:'amc-selection',version:1,ids:getSelected().map(c=>c.id),care:commonCare,cases:getSelected(),references},null,2),'amc-selecao.json','application/json;charset=utf-8'); toast('Seleção salva em JSON, com os roteiros completos.'); };
+$('#print').onclick=printSelection;
+$('#copy').onclick=copyNumbers;
+for(const id of ['help-button','safety-button','sources-button'])$('#'+id).onclick=openHelp;
+document.querySelectorAll('.close-help').forEach(b=>b.onclick=()=>$('#help-dialog').close());
+for(const dialog of document.querySelectorAll('dialog')){
+  dialog.addEventListener('close',()=>{ document.body.style.overflow=''; });
+  dialog.addEventListener('click',event=>{ if(event.target!==dialog)return; const rect=dialog.getBoundingClientRect(); if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close(); });
+}
+document.addEventListener('keydown',event=>{ if(event.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(event.target.tagName)&&!document.querySelector('dialog[open]')){event.preventDefault(); $('#search').focus();} });
+updateSelection();
+renderCards();
+</script>
+</body>
+</html>
