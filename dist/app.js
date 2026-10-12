@@ -121,7 +121,13 @@ function download(content,filename,type) {
 function printSelection() {
   const chosen=getSelected();
   if (!chosen.length) return;
-  $('#print-content').innerHTML=`<header class="print-intro"><h1>AMC · Diagnóstico de desktops</h1><p>${chosen.length} casos selecionados · Do mais simples ao mais complexo</p><p>${escapeHTML(commonCare)}</p><p>As causas são hipóteses. Observe, teste uma variável, corrija e valide.</p></header>`+chosen.map(c=>`<article><h2>Caso ${number(c.id)} — ${escapeHTML(c.title)}</h2><p class="print-meta">Etapa ${c.level}: ${levels[c.level-1].name} · ${escapeHTML(c.category)}</p><p><b>Sintoma:</b> ${escapeHTML(c.symptom)}</p><table><thead><tr><th>#</th><th>Causa possível</th><th>Como verificar</th><th>Solução</th></tr></thead><tbody>${c.steps.map((s,i)=>`<tr><td>${i+1}</td><td>${escapeHTML(s[0])}</td><td>${escapeHTML(s[1])}</td><td>${escapeHTML(s[2])}</td></tr>`).join('')}</tbody></table><p class="print-confirm"><b>Como confirmar que resolveu:</b> ${escapeHTML(c.confirm)}</p>${c.note?`<p class="print-note"><b>Atenção:</b> ${escapeHTML(c.note)}</p>`:''}</article>`).join('')+`<h3>Referências</h3>${references.map(r=>`<p class="print-meta">${escapeHTML(r.title)} · ${escapeHTML(r.url)}</p>`).join('')}`;
+  const sheets=[];
+  for(let i=0;i<chosen.length;i+=2) sheets.push(chosen.slice(i,i+2));
+  $('#print-content').innerHTML=sheets.map((pair,index)=>`<section class="print-page">
+    <header class="print-intro"><div><h1>AMC · Diagnóstico de desktops</h1><span>Folha ${index+1} de ${sheets.length} · ${chosen.length} casos selecionados</span></div><p>${escapeHTML(commonCare)}</p></header>
+    ${pair.map(c=>`<article><h2>Caso ${number(c.id)} — ${escapeHTML(c.title)}</h2><p class="print-meta">Etapa ${c.level}: ${levels[c.level-1].name} · ${escapeHTML(c.category)}</p><p><b>Sintoma:</b> ${escapeHTML(c.symptom)}</p><table><colgroup><col class="print-col-number"><col class="print-col-cause"><col class="print-col-check"><col class="print-col-fix"></colgroup><thead><tr><th>#</th><th>Causa possível</th><th>Como verificar</th><th>Solução</th></tr></thead><tbody>${c.steps.map((s,i)=>`<tr><td>${i+1}</td><td>${escapeHTML(s[0])}</td><td>${escapeHTML(s[1])}</td><td>${escapeHTML(s[2])}</td></tr>`).join('')}</tbody></table><p class="print-confirm"><b>Como confirmar que resolveu:</b> ${escapeHTML(c.confirm)}</p>${c.note?`<p class="print-note"><b>Atenção:</b> ${escapeHTML(c.note)}</p>`:''}</article>`).join('')}
+    ${index===sheets.length-1?`<footer class="print-references"><b>Referências:</b> ${references.map(r=>`<a href="${r.url}">${escapeHTML(r.title)}</a>`).join(' · ')}</footer>`:''}
+  </section>`).join('');
   window.print();
 }
 async function copyNumbers() {

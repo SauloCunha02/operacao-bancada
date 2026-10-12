@@ -7,7 +7,7 @@ Página didática com 50 casos de desktops, organizados em 5 etapas. Cada caso c
 - Abra `AMC-50-casos.html` no navegador para usar a versão independente, sem internet. Fontes de sistema substituem as fontes da versão hospedada.
 - Ou abra `dist/index.html`, mantendo `styles.css`, `cases.js` e `app.js` na mesma pasta.
 - Selecione os casos; use a busca e os filtros. Leia os roteiros em “Investigar caso”.
-- “Baixar roteiros” exporta somente a seleção em Markdown. “Imprimir / salvar PDF” abre o diálogo de impressão do navegador com apenas os casos escolhidos.
+- “Baixar roteiros” exporta somente a seleção em Markdown. “Imprimir / salvar PDF” abre o diálogo de impressão do navegador com os casos escolhidos em pares: dois por folha A4, orientação retrato, margens de 10 mm. Use escala 100% e desative cabeçalhos/rodapés do navegador para aproveitar a página. Uma seleção ímpar deixa apenas um caso na última folha.
 - “Copiar números” gera uma mensagem com os números dos casos para continuar a conversa com o professor. A página não envia mensagens automaticamente.
 - “Salvar seleção .json” guarda números, cuidados e roteiros completos. Não há importação automática desse arquivo; ele pode ser consultado ou enviado nesta conversa.
 - A seleção é guardada em localStorage por navegador/endereço, quando permitido. As versões offline, local e hospedada têm seleções independentes.
