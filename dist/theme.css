@@ -1,0 +1,29 @@
+/* Dark surfaces retain the brand accents and the meaning of feedback states. */
+html[data-theme=dark]{color-scheme:dark;background:#0c1d24;color:#edf5f4}
+html[data-theme=dark]:not(.a11y-custom-colors){--brand-canvas:#0c1d24;--brand-paper:#152d35;--brand-ink:#edf5f4;--brand-muted:#b1c7c9;--brand-teal:#63d6cb;--brand-line:#405c63}
+#theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;max-width:100%;padding:9px 11px;border:0;border-radius:8px;background:transparent;color:var(--a11y-muted);box-shadow:none;font:500 12px/1.5 'Segoe UI',Arial,sans-serif;cursor:pointer;white-space:normal}
+#theme-toggle:hover{background:var(--a11y-soft);color:var(--a11y-text)}
+#theme-toggle svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+#theme-toggle:focus-visible{outline:3px solid var(--a11y-accent);outline-offset:3px}
+#theme-toggle span{background:transparent;color:inherit;font:inherit;padding:0;margin:0}
+:is(.dialog-head,.dialog-top)>#theme-toggle{margin-left:auto}
+:is(.dialog-head,.dialog-top)>#theme-toggle+#a11y-launcher{margin-left:0}
+html[data-theme=dark] :is(.skip,.icon-btn,.icon-button,.modal-select){background:var(--a11y-soft);color:var(--a11y-text);border-color:var(--a11y-line)}
+html[data-theme=dark] :is(.dispatch,.method-board){box-shadow:0 8px 0 #07171d}
+html[data-theme=dark] :is(.dispatch-top,.dispatch-foot,.method-row,.board-bottom,.clearspace){border-color:var(--a11y-line)}
+html[data-theme=dark] :is(.step-cell,.step-cell.solution,.cell-label,.card-category,.select-case,.case-note b,.confirmation>span,footer b,.hero-meta b){color:var(--a11y-text)}
+html[data-theme=dark] :is(.search-wrap kbd,.search-wrap svg){color:var(--a11y-muted)}
+html[data-theme=dark] :is(input,select)::placeholder{color:var(--a11y-muted);opacity:1}
+html[data-theme=dark] :is(.toast,.navigation span){background:var(--a11y-soft);color:var(--a11y-text);border-color:var(--a11y-line)}
+html[data-theme=dark] .sequence-label:after{background:var(--a11y-line)}
+html[data-theme=dark] .modal-footer button{color:var(--a11y-accent);border-color:var(--a11y-line)}
+html[data-theme=dark] :is(.intro,.clearspace,.card)>img[src*="logo.svg"],html[data-theme=dark] .card>img[src*="logo-monocromatico.svg"]{background:#f3f5ef;padding:12px;border-radius:8px}
+/* High contrast has priority; the regular dark theme keeps distinct status colors. */
+html[data-theme=dark][data-a11y-contrast=default][data-a11y-palette=default] :is(.result,.confirmation,.badge,.level-badge){background:#193d33!important;color:#b6efd0!important;border-color:#6bbd95!important}
+html[data-theme=dark][data-a11y-contrast=default][data-a11y-palette=default] :is(.result.review,.safety,.case-note,.badge.review){background:var(--a11y-warning)!important;color:#ffe1aa!important;border-color:#d3a65b!important}
+html[data-theme=dark][data-a11y-contrast=default][data-a11y-palette=default] :is(.result.review,.safety,.case-note) :is(p,b){color:#ffe1aa!important}
+html[data-theme=dark][data-a11y-contrast=default] .case-card.is-selected,html[data-theme=dark] .level-button[aria-pressed=true]{background:var(--a11y-soft)!important;border-color:var(--a11y-accent)!important}
+html[data-theme=dark] .danger{background:#a94339;color:#fff}
+html[data-theme=dark] :is(.secondary,.choice,.level-button):hover{border-color:var(--a11y-accent)!important}
+@media(max-width:650px){#theme-toggle{font-size:10px;padding:8px 10px}.library-app .topbar-inner,header:has(>.a11y-menu){flex-wrap:wrap}.library-app .header-actions{width:100%;max-width:100%}.a11y-menu{justify-content:flex-start}}
+@media print{#theme-toggle{display:none!important}html[data-theme=dark]{color-scheme:light;--a11y-bg:#fff!important;--a11y-surface:#fff!important;--a11y-text:#111!important;--a11y-muted:#333!important;--a11y-accent:#174f43!important;--a11y-on-accent:#fff!important;--a11y-line:#aaa!important;--a11y-soft:#eee!important;--a11y-warning:#f5eedc!important;background:#fff!important;color:#111!important}}
