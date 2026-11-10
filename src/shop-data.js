@@ -10,8 +10,13 @@ export const catalog=[
   {id:'aura-circuit',name:'Pulso Elétrico',category:'aura',kind:'circuit',color:'#6fc9f3',price:220,xp:1000,tag:'CONECTADO',description:'Pequenos blocos em órbita celebram suas conexões de conhecimento.'},
   {id:'aura-cosmic',name:'Constelação',category:'aura',kind:'cosmic',color:'#d4adff',price:350,xp:2000,tag:'ALÉM DO ÓBVIO',description:'Uma constelação pessoal para quem continua fazendo novas perguntas.'}
 ];
-export const categoryNames={all:'Tudo',uniform:'Uniformes',head:'Cabeça',back:'Mochilas',aura:'Efeitos',owned:'Minha coleção'};
-export const shopFresh=()=>({owned:[],equipped:{head:null,back:null,aura:null}});
+export const looks=[
+  {id:'look-field',name:'Equipe de Campo',category:'looks',color:'#a8d980',xp:400,skin:0,items:['visor-lime','toolpack','aura-mint'],tag:'LOOK COMPLETO · 3 ACESSÓRIOS',description:'Visor Pixel, Kit de Campo e Órbita Menta. Um conjunto para investigar com estilo.'},
+  {id:'look-circuit',name:'Circuito Azul',category:'looks',color:'#70bfe8',xp:1000,skin:1,items:['cap-blue','backpack','aura-circuit'],tag:'LOOK COMPLETO · 3 ACESSÓRIOS',description:'Boné Circuito, Mochila Explorer e Pulso Elétrico, com o uniforme azul.'},
+  {id:'look-nova',name:'Tripulação Nova',category:'looks',color:'#b9a0ec',xp:2000,skin:3,items:['headphones','jetpack','aura-cosmic'],tag:'LOOK COMPLETO · 3 ACESSÓRIOS',description:'Headset Órbita, Propulsor Nova e Constelação. Sua experiência chegou a outro nível.'}
+];
+export const categoryNames={all:'Tudo',looks:'Conjuntos',uniform:'Uniformes',head:'Cabeça',back:'Mochilas',aura:'Efeitos',favorites:'Favoritos',owned:'Minha coleção'};
+export const shopFresh=()=>({owned:[],wishlist:[],equipped:{head:null,back:null,aura:null}});
 export const earnedCredits=state=>100+Object.values(state.records).filter(r=>r.stage===6).length*40;
 export const shopXP=state=>Object.values(state.records).filter(r=>r.stage===6).length*100;
 export const balance=state=>earnedCredits(state)-(state.shop?.owned||[]).reduce((sum,id)=>sum+(catalog.find(i=>i.id===id)?.price||0),0);
@@ -19,6 +24,7 @@ export function cleanShop(raw,records){
   const state={records,shop:shopFresh()},xp=shopXP(state);
   for(const id of Array.isArray(raw?.owned)?raw.owned.slice(0,100):[]){const item=catalog.find(i=>i.id===id);if(item&&!state.shop.owned.includes(id)&&xp>=item.xp&&balance(state)>=item.price)state.shop.owned.push(id);}
   for(const slot of ['head','back','aura']){const id=raw?.equipped?.[slot];if(state.shop.owned.includes(id)&&catalog.some(i=>i.id===id&&i.category===slot))state.shop.equipped[slot]=id;}
+  state.shop.wishlist=[...new Set((Array.isArray(raw?.wishlist)?raw.wishlist:[]).slice(0,100).filter(id=>catalog.some(i=>i.id===id)||looks.some(i=>i.id===id)||typeof id==='string'&&/^uniform-[0-3]$/.test(id)))];
   return state.shop;
 }
 export function buyItem(state,id){
@@ -29,3 +35,12 @@ export function buyItem(state,id){
   state.shop.owned.push(id);state.shop.equipped[item.category]=id;return {ok:true,message:`${item.name} adquirido e equipado!`};
 }
 export function equipItem(state,id){const item=catalog.find(i=>i.id===id);if(!item||!state.shop.owned.includes(id))return false;state.shop.equipped[item.category]=id;return true;}
+export const lookCost=(state,look)=>look.items.filter(id=>!state.shop.owned.includes(id)).reduce((sum,id)=>sum+catalog.find(i=>i.id===id).price,0);
+export function acquireLook(state,id){
+  const look=looks.find(i=>i.id===id);if(!look)return {ok:false,message:'Conjunto não encontrado.'};
+  if(shopXP(state)<look.xp)return {ok:false,message:`Este conjunto libera em ${look.xp} XP.`};
+  const price=lookCost(state,look);if(balance(state)<price)return {ok:false,message:'Faltam créditos para completar este conjunto.'};
+  // Todas as condições são verificadas antes de qualquer alteração: não há aquisição parcial.
+  for(const id of look.items){if(!state.shop.owned.includes(id))state.shop.owned.push(id);equipItem(state,id);}state.skin=look.skin;
+  return {ok:true,message:`${look.name} completo e equipado!`};
+}

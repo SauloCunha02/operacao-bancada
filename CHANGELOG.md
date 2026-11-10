@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## v1.3.1 · Conjuntos, favoritos e metas da loja
+
+- Três looks completos para experimentar: Equipe de Campo, Circuito Azul e Tripulação Nova, combinando uniforme e três acessórios.
+- Aquisição de conjuntos verifica saldo e XP antes de alterar a coleção e cobra apenas os acessórios ainda não adquiridos. Reequipar não consome créditos.
+- Lista de favoritos persistida e filtro de desejos na galeria.
+- Meta do item em quantidade de missões e botão para seguir diretamente ao próximo chamado.
+- Testes de aquisições sem efeitos parciais, preço dos conjuntos, combinação no avatar, favoritos, metas e navegação entre loja e missão.
+
 ## v1.3.0 · Modo escuro e Galeria Shop
 
 - Botão de tema no cabeçalho, preferência claro/escuro/sistema nas configurações e sincronização entre abas. A escolha é salva separadamente do progresso.

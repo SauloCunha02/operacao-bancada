@@ -14,7 +14,7 @@ export function accessoryModel(item){
     if(item.kind==='cap')box(.74,.07,.36,material,0,2.77,.38);
     else{mesh(new THREE.CylinderGeometry(.49,.49,.08,16),material,0,2.78,0);box(.10,.23,.80,material,0,2.96,0);}
   }else if(item.kind==='headphones'){
-    const band=mesh(new THREE.TorusGeometry(.46,.055,6,20,Math.PI),dark,0,2.53,0);band.rotation.y=Math.PI/2;
+    mesh(new THREE.TorusGeometry(.46,.055,6,20,Math.PI),dark,0,2.53,0);
     for(const side of [-1,1])box(.14,.36,.31,material,side*.43,2.46,0);
   }else if(item.category==='back'){
     for(const side of [-1,1])box(.06,.82,.035,dark,side*.31,1.56,.30);

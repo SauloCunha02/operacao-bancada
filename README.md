@@ -18,7 +18,7 @@ Abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem estática ficam 
 
 - Use o botão de lua/sol no cabeçalho para alternar o tema. Em Configurações → Aparência, também é possível acompanhar o tema do sistema. A preferência fica neste navegador e sincroniza abas abertas.
 - Visite a **Galeria Shop** no mapa ou no menu. No campus, aproxime-se da vitrine à esquerda da praça e interaja, ou clique nela para caminhar até a loja.
-- A galeria tem quatro uniformes e dez acessórios/efeitos, filtros e um provador 3D giratório. Arraste o modelo para inspecionar. Quando WebGL não está disponível, miniaturas dos itens continuam permitindo a escolha.
+- A galeria tem quatro uniformes, dez acessórios/efeitos e três conjuntos completos, com filtros e um provador 3D giratório. Marque favoritos e acompanhe quantas missões faltam para sua meta. Um atalho leva diretamente à próxima missão. Os conjuntos cobram apenas pelos acessórios que você ainda não possui. Arraste o modelo para inspecionar. Quando WebGL não está disponível, miniaturas dos itens continuam permitindo a escolha.
 - Você começa com **100 créditos** e recebe **40 por nova missão concluída**. Experimente livremente antes de adquirir. Alguns itens também exigem XP; os quatro uniformes mantêm os requisitos anteriores por XP. Créditos e acessórios são apenas do jogo e não envolvem pagamento real.
 - Os acessórios adquiridos ficam na coleção. Equipe ou retire um item por categoria: cabeça, mochila e efeito. O progresso exportado inclui a coleção, e arquivos anteriores continuam compatíveis.
 
@@ -37,7 +37,7 @@ Abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem estática ficam 
 
 O histórico local usa tags de versão. A câmera original está preservada em `v1.0.0`; a câmera em terceira pessoa corresponde à `v1.1.0`. As gerações de proporções estão em `v1.2.0`, `v1.2.1` e `v1.2.2`, com notas de autoavaliação 8,30, 9,10 e 9,53. Consulte [CHANGELOG.md](CHANGELOG.md) e [avaliações com pranchas](reviews/README.md).
 
-A versão `v1.3.0` adiciona tema escuro e Galeria Shop. `src/theme.js` gerencia preferências; `src/shop-data.js` contém catálogo e regras; `src/shop-ui.js` implementa a galeria; `src/shop-preview.js` e `src/shop-visuals.js` montam o provador e os acessórios. O build gera as 14 miniaturas em `dist/shop/` a partir da geometria real.
+A versão `v1.3.0` adiciona tema escuro e Galeria Shop; `v1.3.1` inclui conjuntos, favoritos e metas. `src/theme.js` gerencia preferências; `src/shop-data.js` contém catálogo e regras; `src/shop-ui.js` implementa a galeria; `src/shop-preview.js` e `src/shop-visuals.js` montam o provador e os acessórios. O build gera as 17 miniaturas em `dist/shop/` a partir da geometria real.
 
 O mundo utiliza geometria procedural, sem modelos externos. Three.js é empacotado localmente. As fontes Google são opcionais; na ausência de rede, o navegador usa fontes do sistema. O jogo requer WebGL para o ambiente 3D e oferece acesso às missões quando ele não está disponível. A qualidade pode ser reduzida em Configurações.
 
