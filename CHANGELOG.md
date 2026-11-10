@@ -1,5 +1,17 @@
 # Histórico de versões
 
+## v1.4.0 · Sistema de méritos e medalhas originais
+
+- Doze conquistas com critérios públicos de jornada, investigação, revisão/mentoria e conclusão das cinco estações. Méritos derivados dos chamados validados, com até 1300 pontos e cinco títulos de percurso.
+- Dez artes originais de medalhas geradas com `image_gen`, em PNG transparente e WebP otimizado. Originais e prompts completos em `assets/merit/`.
+- Galeria com progresso por medalha, filtros, objetivos, missão sugerida e uma conquista em destaque no perfil e no uniforme do avatar.
+- Totem interativo na praça, acesso pelo mapa e pelos menus do computador/celular, avisos de novas conquistas sem repetição.
+- Revisão dos testes e orientações dos chamados concluídos. Permite conquistar méritos de método mesmo depois de terminar os 50 casos, sem perder progresso e sem repetir XP ou créditos.
+- Méritos separados da economia da loja. O progresso anterior conta automaticamente e exportações incluem destaque e histórico de avisos.
+- Testes de critérios, limites, migração, destaque, revisão, ausência de recompensas repetidas, galeria, notificações, rota ao totem e insígnia no avatar.
+
+A conferência visual do conjunto da página no navegador e em aparelho real continua pendente. As artes das medalhas foram inspecionadas diretamente e as interações foram verificadas em testes DOM e de cena Three.js com renderer substituído.
+
 ## v1.3.1 · Conjuntos, favoritos e metas da loja
 
 - Três looks completos para experimentar: Equipe de Campo, Circuito Azul e Tripulação Nova, combinando uniforme e três acessórios.
