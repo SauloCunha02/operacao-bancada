@@ -16,8 +16,10 @@ Abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem estática ficam 
 
 ## Jogar
 
-- WASD ou setas para caminhar; E para interagir; M para o mapa.
-- Celular: controle virtual à esquerda e botão de mão à direita.
+- Câmera em terceira pessoa acompanha o avatar. Arraste com o mouse ou um dedo no cenário para olhar ao redor.
+- WASD ou setas para caminhar na direção da câmera; E para interagir; M para o mapa; R para centralizar a câmera atrás do personagem.
+- Roda do mouse ou pinça com dois dedos para aproximar e afastar a câmera.
+- Celular: controle virtual à esquerda e botão de mão à direita. Você pode andar com um dedo no controle e girar a câmera com outro no cenário.
 - Toque nas estações, use o mapa ou os cartões para navegar. Os menus também dão acesso direto às 50 missões, sem exigir navegação 3D.
 - Cada missão tem seis etapas: preparar, investigar, diagnosticar, corrigir, validar e comunicar. É necessário consultar a evidência decisiva antes do diagnóstico.
 - Concluir uma missão concede 100 XP uma única vez. Não há perda de XP por erro, cronômetro, ranking ou bloqueio de conteúdo. Uniformes adicionais em 200, 500 e 1000 XP.
@@ -25,7 +27,9 @@ Abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem estática ficam 
 
 ## Estrutura
 
-`src/game.js`: mundo Three.js, interação, controles e interface. `src/rules.js`: regras e persistência validada. `src/cases.js`: cópia integral do conteúdo original com exportação ES adicionada. `dist/oficina/`: versão original da oficina, biblioteca, guia docente e acessibilidade preservados. O clone de referência está em `../conteudo-original/`.
+`src/game.js`: mundo Three.js, interação, controles e interface. `src/camera.js`: câmera em terceira pessoa, colisões e gestos de rotação/zoom. `src/rules.js`: regras e persistência validada. `src/cases.js`: cópia integral do conteúdo original com exportação ES adicionada. `dist/oficina/`: versão original da oficina, biblioteca, guia docente e acessibilidade preservados. O clone de referência está em `../conteudo-original/`.
+
+O histórico local usa tags de versão. A câmera original está preservada em `v1.0.0`; a câmera em terceira pessoa corresponde à `v1.1.0`. Consulte [CHANGELOG.md](CHANGELOG.md).
 
 O mundo utiliza geometria procedural, sem modelos externos. Three.js é empacotado localmente. As fontes Google são opcionais; na ausência de rede, o navegador usa fontes do sistema. O jogo requer WebGL para o ambiente 3D e oferece acesso às missões quando ele não está disponível. A qualidade pode ser reduzida em Configurações.
 
@@ -36,7 +40,7 @@ npm.cmd test
 npm.cmd run build
 ```
 
-O teste cobre o caminho completo dos 50 casos, erros e recuperação, necessidade de evidência, retomada, XP sem repetição e importação de dados.
+Os testes cobrem os 50 casos e sua interface DOM, erros e recuperação, necessidade de evidência, retomada, XP sem repetição e importação. A câmera é verificada com a matemática real do Three.js: perspectiva, acompanhamento, direção do movimento, limites, colisões, suavização, mouse e pinça. A cena usa um renderer substituído para verificar as rotas, o redimensionamento para celular e o uso simultâneo do joystick e da rotação. A aparência e o desempenho WebGL precisam de conferência visual; a ferramenta de navegador não estava disponível nesta revisão.
 
 ## Limites pedagógicos
 
