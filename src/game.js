@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import {ThirdPersonCamera,bindCameraGestures} from './camera.js';
+import {createBlockAvatar} from './avatar.js';
 import {cases,levels} from './cases.js';
 import {KEY,safety,stageNames,outfits,target,fresh,newRecord,totalXP,cleanState,options,choose,investigate,advanceInvestigation} from './rules.js';
 
@@ -107,11 +108,7 @@ function createWorld(){
   // Pórtico de entrada e pequenas peças no jardim.
   box(.3,3.7,.3,'#738a61',-2,1.98,12);box(.3,3.7,.3,'#738a61',2,1.98,12);box(4.8,.8,.24,'#f2f0d7',0,3.6,12);sign('CAMPUS AMC',0,3.62,12.15,4.4,'#587348');
   for(let i=0;i<22;i++){const x=Math.sin(i*13.1)*16,z=Math.cos(i*6.3)*13;if(Math.abs(x)<3||Math.abs(z)<2)continue;for(let j=0;j<3;j++)cylinder(.07,.1,.3,'#9cb478',x+j*.15,.28,z+j*.13,4);}
-  function avatar(shirt='#647e4c',skin='#cda078',hair='#4a4233'){
-    const g=new THREE.Group(),torso=box(.78,.8,.4,shirt,0,1.18,0,g);box(.67,.67,.63,skin,0,1.94,0,g);box(.7,.2,.66,hair,0,2.32,-.025,g);box(.7,.3,.2,hair,0,2.17,-.28,g);box(.12,.18,.2,hair,-.3,2.12,.22,g);
-    const limbs=[];for(const side of [-1,1]){const arm=new THREE.Group();arm.position.set(side*.56,1.55,0);g.add(arm);box(.28,.38,.32,shirt,0,-.18,0,arm);box(.26,.38,.3,skin,0,-.53,0,arm);const leg=new THREE.Group();leg.position.set(side*.21,.8,0);g.add(leg);box(.32,.65,.34,'#48554b',0,-.32,0,leg);box(.36,.16,.48,'#eee9d6',0,-.66,.06,leg);limbs.push(arm,leg);}
-    for(const side of [-1,1])box(.065,.065,.025,'#3e3a2e',side*.15,1.97,.325,g);box(.13,.025,.025,'#825b44',0,1.8,.325,g);box(.2,.14,.02,'#e5e6c8',.2,1.35,.211,g);const shadow=new THREE.Mesh(new THREE.CircleGeometry(.65,18),new THREE.MeshBasicMaterial({color:'#62794f',transparent:true,opacity:.13,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.22;g.add(shadow);return {group:g,torso,limbs};
-  }
+  const avatar=(shirt,skin,hair)=>createBlockAvatar(shirt,skin,hair,mat);
   const cameraObstacles=[];
   root.traverse(object=>{if(!object.isMesh||!object.visible)return;for(let p=object.parent;p;p=p.parent)if(beacons.includes(p))return;cameraObstacles.push(object);});
   root.updateMatrixWorld(true);
@@ -173,7 +170,7 @@ function createWorld(){
     particles.forEach(p=>{if(p.life<=0)return;p.life-=dt;p.mesh.visible=p.life>0;p.mesh.position.addScaledVector(p.v,dt);p.v.y-=dt*5;p.mesh.rotation.x+=dt*3;});renderer.render(scene,camera);
   }
   requestAnimationFrame(frame);$('#loading').hidden=true;$('#loading').style.display='none';refresh();
-  return {refresh,navigate,teleport(s){stopInput();player.group.position.set(s.x,.12,s.z+2.1);player.group.rotation.y=Math.PI;orbit.recenter(Math.PI);orbit.update(player.group.position,0,{snap:true});},home(){stopInput();walkingTo=null;player.group.position.set(0,.12,7);player.group.rotation.y=Math.PI;orbit.recenter(Math.PI);orbit.update(player.group.position,0,{snap:true});},setSkin(){player.torso.material=mat(outfits[state.skin].color);player.limbs.filter((_,i)=>i%2===0).forEach(arm=>arm.children[0].material=mat(outfits[state.skin].color));},quality(){renderer.setPixelRatio(Math.min(devicePixelRatio,state.quality==='low'?1:1.7));renderer.shadowMap.enabled=state.quality!=='low';resize();},celebrate(){particles.forEach(p=>{p.life=2;p.mesh.visible=true;p.mesh.position.copy(player.group.position).add(new THREE.Vector3(0,2.8,0));p.v.set((Math.random()-.5)*5,2+Math.random()*4,(Math.random()-.5)*5);});}};
+  return {refresh,navigate,teleport(s){stopInput();player.group.position.set(s.x,.12,s.z+2.1);player.group.rotation.y=Math.PI;orbit.recenter(Math.PI);orbit.update(player.group.position,0,{snap:true});},home(){stopInput();walkingTo=null;player.group.position.set(0,.12,7);player.group.rotation.y=Math.PI;orbit.recenter(Math.PI);orbit.update(player.group.position,0,{snap:true});},setSkin(){player.shirtMeshes.forEach(mesh=>mesh.material=mat(outfits[state.skin].color));},quality(){renderer.setPixelRatio(Math.min(devicePixelRatio,state.quality==='low'?1:1.7));renderer.shadowMap.enabled=state.quality!=='low';resize();},celebrate(){particles.forEach(p=>{p.life=2;p.mesh.visible=true;p.mesh.position.copy(player.group.position).add(new THREE.Vector3(0,2.8,0));p.v.set((Math.random()-.5)*5,2+Math.random()*4,(Math.random()-.5)*5);});}};
 }
 function travel(id){const s=stations.find(s=>s.id===Number(id));if(!s)return;closePanel();if(!world){missions(s.id);return;}world.navigate(s.x,s.z+2.2,s.id);toast('A caminho da estação '+pad(s.id)+'. Você também pode usar WASD ou o controle virtual.');}
 function interact(){if($('#panel').open)return;if(nearest?.type==='mentor')mentor();else if(nearest)missions(nearest.id);else toast('Aproxime-se de uma bancada ou escolha uma estação no mapa.');}

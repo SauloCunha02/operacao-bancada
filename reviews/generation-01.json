@@ -1,0 +1,9 @@
+{
+  "label": "generation-01",
+  "avatarBounds": {
+    "x": 2.039999989271164,
+    "y": 3.2112084637838394,
+    "z": 1.4800000190734863
+  },
+  "note": "Geometria real; renderização SVG sem interface, texturas ou sombras WebGL."
+}
