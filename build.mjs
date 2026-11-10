@@ -1,0 +1,5 @@
+import {build} from 'esbuild';
+import {copyFileSync} from 'node:fs';
+await build({entryPoints:['src/game.js'],bundle:true,minify:true,format:'esm',outfile:'dist/game.js',target:['es2022'],sourcemap:true});
+for (const file of ['index.html','style.css']) copyFileSync('src/'+file,'dist/'+file);
+console.log('Jogo compilado em dist/');
