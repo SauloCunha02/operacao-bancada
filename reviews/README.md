@@ -4,7 +4,7 @@ Estas notas são autoavaliações de direção visual, não avaliações de usu�
 
 Critérios fixos: silhueta e proporções do avatar (30%); escala entre avatar e cenário (25%); enquadramento no computador e celular (20%); acabamento e leitura (15%); funcionamento dos controles e missões (10%). A nota global é a média ponderada desses critérios.
 
-As pranchas são produzidas a partir da geometria e das câmeras reais do código usando o SVGRenderer do Three.js. Não mostram a interface HTML, texturas, sombras, luz hemisférica nem o acabamento do WebGL. A iluminação da prancha é simplificada para permitir avaliar as formas. A verificação do navegador não estava disponível nesta sessão.
+As pranchas são produzidas a partir da geometria e das câmeras reais do código. As gerações 0 e 1 usam SVGRenderer; a partir da geração 2, um renderizador de revisão com depth buffer evita artefatos de sobreposição do SVG em superfícies grandes. Não mostram a interface HTML, texturas, sombras nem o acabamento do WebGL. A iluminação da prancha é simplificada para permitir avaliar as formas. A verificação do navegador não estava disponível nesta sessão.
 
 ## Geração 1 · v1.2.0 · 8,30/10
 
@@ -19,6 +19,24 @@ As pranchas são produzidas a partir da geometria e das câmeras reais do códig
 Mudança: tronco largo, braços e pernas inteiros, cabeça cilíndrica menor, rosto com sorriso e uniforme com volume. A relação entre braço e torso deixa de parecer um boneco com braços finos.
 
 Revisão visual: [prancha da geração 1](generation-01.png). Ainda há piso atravessando os pés, excesso de distância visual na bancada, paredes baixas e mobiliário estreito. A próxima geração precisa coordenar câmera, ambiente e avatar.
+
+## Geração 2 · v1.2.1 · 9,10/10
+
+| Critério | Nota |
+| --- | ---: |
+| Silhueta e proporções | 9,3 |
+| Escala avatar/cenário | 9,2 |
+| Enquadramento | 9,0 |
+| Acabamento e leitura | 8,7 |
+| Funcionamento | 9,0 |
+
+Média ponderada: 9,095, apresentada com duas casas como 9,10.
+
+Mudanças: câmera mais próxima e com foco no tronco, piso correspondente à altura dos pés, paredes mais altas, bancos largos e raio de colisão compatível com o tronco. O pórtico foi afastado para estabilizar a distância da câmera inicial. O acabamento WebGL passa a usar tone mapping e materiais plásticos.
+
+Revisão visual: [prancha da geração 2](generation-02.png). A escala já é coerente e os pés aparecem sobre o piso. O acabamento dos equipamentos continua muito simples e a posição de atendimento ainda fica distante do teclado. A próxima geração refina o posto de trabalho, a leitura dos equipamentos e a apresentação em celular.
+
+Testes de câmera e dez rotas entre estações passaram, incluindo joystick e rotação simultâneos.
 
 ## Referências
 

@@ -1,0 +1,9 @@
+{
+  "label": "generation-02",
+  "avatarBounds": {
+    "x": 2.039999989271164,
+    "y": 2.840000001192093,
+    "z": 0.776979947090149
+  },
+  "note": "Geometria real; renderização com depth buffer, sem interface, texturas ou sombras WebGL."
+}

@@ -2,21 +2,21 @@ const assert=require('node:assert/strict');
 const {JSDOM}=require('jsdom');
 (async()=>{
   const THREE=await import('three');
-  const {ThirdPersonCamera,bindCameraGestures}=await import('../src/camera.js');
+  const {ThirdPersonCamera,bindCameraGestures,CAMERA_TUNING}=await import('../src/camera.js');
   const close=(a,b,tolerance=.001)=>assert.ok(Math.abs(a-b)<tolerance,`${a} deve estar perto de ${b}`);
   const position=new THREE.Vector3(0,.12,0),camera=new THREE.PerspectiveCamera(60,1,.1,140),orbit=new ThirdPersonCamera(camera);
-  orbit.update(position,0,{snap:true});assert.ok(camera.isPerspectiveCamera);close(orbit.target.y,1.47);close(camera.position.distanceTo(orbit.target),8);assert.ok(camera.position.z>position.z);
+  orbit.update(position,0,{snap:true});assert.ok(camera.isPerspectiveCamera);close(orbit.target.y,.12+CAMERA_TUNING.focusHeight);close(camera.position.distanceTo(orbit.target),CAMERA_TUNING.distance);assert.ok(camera.position.z>position.z);
   let direction=orbit.movement(0,-1);close(direction.x,0);close(direction.z,-1);
   orbit.yaw=Math.PI/2;direction=orbit.movement(0,-1);close(direction.x,-1);close(direction.z,0);direction=orbit.movement(1,0);close(direction.x,0);close(direction.z,-1);
   orbit.recenter(Math.PI);position.set(6,.12,-3);for(let i=0;i<120;i++)orbit.update(position,1/60);close(orbit.target.x,6);close(orbit.target.z,-3);close(position.y,.12);
   const projected=orbit.target.clone().project(camera);close(projected.x,0);close(projected.y,0);
   orbit.rotate(30000,-100000);close(orbit.pitch,.16);assert.ok(Math.abs(orbit.yaw)<=Math.PI);orbit.rotate(0,100000);close(orbit.pitch,1.08);
   orbit.zoom(.0001);close(orbit.distance,4);orbit.zoom(100000);close(orbit.distance,15);orbit.zoom(NaN);close(orbit.distance,15);
-  orbit.recenter(0);close(orbit.yaw,-Math.PI);close(orbit.pitch,.4);
+  orbit.recenter(0);close(orbit.yaw,-Math.PI);close(orbit.pitch,CAMERA_TUNING.pitch);
   // Parede entre personagem e câmera: contrair imediatamente, expandir suavemente.
   const wall=new THREE.Mesh(new THREE.BoxGeometry(6,6,.2),new THREE.MeshBasicMaterial());wall.position.set(0,3,4);wall.updateMatrixWorld(true);
   const protectedOrbit=new ThirdPersonCamera(camera,[wall]);position.set(0,.12,0);protectedOrbit.update(position,0,{snap:true});assert.ok(protectedOrbit.actualDistance<4,'A câmera precisa parar antes da parede');
-  assert.ok(camera.position.z<3.9,'A câmera não pode atravessar a parede');wall.position.x=100;wall.updateMatrixWorld(true);protectedOrbit.update(position,1/60);assert.ok(protectedOrbit.actualDistance<8,'A volta à distância anterior deve ser suave');for(let i=0;i<180;i++)protectedOrbit.update(position,1/60);close(protectedOrbit.actualDistance,8);
+  assert.ok(camera.position.z<3.9,'A câmera não pode atravessar a parede');wall.position.x=100;wall.updateMatrixWorld(true);protectedOrbit.update(position,1/60);assert.ok(protectedOrbit.actualDistance<CAMERA_TUNING.distance,'A volta à distância anterior deve ser suave');for(let i=0;i<180;i++)protectedOrbit.update(position,1/60);close(protectedOrbit.actualDistance,CAMERA_TUNING.distance);
   // Obstáculo fora do raio central: os raios laterais protegem os cantos da câmera.
   const edge=new THREE.Mesh(new THREE.BoxGeometry(.12,6,.2),new THREE.MeshBasicMaterial());edge.position.set(.29,3,4);edge.updateMatrixWorld(true);const edgeOrbit=new ThirdPersonCamera(camera,[edge]);edgeOrbit.update(position,0,{snap:true});assert.ok(edgeOrbit.actualDistance<4,'A proteção lateral deve detectar o obstáculo');
   protectedOrbit.update(new THREE.Vector3(-8,.12,7),0,{snap:true});close(protectedOrbit.target.x,-8);close(protectedOrbit.target.z,7);

@@ -1,10 +1,11 @@
 import * as THREE from 'three';
+export const CAMERA_TUNING={distance:6.8,pitch:.32,focusHeight:1.72,desktopFov:65,mobileFov:70};
 
 // Câmera orbital em terceira pessoa. O eixo horizontal do movimento acompanha a visão.
 export class ThirdPersonCamera {
   constructor(camera,obstacles=[]){
     this.camera=camera;this.obstacles=obstacles;
-    this.yaw=0;this.pitch=.4;this.distance=8;this.actualDistance=8;
+    this.yaw=0;this.pitch=CAMERA_TUNING.pitch;this.distance=CAMERA_TUNING.distance;this.actualDistance=CAMERA_TUNING.distance;
     this.target=new THREE.Vector3();this.initialized=false;
     this.ray=new THREE.Raycaster();this.ray.near=0;
     this.offset=new THREE.Vector3();this.direction=new THREE.Vector3();
@@ -16,13 +17,13 @@ export class ThirdPersonCamera {
     this.pitch=THREE.MathUtils.clamp(this.pitch+dy*.004,.16,1.08);
   }
   zoom(factor){if(Number.isFinite(factor)&&factor>0)this.distance=THREE.MathUtils.clamp(this.distance*factor,4,15);}
-  recenter(heading=Math.PI){this.yaw=heading-Math.PI;this.pitch=.4;}
+  recenter(heading=Math.PI){this.yaw=heading-Math.PI;this.pitch=CAMERA_TUNING.pitch;}
   movement(x,y){
     const cos=Math.cos(this.yaw),sin=Math.sin(this.yaw);
     return {x:x*cos+y*sin,z:-x*sin+y*cos};
   }
   update(playerPosition,dt,{snap=false,reducedMotion=false}={}){
-    this.focus.copy(playerPosition);this.focus.y+=1.35;
+    this.focus.copy(playerPosition);this.focus.y+=CAMERA_TUNING.focusHeight;
     if(snap||!this.initialized||reducedMotion)this.target.copy(this.focus);
     else this.target.lerp(this.focus,1-Math.exp(-14*dt));
     this.initialized=true;
