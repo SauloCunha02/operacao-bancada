@@ -68,3 +68,5 @@ Cada cenário tem uma causa didática designada. O aluno investiga testes, inter
 Preserve dados e a chave de recuperação quando aplicável. Não abra fonte ou monitor. Intervenções internas exigem supervisão, equipamento desligado e fora da tomada e cuidados contra descarga eletrostática. Siga o manual do modelo.
 
 O jogo tem identidade própria e não é afiliado ao Roblox.
+
+A versão `v1.6.0` adiciona Voltar etapa e Passar etapa em cada chamado. A resposta correta permanece visível até o aluno avançar; etapas validadas podem ser revistas sem perder progresso ou repetir recompensas. O jogo salva a etapa consultada para retomar após fechar a missão ou recarregar a página.

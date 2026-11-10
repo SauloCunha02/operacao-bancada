@@ -26,6 +26,9 @@ const assert=require('node:assert/strict');
   assert.equal(totalXP(state),5000);
   const restored=cleanState(JSON.parse(JSON.stringify(state)));assert.equal(totalXP(restored),5000);
   const tampered=fresh();tampered.records[1]={stage:6,tested:[],errors:-2,hints:0};assert.equal(cleanState(tampered).records[1].stage,1);
+  const legacy=fresh();legacy.records[1]={stage:6,tested:[0],errors:0,hints:0};assert.equal(cleanState(legacy).records[1].viewStage,6);
+  for(const [value,expected] of [[99,6],[-9,0],['2',6],[2,2]]){legacy.records[1].viewStage=value;assert.equal(cleanState(legacy).records[1].viewStage,expected);}
+  legacy.records[1].tested=[];legacy.records[1].viewStage=6;assert.equal(cleanState(legacy).records[1].viewStage,1);
   assert.throws(()=>cleanState({}));assert.throws(()=>cleanState(null));assert.throws(()=>cleanState({version:1,records:[]}));
   state.skin=3;assert.equal(cleanState(state).skin,3);const noXP=fresh();noXP.skin=3;assert.equal(cleanState(noXP).skin,0);
   console.log('OK: 50 casos, 5 estações, 300 etapas, erros e recuperação, evidências obrigatórias, retomada, 5000 XP sem repetição, restauração e validação de dados.');

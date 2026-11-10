@@ -42,6 +42,7 @@
 [data-theme=dark] :is(.test-result strong,.summary-list strong){color:#d0e6ae}
 [data-theme=dark] .feedback{background:#4a3823;color:#f0d3a4}
 [data-theme=dark] .feedback.good{background:#29442c;color:#c5e8a9}
+[data-theme=dark] .choice.validated:disabled{background:#29442c;border-color:#88ac66;color:#d3efb6}
 [data-theme=dark] .stage-track span{background:#3b4f35}
 [data-theme=dark] .stage-track span.done{background:#9bc76d}
 [data-theme=dark] .stage-track span.current{background:#d2eb9c}

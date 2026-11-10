@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## v1.6.0 · Navegação explícita entre etapas
+
+- Botões Voltar etapa e Passar etapa nas seis etapas de cada chamado, com rodapé fixo durante a rolagem, alvos de toque de pelo menos 46 px e suporte aos temas claro e escuro.
+- Respostas corretas permanecem visíveis para leitura. A ação Passar etapa libera a próxima tela; na investigação, exige a evidência decisiva. A última etapa oferece Ver conclusão.
+- Etapas já validadas destacam a resposta correta e permitem revisão. Voltar preserva o progresso, as evidências e as recompensas, inclusive após concluir a missão.
+- A etapa consultada é salva, exportada e restaurada separadamente do progresso. Arquivos de versões anteriores continuam válidos e abrem na última etapa alcançada.
+- Testes cobrem os 50 chamados, fechamento e reabertura em cada decisão validada, recarga do navegador, limites da navegação, bloqueio de saltos e de respostas em revisão, além da ausência de XP ou créditos repetidos.
+
+Verificação visual em navegador/aparelho real pendente: o serviço de navegador está indisponível. Os testes de interface usam DOM simulado e os de cena usam renderer substituído.
+
+
 ## v1.5.0 · Objetivos guiados e recompensas de mérito
 
 - Fixar uma medalha pendente como próximo objetivo. O painel do campus acompanha seu critério e o botão de missão abre um chamado adequado, incluindo revisão quando necessária.
