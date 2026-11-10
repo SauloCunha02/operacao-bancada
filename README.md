@@ -70,3 +70,5 @@ Preserve dados e a chave de recuperação quando aplicável. Não abra fonte ou 
 O jogo tem identidade própria e não é afiliado ao Roblox.
 
 A versão `v1.6.0` adiciona Voltar etapa e Passar etapa em cada chamado. A resposta correta permanece visível até o aluno avançar; etapas validadas podem ser revistas sem perder progresso ou repetir recompensas. O jogo salva a etapa consultada para retomar após fechar a missão ou recarregar a página.
+
+A versão `v2.0.0` reúne os 50 chamados em **Testar → Consertar → Conferir**, com computador virtual, ações curtas e 203 resultados de teste. `src/bench-data.js` contém rótulos, evidências e encaminhamentos; `src/bench-ui.js` monta a bancada e os estados SVG; `src/bench.css` adapta o painel ao computador e celular. O progresso anterior é migrado automaticamente; os procedimentos originais permanecem em Como fazer e no registro final. A conferência é necessária antes de entregar XP e créditos. Consulte a [prancha dos estados](reviews/bench-v2.0.0.md).

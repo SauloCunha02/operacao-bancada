@@ -1,5 +1,20 @@
 # Histórico de versões
 
+## v2.0.0 · Bancada visual em três etapas
+
+- Os 50 chamados agora seguem Testar → Consertar → Conferir. A investigação e o diagnóstico foram reunidos; preparação e comunicação deixam de exigir telas de quiz.
+- Computador virtual ao lado das ações no desktop e acima delas no celular. O painel mostra o sintoma, destaca o componente consultado e reage à aplicação da ação e à conferência.
+- 203 testes com nomes curtos, resultados próprios e acesso opcional ao procedimento original em Como fazer. As três primeiras ações ficam visíveis; Mais testes abre as demais.
+- Cinquenta evidências observáveis escritas para os cenários. Três opções de conserto por chamado, sempre incluindo a ação correspondente à evidência; a seleção correta não depende da posição do botão.
+- Conferência por ação direta, com resultado específico do atendimento. Chamados 12, 20, 32, 41, 44 e 48 encerram com encaminhamento documentado, sem afirmar que consultar um código ou encaminhar uma peça já resolveu o defeito.
+- Registro do atendimento gerado automaticamente, preservando sintoma, procedimento, causa, ação, resultado e critério de validação. Cuidados de dados e supervisão aparecem junto das ações.
+- Voltar e Continuar preservam progresso. XP, créditos e méritos são entregues uma única vez, após a conferência. Revisões permanecem disponíveis na mesma bancada.
+- Migração automática dos progressos e arquivos exportados anteriores. Conclusões, saldo, compras, equipamentos e méritos são mantidos; cada etapa antiga é convertida para o ponto correspondente do novo fluxo.
+- Testes dos 50 chamados, dos 203 resultados, de todos os pares etapa/cursor antigos, retomada, importação válida/inválida, economia, méritos e cena 3D. Prancha dos SVGs em reviews/bench-v2.0.0.md.
+
+Conferência visual de layout em navegador e aparelho real pendente: o serviço de navegador está indisponível. A prancha verifica os desenhos SVG; os fluxos usam DOM simulado e a cena usa renderer substituído.
+
+
 ## v1.6.0 · Navegação explícita entre etapas
 
 - Botões Voltar etapa e Passar etapa nas seis etapas de cada chamado, com rodapé fixo durante a rolagem, alvos de toque de pelo menos 46 px e suporte aos temas claro e escuro.

@@ -3,7 +3,7 @@ import {cases} from './cases.js';
 // Méritos descrevem o percurso digital; não gastam XP e não são comprados na loja.
 const definition=(id,name,description,category,goal,points,image,color,metric,station=null)=>({id,name,description,category,goal,points,image,color,metric,station});
 export const merits=[
-  definition('first-fix','Primeira faísca','Conclua seu primeiro chamado, da preparação à comunicação.','jornada',1,30,'first','#c28a4e','completed'),
+  definition('first-fix','Primeira faísca','Conclua seu primeiro chamado, dos testes à conferência.','jornada',1,30,'first','#c28a4e','completed'),
   definition('curious','Olhar investigativo','Consulte pelo menos 3 testes em cada um de 3 chamados concluídos.','metodo',3,60,'investigator','#58b6cd','curious'),
   definition('resilient','Um novo olhar','Conclua 3 chamados com revisão de decisões ou apoio das pistas da mentora.','metodo',3,60,'resilience','#d58b78','reviewed'),
   definition('method','Método em ação','Conclua 5 chamados com a evidência decisiva investigada.','metodo',5,80,'investigator','#75bfa7','completed'),

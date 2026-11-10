@@ -6,7 +6,7 @@ const {build}=require('esbuild');
   const {outputFiles}=await build({entryPoints:['src/game.js'],bundle:true,format:'iife',write:false,target:'es2022'});
   const source=outputFiles[0].text;
   const {cases}=await import('../src/cases.js');
-  const {target,KEY}=await import('../src/rules.js');
+  const {target,KEY}=await import('../src/rules.js');const {benchFor,checkedOutcome}=await import('../src/bench-data.js');
   function setup(saved,denyStorage=false){
     const dom=new JSDOM(fs.readFileSync('src/index.html','utf8'),{url:'http://localhost/',runScripts:'outside-only',pretendToBeVisual:true,virtualConsole:new VirtualConsole()});
     const w=dom.window;
@@ -21,46 +21,65 @@ const {build}=require('esbuild');
     const click=s=>find(s).click();
     return {dom,w,find,click,errors};
   }
-  // Navegar e retomar nunca reduz o progresso nem concede recompensas novamente.
-  const nav=setup(),read=()=>JSON.parse(nav.w.localStorage.getItem(KEY)).records[1];
-  nav.click('#missions-nav');nav.click('[data-case="1"]');
-  for(let stage=0;stage<6;stage++){
-    assert.equal(read().viewStage,stage);
-    if(stage>0){nav.click('[data-stage-back]');assert.equal(read().viewStage,stage-1);assert.equal(read().stage,stage);nav.click('[data-stage-next]');}
-    nav.find('[data-stage-next]').disabled=false;nav.click('[data-stage-next]');assert.equal(read().stage,stage,'Avanço sem validação deve ser bloqueado');assert.equal(read().viewStage,stage);
-    if(stage===1){nav.click('[data-test="0"]');nav.click('[data-stage-next]');}
-    else{
-      nav.click('[data-choice="0"]');assert.equal(read().stage,stage+1);assert.equal(read().viewStage,stage,'Resposta correta aguarda avanço explícito');
-      nav.find('[data-choice="1"]').disabled=false;nav.click('[data-choice="1"]');assert.equal(read().errors,0,'Revisão não deve responder à etapa seguinte');
-      nav.click('#close-panel');nav.click('#missions-nav');nav.click('[data-case="1"]');assert.equal(read().viewStage,stage);assert.match(nav.find('#stage-navigation-help').textContent,/validada/);
-      const resumed=setup(nav.w.localStorage.getItem(KEY));resumed.click('#missions-nav');resumed.click('[data-case="1"]');assert.match(resumed.find('.mission-meta').textContent,new RegExp('ETAPA '+(stage+1)+' DE 6'));assert.ok(!resumed.find('[data-stage-next]').disabled);assert.equal(resumed.errors.length,0);resumed.dom.window.close();
-      nav.click('[data-stage-next]');
-    }
-  }
-  assert.equal(read().stage,6);assert.equal(read().viewStage,6);assert.equal(nav.find('#xp').textContent,'100 XP');
-  for(let i=0;i<6;i++)nav.click('[data-stage-back]');assert.ok(nav.find('[data-stage-back]').disabled);assert.equal(read().stage,6);
-  for(let i=0;i<6;i++){assert.ok(!nav.find('[data-stage-next]').disabled);nav.click('[data-stage-next]');}
-  assert.match(nav.find('.xp-reward').textContent,/100 XP/);assert.equal(nav.find('#xp').textContent,'100 XP');nav.click('#shop-nav');assert.equal(nav.find('#shop-balance').textContent,'140');assert.equal(nav.errors.length,0);nav.dom.window.close();
   const app=setup();const {find,click,w}=app;
-  assert.ok(find('#world-fallback')); // Caminho alternativo sem WebGL, por intenção deste teste DOM.
-  click('#help');assert.ok(find('#panel').open);click('[data-start]');assert.ok(!find('#panel').open);
+  const read=id=>JSON.parse(w.localStorage.getItem(KEY)).records[id];
+  assert.ok(find('#world-fallback'));
+  click('#help');click('[data-start]');assert.ok(!find('#panel').open);
   for(const c of cases){
-    click('#missions-nav');click(`[data-case="${c.id}"]`);assert.match(find('#panel-kicker').textContent,new RegExp('OS '+String(c.id).padStart(2,'0')));
-    click('[data-choice="1"]');assert.match(find('.feedback').textContent,/preserve/);
-    assert.ok(find('[data-stage-back]').disabled);assert.ok(find('[data-stage-next]').disabled);click('[data-choice="0"]');assert.match(find('.mission-meta').textContent,/ETAPA 1 DE 6/);click('[data-stage-next]');assert.ok(find('[data-stage-next]').disabled);assert.match(find('#stage-navigation-help').textContent,/evidência/);
-    click(`[data-test="${target(c)}"]`);assert.match(find('.test-result').textContent,/EVIDÊNCIA ENCONTRADA/);
-    click('[data-stage-next]');for(const index of [target(c),target(c),0,0]){click(`[data-choice="${index}"]`);click('[data-stage-next]');}
-    assert.match(find('.xp-reward').textContent,/100 XP/);assert.equal(JSON.parse(w.localStorage.getItem(KEY)).records[c.id].stage,6);
+    click('#missions-nav');click(`[data-case="${c.id}"]`);
+    assert.ok(find('#panel').classList.contains('bench-dialog'));assert.equal(w.document.querySelectorAll('.bench-steps li').length,3);
+    assert.match(find('.bench-display').textContent,/./);assert.equal(find('.bench-scene').dataset.state,'fault');
+    assert.equal(w.document.querySelectorAll('[data-test]').length,c.steps.length);
+    assert.ok(find('[data-stage-back]').disabled);assert.ok(find('[data-stage-next]').disabled);
+    find('[data-stage-next]').disabled=false;click('[data-stage-next]');assert.equal(read(c.id).stage,1);
+    const wrong=(target(c)+1)%c.steps.length;click(`[data-test="${wrong}"]`);assert.equal(read(c.id).errors,0);assert.match(find('.bench-observation strong').textContent,/RESULTADO/);assert.ok(find('[data-stage-next]').disabled);
+    if(wrong>=3)assert.ok(find('[data-test="'+wrong+'"]').closest('details').open,'Mais testes permanece aberto após testar');
+    click(`[data-test="${target(c)}"]`);assert.match(find('.bench-observation strong').textContent,/PISTA ENCONTRADA/);assert.ok(!find('[data-stage-next]').disabled);
+    assert.equal(read(c.id).lastTest,target(c));
+    click('#close-panel');click('#missions-nav');click(`[data-case="${c.id}"]`);assert.equal(read(c.id).viewStage,0);assert.match(find('.bench-observation strong').textContent,/PISTA ENCONTRADA/);
+    click('[data-stage-next]');assert.equal(read(c.id).stage,3);assert.equal(read(c.id).viewStage,1);
+    assert.equal(w.document.querySelectorAll('[data-choice]').length,3);assert.ok(find('[data-stage-next]').disabled);
+    const wrongChoice=[...w.document.querySelectorAll('[data-choice]')].find(b=>Number(b.dataset.choice)!==target(c));wrongChoice.click();assert.match(find('.feedback').textContent,/não resolve/);assert.equal(read(c.id).errors,1);
+    click(`[data-choice="${target(c)}"]`);assert.equal(read(c.id).stage,4);assert.equal(find('.bench-scene').dataset.state,benchFor(c).referral?'referral-ready':'repaired');
+    assert.equal(find('#xp').textContent,((c.id-1)*100)+' XP','XP só é entregue após conferir');
+    click('[data-stage-back]');assert.equal(read(c.id).stage,4);assert.equal(read(c.id).viewStage,0);click('[data-stage-next]');assert.ok(find('[data-choice="'+target(c)+'"]').disabled);
+    find('[data-choice="'+target(c)+'"]').disabled=false;click('[data-choice="'+target(c)+'"]');assert.equal(read(c.id).errors,1,'Revisão não repete a resposta');
+    click('[data-stage-next]');assert.equal(read(c.id).viewStage,2);
+    click('#close-panel');click('#missions-nav');click(`[data-case="${c.id}"]`);assert.equal(read(c.id).viewStage,2);
+    click('[data-confirm-repair]');assert.equal(read(c.id).stage,6);assert.equal(find('.bench-scene').dataset.state,benchFor(c).referral?'referred':'conferred');assert.equal(find('.bench-confirmed').textContent,checkedOutcome(c));
+    find('[data-confirm-repair]').disabled=false;click('[data-confirm-repair]');assert.equal(find('#xp').textContent,(c.id*100)+' XP');
+    click('[data-stage-next]');assert.match(find('.xp-reward').textContent,/100 XP/);assert.equal(read(c.id).viewStage,3);
     click('#close-panel');
   }
   assert.equal(find('#xp').textContent,'5000 XP');
-  click('#missions-nav');click('[data-case="1"]');assert.match(find('.xp-reward').textContent,/100 XP/);assert.equal(find('#xp').textContent,'5000 XP');click('#close-panel');
+  // Revisar as três etapas de um chamado concluído mantém pontuação e saldo.
+  click('#missions-nav');click('[data-case="1"]');click('[data-review-tests="1"]');assert.equal(read(1).viewStage,0);
+  click('[data-test="2"]');click('[data-hint]');assert.equal(read(1).hints,1);
+  for(let i=0;i<3;i++)click('[data-stage-next]');assert.match(find('.xp-reward').textContent,/100 XP/);assert.equal(find('#xp').textContent,'5000 XP');
+  click('#shop-nav');assert.equal(find('#shop-balance').textContent,'2100');click('#close-panel');
   click('#avatar-nav');click('[data-skin="3"]');assert.equal(JSON.parse(w.localStorage.getItem(KEY)).skin,3);click('#close-panel');
   click('#journal-nav');assert.match(find('.stats').textContent,/50\/50/);click('#close-panel');
   click('#missions-nav');click('[data-list="4"]');assert.equal(w.document.querySelectorAll('[data-case]').length,10);click('#close-panel');
   click('#settings');find('#quality').value='low';find('#quality').dispatchEvent(new w.Event('change',{bubbles:true}));assert.equal(JSON.parse(w.localStorage.getItem(KEY)).quality,'low');click('#close-panel');
   assert.equal(app.errors.length,0,app.errors.map(e=>e?.stack).join('\n'));
-  const restored=setup(w.localStorage.getItem(KEY));assert.equal(restored.find('#xp').textContent,'5000 XP');assert.equal(restored.errors.length,0);restored.dom.window.close();
-  const denied=setup(null,true);denied.click('#missions-nav');denied.click('[data-case="1"]');denied.click('[data-choice="0"]');assert.match(denied.find('#save-state').textContent,/Sem salvamento/);assert.equal(denied.errors.length,0);denied.dom.window.close();
-  app.dom.window.close();console.log('OK: navegação de ida/volta, retomada após validação, bloqueio de saltos e duplicação, interface DOM dos 50 chamados, recuperação, evidências, 5000 XP sem repetição, filtros, avatar, percurso, configurações, retomada, modo sem armazenamento e alternativa sem WebGL. Não inclui renderização gráfica.');
+  const restored=setup(w.localStorage.getItem(KEY));assert.equal(restored.find('#xp').textContent,'5000 XP');restored.click('#missions-nav');restored.click('[data-case="1"]');assert.match(restored.find('.xp-reward').textContent,/100 XP/);assert.equal(restored.errors.length,0);restored.dom.window.close();
+  // Recarregar em cada ponto do novo fluxo preserva ação, evidência e cursor.
+  for(const [stage,viewStage] of [[1,0],[3,0],[3,1],[4,1],[4,2],[6,2],[6,3]]){
+    const resumed=setup(JSON.stringify({version:2,records:{1:{stage,viewStage,tested:[0],lastTest:0,errors:0,hints:0}}}));resumed.click('#missions-nav');resumed.click('[data-case="1"]');
+    if(viewStage===3)assert.ok(resumed.find('.xp-reward'));else assert.equal(resumed.w.document.querySelectorAll('.bench-steps [aria-current="step"]').length,1);
+    assert.equal(JSON.parse(resumed.w.localStorage.getItem(KEY)).records[1].viewStage,viewStage);assert.equal(resumed.errors.length,0);resumed.dom.window.close();
+  }
+  // Importação pela interface usa a mesma migração que o carregamento local.
+  const imported=setup(),legacy={version:1,format:'amc-mundo',records:{1:{stage:6,viewStage:6,tested:[0],errors:0,hints:0},2:{stage:3,viewStage:3,tested:[1],errors:1,hints:0}}};
+  imported.click('#journal-nav');imported.click('[data-import]');
+  Object.defineProperty(imported.find('#import-file'),'files',{configurable:true,value:[{size:200,text:async()=>JSON.stringify(legacy)}]});
+  imported.find('#import-file').dispatchEvent(new imported.w.Event('change',{bubbles:true}));await new Promise(resolve=>setImmediate(resolve));
+  imported.click('#confirm-import');assert.equal(imported.find('#xp').textContent,'100 XP');
+  imported.click('#missions-nav');imported.click('[data-case="2"]');assert.equal(imported.find('.bench-steps [aria-current="step"]').textContent,'2Consertar');
+  imported.click('#shop-nav');assert.equal(imported.find('#shop-balance').textContent,'140');imported.click('#journal-nav');
+  const before=imported.w.localStorage.getItem(KEY);Object.defineProperty(imported.find('#import-file'),'files',{configurable:true,value:[{size:20,text:async()=>'{"version":99}'}]});
+  imported.find('#import-file').dispatchEvent(new imported.w.Event('change',{bubbles:true}));await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(imported.w.localStorage.getItem(KEY),before);assert.match(imported.find('#toast').textContent,/Não foi possível importar/);assert.equal(imported.errors.length,0);imported.dom.window.close();
+  const denied=setup(null,true);denied.click('#missions-nav');denied.click('[data-case="1"]');denied.click('[data-test="0"]');denied.click('[data-stage-next]');denied.click('[data-choice="0"]');denied.click('[data-stage-next]');denied.click('[data-confirm-repair]');assert.match(denied.find('#save-state').textContent,/Sem salvamento/);assert.equal(denied.find('#xp').textContent,'100 XP');assert.equal(denied.errors.length,0);denied.dom.window.close();
+  app.dom.window.close();console.log('OK: 50 chamados visuais, testar/consertar/conferir, resultados e consertos específicos, três etapas, revisão, fechamento e recarga em todas as fases, 5000 XP sem repetição, saldo e modo sem armazenamento/WebGL. DOM simulado.');
 })();
