@@ -1,5 +1,18 @@
 # Histórico de versões
 
+## v1.3.0 · Modo escuro e Galeria Shop
+
+- Botão de tema no cabeçalho, preferência claro/escuro/sistema nas configurações e sincronização entre abas. A escolha é salva separadamente do progresso.
+- Menus, missões, formulários, cartões e galeria adaptados ao modo escuro. O campus recebe iluminação noturna mantendo a leitura do avatar.
+- Loja física no campus, acessível pelo mapa, por clique na vitrine, por proximidade e pelo menu no computador ou celular.
+- Galeria com 14 itens: quatro uniformes e dez acessórios/efeitos. Filtros por categoria e coleção, miniaturas da geometria real e provador 3D com giro automático ou arraste.
+- 100 créditos iniciais e 40 por nova missão concluída. Aquisições de acessórios usam créditos do jogo; alguns itens também exigem XP. Uniformes anteriores continuam liberados por XP.
+- Acessórios equipados aparecem no avatar do campus. Um item por categoria: cabeça, mochila e efeito. Efeitos respeitam a preferência por redução de movimento.
+- Migração automática do progresso anterior e exportação/importação da coleção. Saldo calculado a partir das missões e dos itens, sem recompensa repetida.
+- Testes das regras de aquisição, temas, persistência, filtros, provador, equipamentos, rota até a loja e encerramento dos recursos 3D.
+
+A conferência visual do conjunto da página em navegador e o desempenho em aparelho real continuam pendentes por indisponibilidade da ferramenta de navegador. As miniaturas são renderizadas diretamente da geometria do projeto.
+
 ## v1.2.2 · Geração 3 de proporções · 9,53/10
 
 Posição de atendimento próxima da bancada, cadeira proporcionada e deslocada para o lado, leitura visual dos monitores, uniforme mais nítido e área de jogo maior. Testes de medidas do corpo, piso, escala de trabalho e enquadramento móvel. [Critérios e pranchas de avaliação](reviews/README.md).

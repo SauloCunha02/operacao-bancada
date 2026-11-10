@@ -8,7 +8,7 @@ export function createBlockAvatar(shirt='#527f65',skin='#d3a077',hair='#44372d',
   const mat=material||((color)=>new THREE.MeshStandardMaterial({color,roughness:.58,metalness:0}));
   const group=new THREE.Group(),limbs=[],shirtMeshes=[];
   function block(name,w,h,d,color,x,y,z,parent=group,radius=.035){
-    const key=[w,h,d,radius].join(',');if(!geometries.has(key))geometries.set(key,new RoundedBoxGeometry(w,h,d,1,radius));
+    const key=[w,h,d,radius].join(',');if(!geometries.has(key)){const geometry=new RoundedBoxGeometry(w,h,d,1,radius);geometry.userData.sharedAvatar=true;geometries.set(key,geometry);}
     const mesh=new THREE.Mesh(geometries.get(key),mat(color));mesh.name=name;mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;parent.add(mesh);return mesh;
   }
   const torso=block('avatar-torso',1.04,1.04,.56,shirt,0,1.52,0);shirtMeshes.push(torso);

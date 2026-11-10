@@ -1,10 +1,11 @@
 import {cases} from './cases.js';
+import {shopFresh,cleanShop} from './shop-data.js';
 export const KEY='amc-mundo-3d-v1';
 export const safety='Preservar os dados, consultar o manual e fazer intervenções internas com o professor, computador desligado e fora da tomada. Nunca abrir fonte ou monitor.';
 export const stageNames=['Preparar','Investigar','Diagnosticar','Corrigir','Validar','Comunicar'];
 export const outfits=[{name:'Campus',color:'#397e68',xp:0},{name:'Circuito',color:'#438eaf',xp:200},{name:'Criativo',color:'#ac7a50',xp:500},{name:'Especialista',color:'#8a72aa',xp:1000}];
 export const target=c=>(c.id-1)%c.steps.length;
-export const fresh=()=>({version:1,tutorial:false,skin:0,quality:'auto',records:{}});
+export const fresh=()=>({version:1,tutorial:false,skin:0,quality:'auto',records:{},shop:shopFresh()});
 export const newRecord=()=>({stage:0,tested:[],errors:0,hints:0});
 export const totalXP=s=>Object.values(s.records).filter(r=>r.stage===6).length*100;
 export function cleanState(raw){
@@ -16,7 +17,7 @@ export function cleanState(raw){
     const stage=r.stage>1&&!tested.includes(target(c))?1:r.stage;
     s.records[c.id]={stage,tested,errors:Number.isInteger(r.errors)&&r.errors>=0?Math.min(r.errors,100000):0,hints:Number.isInteger(r.hints)&&r.hints>=0?Math.min(r.hints,100000):0};
   }
-  s.skin=Number.isInteger(raw.skin)&&outfits[raw.skin]?.xp<=totalXP(s)?raw.skin:0;return s;
+  s.skin=Number.isInteger(raw.skin)&&outfits[raw.skin]?.xp<=totalXP(s)?raw.skin:0;s.shop=cleanShop(raw.shop,s.records);return s;
 }
 export function options(c,stage){
   if(stage===0)return [safety,'Abrir a fonte para procurar a falha.','Substituir várias peças sem fazer testes.'];

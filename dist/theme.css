@@ -1,0 +1,63 @@
+[hidden]{display:none!important}
+:root{--surface:#fafbf6;--surface-raised:#fff;--surface-soft:#edf2e5;--secondary-text:#718169;--shop-accent:#426c4c;--shop-highlight:#d5f58a;--shop-shadow:0 12px 35px #2540300c}
+:root[data-theme=dark]{color-scheme:dark;--ink:#e3eee7;--muted:#a1b4a7;--green:#3a7258;--lime:#d5f58a;--paper:#111d19;--line:#31463c;--surface:#192a23;--surface-raised:#20342b;--surface-soft:#243c30;--secondary-text:#adbfaf;--shop-accent:#b8df9a;--shop-highlight:#d5f58a;--shop-shadow:0 12px 35px #0002}
+[data-theme=dark] .topbar{background:#14221c}
+[data-theme=dark] .profile-avatar{background:#355a44;border-color:#24392d;color:#e4f2d7}
+[data-theme=dark] :is(.chip,.pill,.nav-count){background:#293e30;color:#c0cfb8}
+[data-theme=dark] :is(.eyebrow,.tiny-label){color:#a8bd9a}
+[data-theme=dark] :is(.sidebar h1 span,.sidebar-intro,.nav-item,.local-save,footer,.library-link,.mentor-mini p){color:#a5b7a6}
+[data-theme=dark] .nav-item.active{color:white;background:#36604a}
+[data-theme=dark] .nav-item:hover:not(.active),[data-theme=dark] .icon-button:hover{background:#294334}
+[data-theme=dark] .progress-card{background:#1c3025;border-color:#354c36}
+[data-theme=dark] #rank-number{background:#355039}
+[data-theme=dark] :is(.progress-card p,.xp-line span){color:#adc09b}
+[data-theme=dark] .progress-track{background:#354a34}
+[data-theme=dark] .progress-track i{background:#aed477}
+[data-theme=dark] .station-card{background:#1b2d23}
+[data-theme=dark] .station-card:hover{background:#263e2d}
+[data-theme=dark] :is(.station-card-top,.station-card p){color:#a7b89b}
+[data-theme=dark] .station-card-top>span:first-child{background:#ffffff12}
+[data-theme=dark] .station-mini-track{background:#34432e}
+[data-theme=dark] :is(.below-world button,.library-link){color:#b5d297}
+[data-theme=dark] .world-frame{background:#172a3e;border-color:#3a5147}
+[data-theme=dark] :is(.location-badge,.map-button,.quest-card,.station-label,.control-hint,.camera-actions .icon-button){background:#172a24ed;border-color:#47604d;color:#deebd8}
+[data-theme=dark] :is(.location-badge small,.quest-card p){color:#b3c2ac}
+[data-theme=dark] .quest-icon{background:#3a5633;color:#d3f1a1}
+[data-theme=dark] .quest-card button{color:#d2eea1}
+[data-theme=dark] .station-label b{color:#17251a}
+[data-theme=dark] .world-caption{background:#13251c99;color:#d2dfc5}
+[data-theme=dark] kbd{background:#2e4635;color:#d0e4bd;border-color:#607755}
+[data-theme=dark] .mobile-toolbar{background:#16251ef5;border-color:#334b3b}
+[data-theme=dark] .mobile-toolbar button{color:#b7d29b}
+[data-theme=dark] dialog{background:#192a23;border-color:#3c5441;color:var(--ink)}
+[data-theme=dark] dialog::backdrop{background:#07110bd4}
+[data-theme=dark] :is(.dialog-copy,.stage-desc,.reward p){color:#b6c6b5}
+[data-theme=dark] :is(.intro-art,.instruction,.note,.stats .stat,.summary-list p){background:#263d2d;color:#b7c7ae}
+[data-theme=dark] :is(.instruction p,.stat span,.mission-meta,.mission-tools span,.mission-row small,.wardrobe+p){color:#a7ba9c}
+[data-theme=dark] :is(.choice,.test-card,.mission-row,.map-row){background:#21372b;border-color:#3a5340}
+[data-theme=dark] :is(.choice,.test-card,.mission-row,.map-row):hover{background:#2b4934;border-color:#789563}
+[data-theme=dark] :is(.choice .letter,.test-card .letter,.mission-row .mission-num){background:#314b35;color:#c5dfad;border-color:#4b6242}
+[data-theme=dark] .scenario{background:#2b402c;color:#e1ead8;border-color:#b5d078}
+[data-theme=dark] .test-result{background:#263f2d;color:#cbdcc0}
+[data-theme=dark] :is(.test-result strong,.summary-list strong){color:#d0e6ae}
+[data-theme=dark] .feedback{background:#4a3823;color:#f0d3a4}
+[data-theme=dark] .feedback.good{background:#29442c;color:#c5e8a9}
+[data-theme=dark] .stage-track span{background:#3b4f35}
+[data-theme=dark] .stage-track span.done{background:#9bc76d}
+[data-theme=dark] .stage-track span.current{background:#d2eb9c}
+[data-theme=dark] .secondary{background:#2c4530;color:#d4e6c2;border-color:#486340}
+[data-theme=dark] .secondary:hover{background:#3b583b}
+[data-theme=dark] .station-filters button{background:#2c4330;color:#c4d8b0}
+[data-theme=dark] .station-filters button.selected{background:#48764f;color:#fff}
+[data-theme=dark] .swatch{background:#253a2c;border-color:#52664a}
+[data-theme=dark] .swatch.chosen{border-color:#c6e58d}
+[data-theme=dark] :is(.settings-row small,.mission-tools button){color:#b7ca9c}
+[data-theme=dark] .settings-row select{background:#283d2e;color:#e1ead6;border-color:#5c7051}
+[data-theme=dark] :is(.map-row small,.map-row>b){color:#bbceaa}
+[data-theme=dark] .map-row>span{background:#344c35}
+[data-theme=dark] :is(button,a,select):focus-visible{outline-color:#c2e68b}
+[data-theme=dark] .mentor-face{background:#394633}
+#theme-toggle{position:relative}#theme-toggle[aria-pressed=true]{color:#d5f58a;background:#2d4431}
+.shop-nav-tag{margin-left:auto;background:#d4eab9;color:#456137;font-size:7px;letter-spacing:.7px;padding:4px 5px;border-radius:4px}
+[data-theme=dark] .shop-nav-tag{background:#405c32;color:#e0f2ba}
+@media(max-width:540px){.mobile-toolbar button{padding:3px 10px}.top-actions{gap:0}.profile-avatar{margin-left:3px}}
