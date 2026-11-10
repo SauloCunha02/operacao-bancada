@@ -24,9 +24,10 @@ export function meritProgress(state){
 }
 export const meritPoints=state=>meritProgress(state).filter(m=>m.unlocked).reduce((sum,m)=>sum+m.points,0);
 export function meritTier(state){const points=meritPoints(state);const tiers=[{name:'Semente de curiosidade',at:0},{name:'Olhar de investigador',at:100},{name:'Talento em construção',at:350},{name:'Referência do campus',at:700},{name:'Legado em movimento',at:1200}];const tier=[...tiers].reverse().find(t=>points>=t.at);return {...tier,next:tiers.find(t=>t.at>points)||null,points};}
-export const meritFresh=()=>({featured:null,seen:[]});
-export function cleanMerit(raw,state){const unlocked=meritProgress(state).filter(m=>m.unlocked).map(m=>m.id);return {featured:unlocked.includes(raw?.featured)?raw.featured:null,seen:Array.isArray(raw?.seen)?[...new Set(raw.seen.slice(0,100).filter(id=>unlocked.includes(id)))]:unlocked};}
-export function syncMerits(state){const unlocked=meritProgress(state).filter(m=>m.unlocked),fresh=unlocked.filter(m=>!state.merit.seen.includes(m.id));state.merit.seen=unlocked.map(m=>m.id);if(state.merit.featured&&!unlocked.some(m=>m.id===state.merit.featured))state.merit.featured=null;return fresh;}
+export const meritFresh=()=>({featured:null,seen:[],tracked:null});
+export function cleanMerit(raw,state){const unlocked=meritProgress(state).filter(m=>m.unlocked).map(m=>m.id);return {featured:unlocked.includes(raw?.featured)?raw.featured:null,seen:Array.isArray(raw?.seen)?[...new Set(raw.seen.slice(0,100).filter(id=>unlocked.includes(id)))]:unlocked,tracked:merits.some(m=>m.id===raw?.tracked)&&!unlocked.includes(raw?.tracked)?raw.tracked:null};}
+export function syncMerits(state){const unlocked=meritProgress(state).filter(m=>m.unlocked),fresh=unlocked.filter(m=>!state.merit.seen.includes(m.id));state.merit.seen=unlocked.map(m=>m.id);if(state.merit.featured&&!unlocked.some(m=>m.id===state.merit.featured))state.merit.featured=null;if(state.merit.tracked&&unlocked.some(m=>m.id===state.merit.tracked))state.merit.tracked=null;return fresh;}
+export function trackMerit(state,id){if(id===null){state.merit.tracked=null;return true;}if(!meritProgress(state).some(m=>m.id===id&&!m.unlocked))return false;state.merit.tracked=id;return true;}
 export function featureMerit(state,id){if(id===null){state.merit.featured=null;return true;}if(!meritProgress(state).some(m=>m.id===id&&m.unlocked))return false;state.merit.featured=id;return true;}
 export function suggestMission(state,merit){
   let candidates=cases.filter(c=>state.records[c.id]?.stage!==6);

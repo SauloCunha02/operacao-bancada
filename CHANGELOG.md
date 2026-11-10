@@ -1,5 +1,16 @@
 # Histórico de versões
 
+## v1.5.0 · Objetivos guiados e recompensas de mérito
+
+- Fixar uma medalha pendente como próximo objetivo. O painel do campus acompanha seu critério e o botão de missão abre um chamado adequado, incluindo revisão quando necessária.
+- O objetivo é salvo e restaurado, pode ser retirado e é concluído automaticamente ao conquistar a medalha. Sem prazo ou perda de sequência.
+- Três visuais exclusivos de mérito: Boné Pioneiro (primeiro chamado), Kit Guardião (um chamado em cada estação) e Aura Legado (50 chamados). São resgatados gratuitamente, sem consumir pontos, XP ou créditos.
+- A galeria de méritos mostra a recompensa associada. O provador da loja permite experimentá-la antes de conquistar o requisito e oferece atalho ao objetivo correto.
+- Validação dos resgates e da importação: uma recompensa sem o mérito correspondente não é equipada nem adicionada à coleção. Reequipar não gera crédito ou aquisição repetida.
+- Catálogo com 17 itens individuais e três conjuntos completos; 20 miniaturas renderizadas a partir dos modelos do jogo.
+
+O navegador de verificação continua indisponível. Foram verificados os fluxos DOM, as regras de progressão, as recompensas e a cena com o renderer de teste.
+
 ## v1.4.0 · Sistema de méritos e medalhas originais
 
 - Doze conquistas com critérios públicos de jornada, investigação, revisão/mentoria e conclusão das cinco estações. Méritos derivados dos chamados validados, com até 1300 pontos e cinco títulos de percurso.

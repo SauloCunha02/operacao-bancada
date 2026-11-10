@@ -1,12 +1,12 @@
 {
   "name": "operacao-bancada-game",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
     "start": "node server.cjs",
-    "test": "node tests/content.cjs && node tests/interface.cjs && node tests/camera.cjs && node tests/proportions.cjs && node tests/shop.cjs && node tests/theme-shop.cjs && node tests/merit.cjs && node tests/merit-ui.cjs && node tests/world.cjs",
+    "test": "node tests/content.cjs && node tests/interface.cjs && node tests/camera.cjs && node tests/proportions.cjs && node tests/shop.cjs && node tests/theme-shop.cjs && node tests/merit.cjs && node tests/merit-ui.cjs && node tests/merit-rewards.cjs && node tests/world.cjs",
     "review:proportions": "node scripts/render-proportions.mjs"
   },
   "dependencies": {
