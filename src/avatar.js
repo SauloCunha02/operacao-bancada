@@ -23,7 +23,7 @@ export function createBlockAvatar(shirt='#527f65',skin='#d3a077',hair='#44372d',
     shirtMeshes.push(block('avatar-sleeve',.48,.72,.56,shirt,0,-.36,0,arm));
     block('avatar-hand',.46,.30,.54,skin,0,-.87,0,arm);
     const leg=new THREE.Group();leg.name=side<0?'avatar-leg-left':'avatar-leg-right';leg.position.set(side*.265,1,0);group.add(leg);
-    block('avatar-trouser',.48,.91,.54,'#344855',0,-.455,0,leg);
+    block('avatar-trouser',.48,.91,.54,'#304b62',0,-.455,0,leg);
     block('avatar-shoe',.50,.16,.64,'#f4f2e8',0,-.92,.045,leg,.025);
     block('avatar-shoe-sole',.51,.045,.65,'#c9cec4',0,-.9775,.045,leg,.012);
     limbs.push(arm,leg);
@@ -34,6 +34,8 @@ export function createBlockAvatar(shirt='#527f65',skin='#d3a077',hair='#44372d',
   const smile=new THREE.Mesh(new THREE.TubeGeometry(smileCurve,12,.012,5,false),mat('#694634'));group.add(smile);
   block('avatar-pocket',.25,.25,.025,'#b9d4ab',.245,1.68,.293,group,.016);
   block('avatar-badge',.15,.065,.014,'#f1f5dc',.245,1.72,.313,group,.006);
+  block('avatar-back-mark',.32,.055,.018,'#c1dcc4',0,1.81,-.292,group,.008);
+  block('avatar-back-mark-small',.19,.035,.018,'#9cc4ae',0,1.71,-.292,group,.006);
   block('avatar-shirt-seam',.015,.68,.012,'#719479',0,1.54,.285,group,.004);
   const shadow=new THREE.Mesh(new THREE.CircleGeometry(.74,24),new THREE.MeshBasicMaterial({color:'#53694a',transparent:true,opacity:.16,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=.012;group.add(shadow);
   group.userData.bodyHeight=AVATAR.height;

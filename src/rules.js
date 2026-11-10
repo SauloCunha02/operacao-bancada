@@ -2,7 +2,7 @@ import {cases} from './cases.js';
 export const KEY='amc-mundo-3d-v1';
 export const safety='Preservar os dados, consultar o manual e fazer intervenções internas com o professor, computador desligado e fora da tomada. Nunca abrir fonte ou monitor.';
 export const stageNames=['Preparar','Investigar','Diagnosticar','Corrigir','Validar','Comunicar'];
-export const outfits=[{name:'Campus',color:'#647e4c',xp:0},{name:'Circuito',color:'#4e8b9f',xp:200},{name:'Criativo',color:'#ac7a50',xp:500},{name:'Especialista',color:'#8a72aa',xp:1000}];
+export const outfits=[{name:'Campus',color:'#397e68',xp:0},{name:'Circuito',color:'#438eaf',xp:200},{name:'Criativo',color:'#ac7a50',xp:500},{name:'Especialista',color:'#8a72aa',xp:1000}];
 export const target=c=>(c.id-1)%c.steps.length;
 export const fresh=()=>({version:1,tutorial:false,skin:0,quality:'auto',records:{}});
 export const newRecord=()=>({stage:0,tested:[],errors:0,hints:0});

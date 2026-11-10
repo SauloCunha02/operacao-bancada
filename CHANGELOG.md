@@ -1,5 +1,19 @@
 # Histórico de versões
 
+## v1.2.2 · Geração 3 de proporções · 9,53/10
+
+Posição de atendimento próxima da bancada, cadeira proporcionada e deslocada para o lado, leitura visual dos monitores, uniforme mais nítido e área de jogo maior. Testes de medidas do corpo, piso, escala de trabalho e enquadramento móvel. [Critérios e pranchas de avaliação](reviews/README.md).
+
+## v1.2.1 · Geração 2 de proporções · 9,10/10
+
+Pés apoiados no piso das estações e caminhos, paredes e bancos com escala coerente, câmera mais próxima e foco na altura do tronco, colisões ajustadas ao volume do corpo e materiais com acabamento plástico.
+
+## v1.2.0 · Geração 1 de proporções · 8,30/10
+
+Avatar com tronco largo, braços robustos, pernas proporcionais, cabeça cilíndrica menor e rosto amigável. Avatar compartilhado pelo aluno e pela mentora; o uniforme continua personalizável.
+
+As notas são autoavaliações de direção visual. As versões anteriores foram preservadas em tags Git locais.
+
 ## v1.1.0 · Câmera em terceira pessoa
 
 - Câmera com perspectiva acompanha o avatar, com suavização do movimento.

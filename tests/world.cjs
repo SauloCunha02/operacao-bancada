@@ -44,6 +44,8 @@ const {build}=require('esbuild');
   const viewDirection=w.__camera.position.clone().sub(player.position);pointer(stick,'pointerup',10,49,17);pointer(canvas,'pointermove',20,300,180);tick();const newViewDirection=w.__camera.position.clone().sub(player.position);assert.ok(viewDirection.angleTo(newViewDirection)>.1,'Soltar o joystick não pode cancelar o outro dedo que gira a câmera');pointer(canvas,'pointerup',20,300,180);
   const stop=player.position.clone();tick(10);assert.ok(Math.hypot(player.position.x-stop.x,player.position.z-stop.z)<.001,'Soltar o joystick deve parar o avatar');
   click('#camera-center');tick();assert.ok(!w.document.querySelector('#panel').open,'Arrastar a câmera não deve abrir uma missão');
+  click('#missions-nav');click('[data-case="1"]');tick();assert.ok(Math.abs(player.position.z-(-5+.95))<.001,'Posição de atendimento deve ficar próxima da bancada');assert.ok(player.position.y>=.39&&player.position.y<.41,'Pés devem apoiar no piso da estação');
+  const top=player.position.clone();top.y+=2.84;const bottom=player.position.clone();top.project(w.__camera);bottom.project(w.__camera);const coverage=Math.abs(top.y-bottom.y)/2;assert.ok(coverage>=.25&&coverage<=.45,`Avatar deve ocupar de 25 a 45% da altura útil em celular: ${coverage}`);assert.ok(top.z<1&&bottom.z<1,'Avatar deve ficar diante da câmera');click('#close-panel');
   assert.equal(errors.length,0,errors.map(e=>e?.stack).join('\n'));assert.ok(Number.isFinite(w.__camera.position.x));
   dom.window.close();console.log('OK: cena Three.js, 10 rotas, teclado, limites, mentora, perspectiva próxima, formato de celular, joystick e rotação simultâneos. Renderer substituído: não valida aparência ou desempenho WebGL.');
 })();

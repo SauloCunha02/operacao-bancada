@@ -1,0 +1,24 @@
+const assert=require('node:assert/strict');
+(async()=>{
+  const THREE=await import('three');
+  const {createBlockAvatar,AVATAR}=await import('../src/avatar.js');
+  const {CAMPUS_SCALE,floorHeight}=await import('../src/proportions.js');
+  const {levels}=await import('../src/cases.js');
+  const avatar=createBlockAvatar(),g=avatar.group;
+  g.updateMatrixWorld(true);const bounds=new THREE.Box3();
+  g.traverseVisible(o=>{if(o.isMesh&&o.material.opacity>=.5){o.geometry.computeBoundingBox();bounds.union(o.geometry.boundingBox.clone().applyMatrix4(o.matrixWorld));}});
+  const size=bounds.getSize(new THREE.Vector3());
+  assert.ok(Math.abs(size.y-AVATAR.height)<.005,'Altura medida precisa corresponder ao corpo');
+  assert.ok(Math.abs(bounds.min.y)<.001,'Solas precisam tocar o plano zero do avatar');
+  assert.ok(size.x/size.y>.69&&size.x/size.y<.77,'Silhueta precisa ser larga e robusta');
+  assert.ok(AVATAR.headHeight/size.y>=.22&&AVATAR.headHeight/size.y<=.25,'Cabeça não pode dominar a altura');
+  assert.ok(AVATAR.armWidth/AVATAR.torsoWidth>.44,'Braços devem manter volume em relação ao tronco');
+  assert.ok(Math.abs(AVATAR.armHeight-AVATAR.torsoHeight)<.04,'Braços e tronco devem ter comprimentos compatíveis');
+  assert.ok(CAMPUS_SCALE.deskTop/AVATAR.height>.55&&CAMPUS_SCALE.deskTop/AVATAR.height<.64,'Bancada deve ficar na altura de trabalho');
+  assert.ok(CAMPUS_SCALE.wallTop/AVATAR.height>1.2,'Parede deve ultrapassar a altura do personagem');
+  assert.ok(avatar.shirtMeshes.length===3&&avatar.limbs.length===4,'Uniforme e animação devem manter todas as partes');
+  const stations=levels.map((s,i)=>({...s,x:[-9,0,9,-6,6][i],z:[-5,-9,-5,6,6][i]}));
+  for(const s of stations)assert.equal(floorHeight(s.x,s.z+.95,stations),.39);
+  assert.equal(floorHeight(0,7,stations),.195);assert.equal(floorHeight(0,1.2,stations),.39);assert.equal(floorHeight(-16,13,stations),.13);
+  console.log('OK: altura real de 2.84, solas no piso, silhueta robusta, proporções de cabeça/tronco/membros, bancada, paredes e cinco pisos de atendimento.');
+})();

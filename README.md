@@ -27,9 +27,9 @@ Abra http://127.0.0.1:4173. Os arquivos prontos para hospedagem estática ficam 
 
 ## Estrutura
 
-`src/game.js`: mundo Three.js, interação, controles e interface. `src/camera.js`: câmera em terceira pessoa, colisões e gestos de rotação/zoom. `src/rules.js`: regras e persistência validada. `src/cases.js`: cópia integral do conteúdo original com exportação ES adicionada. `dist/oficina/`: versão original da oficina, biblioteca, guia docente e acessibilidade preservados. O clone de referência está em `../conteudo-original/`.
+`src/game.js`: mundo Three.js, interação, controles e interface. `src/avatar.js`: modelo de corpo compartilhado entre aluno e mentora. `src/proportions.js`: escala e alturas de piso. `src/camera.js`: câmera em terceira pessoa, colisões e gestos de rotação/zoom. `src/rules.js`: regras e persistência validada. `src/cases.js`: cópia integral do conteúdo original com exportação ES adicionada. `dist/oficina/`: versão original da oficina, biblioteca, guia docente e acessibilidade preservados. O clone de referência está em `../conteudo-original/`.
 
-O histórico local usa tags de versão. A câmera original está preservada em `v1.0.0`; a câmera em terceira pessoa corresponde à `v1.1.0`. Consulte [CHANGELOG.md](CHANGELOG.md).
+O histórico local usa tags de versão. A câmera original está preservada em `v1.0.0`; a câmera em terceira pessoa corresponde à `v1.1.0`. As gerações de proporções estão em `v1.2.0`, `v1.2.1` e `v1.2.2`, com notas de autoavaliação 8,30, 9,10 e 9,53. Consulte [CHANGELOG.md](CHANGELOG.md) e [avaliações com pranchas](reviews/README.md).
 
 O mundo utiliza geometria procedural, sem modelos externos. Three.js é empacotado localmente. As fontes Google são opcionais; na ausência de rede, o navegador usa fontes do sistema. O jogo requer WebGL para o ambiente 3D e oferece acesso às missões quando ele não está disponível. A qualidade pode ser reduzida em Configurações.
 
@@ -40,7 +40,7 @@ npm.cmd test
 npm.cmd run build
 ```
 
-Os testes cobrem os 50 casos e sua interface DOM, erros e recuperação, necessidade de evidência, retomada, XP sem repetição e importação. A câmera é verificada com a matemática real do Three.js: perspectiva, acompanhamento, direção do movimento, limites, colisões, suavização, mouse e pinça. A cena usa um renderer substituído para verificar as rotas, o redimensionamento para celular e o uso simultâneo do joystick e da rotação. A aparência e o desempenho WebGL precisam de conferência visual; a ferramenta de navegador não estava disponível nesta revisão.
+Os testes cobrem os 50 casos e sua interface DOM, erros e recuperação, necessidade de evidência, retomada, XP sem repetição e importação. A câmera é verificada com a matemática real do Three.js: perspectiva, acompanhamento, direção do movimento, limites, colisões, suavização, mouse e pinça. A cena usa um renderer substituído para verificar as rotas, o redimensionamento para celular e o uso simultâneo do joystick e da rotação. Os testes de proporções também medem corpo, cabeça, braços, apoio dos pés, altura da bancada e enquadramento móvel. A aparência e o desempenho WebGL precisam de conferência visual; a ferramenta de navegador não estava disponível nesta revisão.
 
 ## Limites pedagógicos
 
